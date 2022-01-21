@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GameField No render cells with gameFieldSize = 0 1`] = `
+<DocumentFragment>
+  <p
+    role="noDataMessage"
+  >
+    Нет данных!
+  </p>
+</DocumentFragment>
+`;
+
+exports[`GameField renders 9 cells from data:[9 items] 1`] = `
+<DocumentFragment>
+  <section
+    class="css-1gk2x1a"
+    role="cellsGrid"
+  >
+    <div
+      class="css-es8rv7"
+      role="cellContainer-0"
+    >
+      <div
+        class="css-w6oewy"
+        role="cellContent-0"
+      />
+    </div>
+    <div
+      class="css-2r18jt"
+      role="cellContainer-1"
+    />
+    <div
+      class="css-1jbr29x"
+      role="cellContainer-2"
+    />
+    <div
+      class="css-es8rv7"
+      role="cellContainer-3"
+    />
+    <div
+      class="css-2r18jt"
+      role="cellContainer-4"
+    />
+    <div
+      class="css-1jbr29x"
+      role="cellContainer-5"
+    />
+    <div
+      class="css-es8rv7"
+      role="cellContainer-6"
+    />
+    <div
+      class="css-2r18jt"
+      role="cellContainer-7"
+    />
+    <div
+      class="css-1jbr29x"
+      role="cellContainer-8"
+    />
+    <div
+      style="clear: both;"
+    />
+  </section>
+</DocumentFragment>
+`;

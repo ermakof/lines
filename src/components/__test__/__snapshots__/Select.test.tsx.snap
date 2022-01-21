@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select render <Select> 1`] = `
+<DocumentFragment>
+  <select
+    class="css-tv5zn1"
+    name="select"
+    role="select"
+  >
+    <option
+      role="option"
+      value="1"
+    >
+      Падаван
+    </option>
+    <option
+      role="option"
+      value="2"
+    >
+      Джедай
+    </option>
+    <option
+      role="option"
+      value="3"
+    >
+      Мастер-джедай
+    </option>
+    <option
+      role="option"
+      value="4"
+    >
+      Член Совета Силы
+    </option>
+  </select>
+</DocumentFragment>
+`;
