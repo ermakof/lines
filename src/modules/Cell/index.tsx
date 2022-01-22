@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from '@emotion/styled';
 import { CELL_SIZE } from '@src/modules/Cell/constatnts';
-import store from '@src/store';
-import { setSelectedCell } from '@src/modules/Cell/actions';
-import ICellInfo from '@src/model/ICellInfo';
+import appSlice from '@src/App/appSlice';
 
 interface IContainer {
   isRight?: boolean;
@@ -53,7 +52,7 @@ const Content = styled.div<IContent>`
 
 export interface CellProps {
   num: number;
-  isFilled?: ICellInfo;
+  isFilled?: number;
   isSelected?: boolean;
   isLeft?: boolean;
   isRight?: boolean;
@@ -67,10 +66,11 @@ const Cell: React.FC<CellProps> = ({
   isLeft = true,
   isRight = true,
 }) => {
-  const { dispatch } = useContext(store);
+  const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(setSelectedCell(!isSelected ? num : undefined));
+    const { actions } = appSlice;
+    dispatch(actions.setSelectedCell(!isSelected ? num : undefined));
   };
   const frameColor = '#ddd';
 

@@ -1,7 +1,8 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
 import AppBottom from '@src/App/AppBottom';
-import Store from '@src/store';
+import { store } from '@src/store';
 import { IAction } from '@src/model';
 
 let dispatch: (action: IAction) => void;
@@ -19,9 +20,9 @@ describe('AppBottom', () => {
       gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
     };
     const { asFragment } = render(
-      <Store.Provider value={{ dispatch, state }}>
+      <Provider store={store}>
         <AppBottom />
-      </Store.Provider>
+      </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
     const dataMessage = screen.getByText(/Результат/gi);

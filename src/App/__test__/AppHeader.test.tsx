@@ -1,7 +1,8 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
 import AppHeader from '@src/App/AppHeader';
-import Store from '@src/store';
+import { store } from '@src/store';
 import { IAction } from '@src/model';
 
 let dispatch: (action: IAction) => void;
@@ -20,9 +21,9 @@ describe('AppHeader', () => {
       userProfile: { login: '123', password: '123', token: '7a0cbf93-aa13-4b50-8a41-97ddbfba00d5' },
     };
     const { asFragment } = render(
-      <Store.Provider value={{ dispatch, state }}>
+      <Provider store={store}>
         <AppHeader />
-      </Store.Provider>
+      </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
     const title = screen.getByText(/Lines/gi);
@@ -41,9 +42,9 @@ describe('AppHeader', () => {
       gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
     };
     const { asFragment } = render(
-      <Store.Provider value={{ dispatch, state }}>
+      <Provider store={store}>
         <AppHeader />
-      </Store.Provider>
+      </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
     const title = screen.getByText(/Lines/gi);

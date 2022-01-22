@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
-import store from '@src/store';
+import React from 'react';
+import { TRootState } from '@src/store';
 import styled from '@emotion/styled';
+import { useSelector } from 'react-redux';
 
 const Title = styled.p`
   font-size: 32px;
@@ -8,13 +9,13 @@ const Title = styled.p`
 `;
 
 const AuthStatus = () => {
-  const { state } = useContext(store);
+  const { userProfile } = useSelector(({ auth }: TRootState) => auth);
 
-  if (!state.userProfile) {
+  if (!userProfile) {
     return <Title>Lines</Title>;
   }
 
-  return <Title>{`Lines ${state.userProfile.login}`}</Title>;
+  return <Title>{`Lines ${userProfile.login}`}</Title>;
 };
 
 export default AuthStatus;

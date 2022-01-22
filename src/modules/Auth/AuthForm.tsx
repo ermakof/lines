@@ -1,14 +1,14 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Formik, Field, Form } from 'formik';
 import styled from '@emotion/styled';
-import { waitOn, waitOff } from '@src/App/actions';
-import store from '@src/store';
+
 import {
   fakeAuthProvider,
   getUserProfileFormLocalStorage,
 } from '@src/modules/Auth/fakeAuthProvider';
-import { IUserProfile } from '@src/model';
+import IUserProfile from '@src/modules/Auth/model/IUserProfile';
 import useLogin from '@src/modules/Auth/useLogin';
+import useWait from '@src/App/useWait';
 
 const Root = styled.div`
   label {
@@ -40,7 +40,7 @@ export type IAuthData = {
 };
 
 const AuthForm: FC = () => {
-  const { dispatch } = useContext(store);
+  const wait = useWait();
   const login = useLogin();
 
   const [authData, setAuthData] = useState<IAuthData>({ login: '', password: '' });
@@ -53,10 +53,10 @@ const AuthForm: FC = () => {
   }, []);
 
   const handleSubmit = () => {
-    dispatch(waitOn());
+    wait();
     fakeAuthProvider.signIn(authData, (userProfile: IUserProfile) => {
       login(userProfile);
-      dispatch(waitOff());
+      wait(false);
     });
   };
 

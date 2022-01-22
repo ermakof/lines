@@ -1,8 +1,9 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 
-import Store from '@src/store';
+import { store } from '@src/store';
 import AppBody from '@src/App/AppBody';
 
 export default {
@@ -21,9 +22,9 @@ const state = {
 const dispatch = () => null;
 
 const Template: ComponentStory<typeof AppBody> = (args) => (
-  <Store.Provider value={{ dispatch, state }}>
+  <Provider store={store}>
     <AppBody {...args} />
-  </Store.Provider>
+  </Provider>
 );
 
 export const Static = Template.bind({});

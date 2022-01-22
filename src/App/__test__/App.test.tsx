@@ -1,8 +1,9 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
 
 import App from '@src/App';
-import Store from '@src/store';
+import { store } from '@src/store';
 
 test('render App', () => {
   const state = {
@@ -13,9 +14,9 @@ test('render App', () => {
   };
   const dispatch = jest.fn();
   const { asFragment } = render(
-    <Store.Provider value={{ dispatch, state }}>
+    <Provider store={store}>
       <App />
-    </Store.Provider>
+    </Provider>
   );
   expect(asFragment()).toMatchSnapshot();
   const topPanel = screen.getByRole(/topPanel/gi);

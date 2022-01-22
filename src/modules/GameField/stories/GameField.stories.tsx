@@ -1,8 +1,10 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { withKnobs } from '@storybook/addon-knobs';
-import GameField from '@src/modules/GameField';
 import { ComponentStory } from '@storybook/react';
-import Store from '@src/store';
+
+import GameField from '@src/modules/GameField';
+import { store } from '@src/store';
 
 export default {
   component: GameField,
@@ -18,12 +20,10 @@ const state = {
   selectedCell: 2,
 };
 
-const dispatch = () => null;
-
 const Template: ComponentStory<typeof GameField> = (args) => (
-  <Store.Provider value={{ dispatch, state }}>
+  <Provider store={store}>
     <GameField {...args} />
-  </Store.Provider>
+  </Provider>
 );
 
 export const Static = Template.bind({});

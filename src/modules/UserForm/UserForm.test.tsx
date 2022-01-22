@@ -1,9 +1,11 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { render, screen, waitFor } from '@testing-library/react';
-import UserForm from '@src/modules/UserForm';
-import userEvent from '@testing-library/user-event';
-import Store from '@src/store';
 import { BrowserRouter as Router } from 'react-router-dom';
+import userEvent from '@testing-library/user-event';
+
+import UserForm from '@src/modules/UserForm';
+import { store } from '@src/store';
 
 describe('UserForm', () => {
   it('Render <UserForm>', () => {
@@ -15,11 +17,11 @@ describe('UserForm', () => {
     };
     const dispatch = jest.fn();
     const { asFragment } = render(
-      <Store.Provider value={{ dispatch, state }}>
+      <Provider store={store}>
         <Router>
           <UserForm />
         </Router>
-      </Store.Provider>
+      </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
     const userForm = screen.getByRole(/userForm/gi);
@@ -41,11 +43,11 @@ describe('UserForm', () => {
     };
     const dispatch = jest.fn();
     render(
-      <Store.Provider value={{ dispatch, state }}>
+      <Provider store={store}>
         <Router>
           <UserForm />
         </Router>
-      </Store.Provider>
+      </Provider>
     );
     userEvent.click(screen.getByRole('buttonReset'));
 
@@ -65,11 +67,11 @@ describe('UserForm', () => {
     };
     const dispatch = jest.fn();
     render(
-      <Store.Provider value={{ dispatch, state }}>
+      <Provider store={store}>
         <Router>
           <UserForm />
         </Router>
-      </Store.Provider>
+      </Provider>
     );
     userEvent.click(screen.getByRole('buttonLogout'));
 
@@ -89,11 +91,11 @@ describe('UserForm', () => {
     };
     const dispatch = jest.fn();
     render(
-      <Store.Provider value={{ dispatch, state }}>
+      <Provider store={store}>
         <Router>
           <UserForm />
         </Router>
-      </Store.Provider>
+      </Provider>
     );
     const select = screen.getByRole(/select/gi);
     userEvent.selectOptions(select, '2');

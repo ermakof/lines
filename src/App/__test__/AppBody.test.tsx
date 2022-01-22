@@ -1,8 +1,9 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
 
 import AppBody from '@src/App/AppBody';
-import Store from '@src/store';
+import { store } from '@src/store';
 import { IAction } from '@src/model';
 
 let dispatch: (action: IAction) => void;
@@ -20,9 +21,9 @@ describe('AppBody', () => {
       gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
     };
     const { asFragment } = render(
-      <Store.Provider value={{ dispatch, state }}>
+      <Provider store={store}>
         <AppBody />
-      </Store.Provider>
+      </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
     const dataMessage = screen.getByRole(/gamePanel/gi);
@@ -37,9 +38,9 @@ describe('AppBody', () => {
       gameFieldData: [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     };
     const { asFragment } = render(
-      <Store.Provider value={{ dispatch, state }}>
+      <Provider store={store}>
         <AppBody />
-      </Store.Provider>
+      </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
     const dataList = screen.getByRole(/gamePanel/gi);

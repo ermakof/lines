@@ -1,9 +1,11 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
-import AuthForm from '@src/modules/Auth/AuthForm';
-import userEvent from '@testing-library/user-event';
-import Store from '@src/store';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
+import AuthForm from '@src/modules/Auth/AuthForm';
+import { store } from '@src/store';
 
 interface ILocalStorage {
   [key: string]: string;
@@ -51,11 +53,11 @@ describe('AuthForm', () => {
     };
     const dispatch = jest.fn();
     const { asFragment } = render(
-      <Store.Provider value={{ dispatch, state }}>
+      <Provider store={store}>
         <Router>
           <AuthForm />
         </Router>
-      </Store.Provider>
+      </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
     const authForm = screen.getByRole(/authForm/gi);
@@ -75,11 +77,11 @@ describe('AuthForm', () => {
     };
     const dispatch = jest.fn();
     render(
-      <Store.Provider value={{ dispatch, state }}>
+      <Provider store={store}>
         <Router>
           <AuthForm />
         </Router>
-      </Store.Provider>
+      </Provider>
     );
     const login = screen.getByRole(/^login$/gi);
     userEvent.clear(login);
@@ -115,11 +117,11 @@ describe('AuthForm', () => {
     };
     const dispatch = jest.fn();
     render(
-      <Store.Provider value={{ dispatch, state }}>
+      <Provider store={store}>
         <Router>
           <AuthForm />
         </Router>
-      </Store.Provider>
+      </Provider>
     );
     expect(getItemSpy).toBeCalledWith('lines:userProfile');
   });

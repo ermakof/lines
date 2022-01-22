@@ -1,8 +1,10 @@
 import React from 'react';
-import GameField from '../index';
+import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
-import Store from '@src/store';
+
+import { store } from '@src/store';
 import { IAction, IState } from '@src/model';
+import GameField from '../index';
 
 let dispatch: (action: IAction) => void;
 let state: IState;
@@ -11,7 +13,7 @@ describe('GameField', () => {
   beforeEach(() => {
     dispatch = jest.fn();
     state = {
-      gameLevel: '1',
+      userLevel: '1',
       gameFieldSize: 3,
       gameFieldPercentFilled: 10,
       gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -21,9 +23,9 @@ describe('GameField', () => {
   it('No render cells with gameFieldSize = 0', () => {
     state.gameFieldSize = 0;
     const { asFragment } = render(
-      <Store.Provider value={{ dispatch, state }}>
+      <Provider store={store}>
         <GameField />
-      </Store.Provider>
+      </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
     const message = screen.getByRole(/^noDataMessage$/gi);
@@ -32,9 +34,9 @@ describe('GameField', () => {
 
   it('renders 9 cells from data:[9 items]', () => {
     const { asFragment } = render(
-      <Store.Provider value={{ dispatch, state }}>
+      <Provider store={store}>
         <GameField />
-      </Store.Provider>
+      </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
     const cellsGrid = screen.getByRole(/cellsGrid/gi);

@@ -1,11 +1,12 @@
 import React from 'react';
-import Cell from '@src/modules/Cell';
+import { Provider } from 'react-redux';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Store from '@src/store';
-import { IAction, IState } from '@src/model';
 
-let dispatch: (action: IAction) => void;
-let state: IState;
+import Cell from '@src/modules/Cell';
+import { store } from '@src/store';
+
+let dispatch = () => null;
+let state;
 
 describe('Cell', () => {
   beforeEach(() => {
@@ -20,9 +21,9 @@ describe('Cell', () => {
 
   it('renders <Cell> using renderer cell with value=2', () => {
     const { asFragment } = render(
-      <Store.Provider value={{ dispatch, state }}>
+      <Provider store={store}>
         <Cell num={2} isFilled={1} isSelected={true} />
-      </Store.Provider>
+      </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
     const cellContainer = screen.getByRole(/cellContainer/gi);
@@ -33,9 +34,9 @@ describe('Cell', () => {
 
   it('Click on cell', () => {
     render(
-      <Store.Provider value={{ dispatch, state }}>
+      <Provider store={store}>
         <Cell num={2} isFilled={1} isSelected={true} />
-      </Store.Provider>
+      </Provider>
     );
     const cellContainer = screen.getByRole(/cellContent-2/i);
     fireEvent.click(cellContainer);

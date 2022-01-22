@@ -1,19 +1,11 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import AuthForm from '@src/modules/Auth/AuthForm';
-import Store from '@src/store';
-
-const dispatch = () => null;
-
-const state = {
-  gameLevel: '1',
-  gameFieldSize: 4,
-  gameFieldPercentFilled: 10,
-  gameFieldData: [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-};
+import { store } from '@src/store';
 
 export default {
   component: AuthForm,
@@ -22,11 +14,11 @@ export default {
 } as ComponentMeta<typeof AuthForm>;
 
 const Template: ComponentStory<typeof AuthForm> = (args) => (
-  <Store.Provider value={{ dispatch, state }}>
+  <Provider store={store}>
     <Router>
       <AuthForm {...args} />
     </Router>
-  </Store.Provider>
+  </Provider>
 );
 
 export const Static = Template.bind({});
