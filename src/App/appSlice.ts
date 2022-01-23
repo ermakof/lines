@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import initialState from '@src/store/initialState';
 import createGameField from '@src/utils/createGameField';
+import updateGameField from '@src/utils/updateGameField';
 
 const appSlice = createSlice({
   name: 'app',
@@ -14,6 +15,12 @@ const appSlice = createSlice({
     },
     setSelectedCell: (state, { payload }: PayloadAction<number | undefined>) => {
       state.selectedCell = payload;
+    },
+    moveToCell: (state, { payload }: PayloadAction<number>) => {
+      if (state.selectedCell) {
+        state.gameFieldData = updateGameField(state.gameFieldData, state.selectedCell, payload);
+        state.selectedCell = undefined;
+      }
     },
     initApp: (state) => {
       state.gameFieldPercentFilled = initialState.gameFieldPercentFilled;

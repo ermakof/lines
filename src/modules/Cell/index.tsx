@@ -8,17 +8,16 @@ interface IContainer {
   isRight?: boolean;
   isLeft?: boolean;
   isBottom?: boolean;
-  frameColor?: string;
 }
 const Container = styled.div<IContainer>`
   display: block;
   width: ${({ isRight }) => CELL_SIZE - (isRight ? 2 : 1)}px;
   height: ${({ isBottom }) => CELL_SIZE - (isBottom ? 2 : 1)}px;
   text-align: center;
-  border-top: ${({ frameColor }) => `1px solid ${frameColor}`};
-  border-left: ${({ frameColor }) => `1px solid ${frameColor}`};
-  border-right: ${({ isRight, frameColor }) => `1px solid ${isRight ? frameColor : ''};`}
-  border-bottom: ${({ isBottom, frameColor }) => `1px solid ${isBottom ? frameColor : ''};`}
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-right: ${({ isRight }) => `1px solid ${isRight ? '#ddd' : ''};`}
+  border-bottom: ${({ isBottom }) => `1px solid ${isBottom ? '#ddd' : ''};`}
   float: left;
   ${({ isLeft }) => (isLeft ? 'clear: both;' : '')}
   transition-property: background;
@@ -67,22 +66,29 @@ const Cell: React.FC<CellProps> = ({
   isRight = true,
 }) => {
   const dispatch = useDispatch();
+  const { actions } = appSlice;
 
-  const handleClick = () => {
-    const { actions } = appSlice;
+  const handleSelectCell = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
     dispatch(actions.setSelectedCell(!isSelected ? num : undefined));
   };
-  const frameColor = '#ddd';
+
+  const handleSelectContainer = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+    if (!isSelected) {
+      dispatch(actions.moveToCell(num));
+    }
+  };
 
   return (
     <Container
       role={`cellContainer-${num}`}
       isRight={isRight}
       isLeft={isLeft}
-      frameColor={frameColor}
+      onClick={handleSelectContainer}
     >
       {!!isFilled && (
-        <Content role={`cellContent-${num}`} selected={isSelected} onClick={handleClick} />
+        <Content role={`cellContent-${num}`} selected={isSelected} onClick={handleSelectCell} />
       )}
     </Container>
   );
