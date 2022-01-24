@@ -1,8 +1,8 @@
 const removeOrderedChains = (props: { cells: Array<number>; chains: number[][] }) => {
   const { cells, chains } = props;
   const rez = [...cells];
-  const isUpdated = chains.length > 0;
-  if (isUpdated) {
+  const hasChains = chains.length > 0;
+  if (hasChains) {
     chains.forEach(
       (chain) =>
         chain &&
@@ -11,7 +11,7 @@ const removeOrderedChains = (props: { cells: Array<number>; chains: number[][] }
         })
     );
   }
-  return { cells: rez, isUpdated };
+  return { cells: rez, hasChains };
 };
 
 export default removeOrderedChains;

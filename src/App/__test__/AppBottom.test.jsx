@@ -1,24 +1,16 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
-import AppBottom from '@src/App/AppBottom';
-import { store } from '@src/store';
-import { IAction } from '@src/model';
+import configureMockStore from 'redux-mock-store';
 
-let dispatch: (action: IAction) => void;
+import AppBottom from '@src/App/AppBottom';
+import initialState from "@src/store/initialState";
+
+const mockStore = configureMockStore();
 
 describe('AppBottom', () => {
-  beforeEach(() => {
-    dispatch = jest.fn();
-  });
-
   it('Render <AppBottom> without data', () => {
-    const state = {
-      gameLevel: '1',
-      gameFieldSize: 3,
-      gameFieldPercentFilled: 10,
-      gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
-    };
+    const store = mockStore(initialState);
     const { asFragment } = render(
       <Provider store={store}>
         <AppBottom />

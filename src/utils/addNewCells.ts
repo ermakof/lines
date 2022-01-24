@@ -7,14 +7,14 @@ const getFreeCells = (cells: Array<number>) =>
 const generateNewCells =
   (countCells: number, cells: Array<number>) => (randomArray: Array<number>) => {
     const rez = [...cells];
-    randomArray.slice(0, 3).forEach((num) => (rez[num] = 1));
+    randomArray.slice(0, countCells).forEach((num) => (rez[num] = 1));
     return rez;
   };
 
 const addNewCells =
-  (countCells: number) => (props: { cells: Array<number>; isUpdated: boolean }) => {
-    const { cells, isUpdated } = props;
-    return !isUpdated
+  (countCells: number) => (props: { cells: Array<number>; hasChains: boolean }) => {
+    const { cells, hasChains } = props;
+    return !hasChains
       ? compose(generateNewCells(countCells, cells), shuffle, getFreeCells)(cells)
       : cells;
   };

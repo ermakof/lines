@@ -12,6 +12,10 @@ const appSlice = createSlice({
       state.gameFieldPercentFilled = gameFieldPercentFilled;
       state.gameFieldData = createGameField(state.gameFieldSize ** 2, gameFieldPercentFilled);
     },
+    setGameFieldSize: (state, { payload }: PayloadAction<number>) => {
+      state.gameFieldSize = payload;
+      state.gameFieldData = createGameField(payload ** 2, state.gameFieldPercentFilled);
+    },
     setSelectedCell: (state, { payload }: PayloadAction<number | undefined>) => {
       state.selectedCell = payload;
     },

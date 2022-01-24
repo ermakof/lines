@@ -1,25 +1,32 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { render, screen } from '@testing-library/react';
+import configureMockStore from 'redux-mock-store';
 
 import AppBody from '@src/App/AppBody';
-import { store } from '@src/store';
-import { IAction } from '@src/model';
+import initialState from "@src/store/initialState";
 
-let dispatch: (action: IAction) => void;
+const mockStore = configureMockStore();
+
+jest.mock('react-redux', () => ({
+  __esModule: true,
+  ...jest.requireActual('react-redux'),
+  useSelector: jest.fn(),
+  useDispatch: jest.fn(),
+}));
+
+let store;
+let mockDispatch;
 
 describe('AppBody', () => {
   beforeEach(() => {
-    dispatch = jest.fn();
+    store = mockStore(initialState);
+    mockDispatch = jest.fn();
+    useDispatch.mockReturnValue(mockDispatch);
   });
 
   it('Render <AppBody> without data', () => {
-    const state = {
-      gameLevel: '1',
-      gameFieldSize: 3,
-      gameFieldPercentFilled: 10,
-      gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
-    };
+    useSelector.mockReturnValue(initialState);
     const { asFragment } = render(
       <Provider store={store}>
         <AppBody />
@@ -31,12 +38,12 @@ describe('AppBody', () => {
   });
 
   it('Render <AppBody> with data', () => {
-    const state = {
+    useSelector.mockReturnValue({
       gameLevel: '1',
       gameFieldSize: 4,
       gameFieldPercentFilled: 10,
       gameFieldData: [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    };
+    });
     const { asFragment } = render(
       <Provider store={store}>
         <AppBody />

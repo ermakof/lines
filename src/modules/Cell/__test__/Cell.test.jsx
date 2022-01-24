@@ -1,22 +1,29 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { render, screen, fireEvent } from '@testing-library/react';
+import configureMockStore from 'redux-mock-store';
+import { useDispatch } from 'react-redux';
 
 import Cell from '@src/modules/Cell';
-import { store } from '@src/store';
 
-let dispatch = () => null;
-let state;
+const mockStore = configureMockStore();
+let store;
+
+jest.mock('react-redux', () => ({
+  __esModule: true,
+  ...jest.requireActual('react-redux'),
+  useSelector: jest.fn(),
+  useDispatch: jest.fn(),
+}));
 
 describe('Cell', () => {
   beforeEach(() => {
-    dispatch = jest.fn();
-    state = {
+    store = mockStore({
       gameFieldSize: 3,
       gameFieldData: [1, 1, 1, 1, 1, 1, 1, 1, 1],
       gameLevel: '1',
       gameFieldPercentFilled: 100,
-    };
+    });
   });
 
   it('renders <Cell> using renderer cell with value=2', () => {
@@ -33,6 +40,8 @@ describe('Cell', () => {
   });
 
   it('Click on cell', () => {
+    const mockDispatch = jest.fn();
+    useDispatch.mockReturnValue(mockDispatch);
     render(
       <Provider store={store}>
         <Cell num={2} isFilled={1} isSelected={true} />
@@ -40,7 +49,7 @@ describe('Cell', () => {
     );
     const cellContainer = screen.getByRole(/cellContent-2/i);
     fireEvent.click(cellContainer);
-    expect(dispatch).toHaveBeenCalledTimes(1);
+    expect(mockDispatch).toHaveBeenCalledTimes(1);
     expect(cellContainer).toHaveStyle('background: #ffff00');
   });
 });

@@ -1,27 +1,34 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
+import configureMockStore from 'redux-mock-store';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { store } from '@src/store';
-import { IAction, IState } from '@src/model';
 import GameField from '../index';
+import initialState from "@src/store/initialState";
 
-let dispatch: (action: IAction) => void;
-let state: IState;
+const mockStore = configureMockStore();
+let store;
+
+jest.mock('react-redux', () => ({
+  __esModule: true,
+  ...jest.requireActual('react-redux'),
+  useSelector: jest.fn(),
+  useDispatch: jest.fn(),
+}));
 
 describe('GameField', () => {
   beforeEach(() => {
-    dispatch = jest.fn();
-    state = {
-      userLevel: '1',
-      gameFieldSize: 3,
-      gameFieldPercentFilled: 10,
-      gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
-    };
+    store = mockStore(initialState);
   });
 
   it('No render cells with gameFieldSize = 0', () => {
-    state.gameFieldSize = 0;
+    const mockDispatch = jest.fn();
+    useDispatch.mockReturnValue(mockDispatch);
+    useSelector.mockReturnValue({
+      gameFieldData: [],
+      gameFieldSize: 0,
+    });
     const { asFragment } = render(
       <Provider store={store}>
         <GameField />
@@ -33,6 +40,13 @@ describe('GameField', () => {
   });
 
   it('renders 9 cells from data:[9 items]', () => {
+    const mockDispatch = jest.fn();
+    useDispatch.mockReturnValue(mockDispatch);
+    useSelector.mockReturnValue({
+      gameFieldSize: 3,
+      gameFieldPercentFilled: 10,
+      gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
+    });
     const { asFragment } = render(
       <Provider store={store}>
         <GameField />

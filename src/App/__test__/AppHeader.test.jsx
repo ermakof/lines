@@ -1,25 +1,38 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { render, screen } from '@testing-library/react';
-import AppHeader from '@src/App/AppHeader';
-import { store } from '@src/store';
-import { IAction } from '@src/model';
+import configureMockStore from 'redux-mock-store';
 
-let dispatch: (action: IAction) => void;
+import AppHeader from '@src/App/AppHeader';
+import initialState from "@src/store/initialState";
+
+const mockStore = configureMockStore();
+
+jest.mock('react-redux', () => ({
+  __esModule: true,
+  ...jest.requireActual('react-redux'),
+  useSelector: jest.fn(),
+  useDispatch: jest.fn(),
+}));
+
+let store;
+let mockDispatch;
 
 describe('AppHeader', () => {
   beforeEach(() => {
-    dispatch = jest.fn();
+    store = mockStore(initialState);
+    mockDispatch = jest.fn();
+    useDispatch.mockReturnValue(mockDispatch);
   });
 
   it('Render authorised <AppHeader>', () => {
-    const state = {
+    useSelector.mockReturnValue({
       gameLevel: '1',
       gameFieldSize: 3,
       gameFieldPercentFilled: 10,
       gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
       userProfile: { login: '123', password: '123', token: '7a0cbf93-aa13-4b50-8a41-97ddbfba00d5' },
-    };
+    });
     const { asFragment } = render(
       <Provider store={store}>
         <AppHeader />
@@ -35,12 +48,7 @@ describe('AppHeader', () => {
   });
 
   it('Render unauthorised <AppHeader>', () => {
-    const state = {
-      gameLevel: '1',
-      gameFieldSize: 3,
-      gameFieldPercentFilled: 10,
-      gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
-    };
+    useSelector.mockReturnValue(initialState);
     const { asFragment } = render(
       <Provider store={store}>
         <AppHeader />

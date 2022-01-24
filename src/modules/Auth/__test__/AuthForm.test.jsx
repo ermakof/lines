@@ -3,25 +3,32 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import configureMockStore from 'redux-mock-store';
+import { useDispatch } from 'react-redux';
 
 import AuthForm from '@src/modules/Auth/AuthForm';
-import { store } from '@src/store';
 
-interface ILocalStorage {
-  [key: string]: string;
-}
+const mockStore = configureMockStore();
+
+let store;
+jest.mock('react-redux', () => ({
+  __esModule: true,
+  ...jest.requireActual('react-redux'),
+  useSelector: jest.fn(),
+  useDispatch: jest.fn(),
+}));
 
 const storageMock = (() => {
-  let store: ILocalStorage = {};
+  let store = {};
 
   return {
-    getItem(key: string) {
+    getItem(key = '') {
       return store[key] || null;
     },
-    setItem(key: string, value = '') {
+    setItem(key = '', value = '') {
       store[key] = value.toString();
     },
-    removeItem(key: string) {
+    removeItem(key = '') {
       delete store[key];
     },
     clear() {
@@ -41,17 +48,16 @@ Object.defineProperty(window, 'crypto', {
 describe('AuthForm', () => {
   beforeEach(() => {
     window.localStorage.clear();
-    jest.restoreAllMocks();
-  });
-
-  it('Render <AuthForm>', () => {
-    const state = {
+    store = mockStore({
       gameLevel: '1',
       gameFieldSize: 3,
       gameFieldPercentFilled: 10,
       gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
-    };
-    const dispatch = jest.fn();
+    });
+    jest.restoreAllMocks();
+  });
+
+  it('Render <AuthForm>', () => {
     const { asFragment } = render(
       <Provider store={store}>
         <Router>
@@ -69,13 +75,8 @@ describe('AuthForm', () => {
   });
 
   it('Submit <AuthForm>', async () => {
-    const state = {
-      gameLevel: '1',
-      gameFieldSize: 3,
-      gameFieldPercentFilled: 10,
-      gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
-    };
-    const dispatch = jest.fn();
+    const mockDispatch = jest.fn();
+    useDispatch.mockReturnValue(mockDispatch);
     render(
       <Provider store={store}>
         <Router>
@@ -93,8 +94,13 @@ describe('AuthForm', () => {
     userEvent.click(screen.getByRole('buttonLogin'));
 
     await waitFor(() =>
-      expect(dispatch).toHaveBeenCalledWith({
-        type: 'APP__RESET',
+      expect(mockDispatch).toHaveBeenCalledWith({
+        type: 'auth/login',
+        "payload": {
+          "login": "Иван",
+          "password": "123",
+          "token": "01111111-0111-4111-9111-011111111111",
+          },
       })
     );
   });
@@ -109,13 +115,8 @@ describe('AuthForm', () => {
       })
     );
     const getItemSpy = jest.spyOn(window.localStorage, 'getItem');
-    const state = {
-      gameLevel: '1',
-      gameFieldSize: 3,
-      gameFieldPercentFilled: 10,
-      gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
-    };
-    const dispatch = jest.fn();
+    const mockDispatch = jest.fn();
+    useDispatch.mockReturnValue(mockDispatch);
     render(
       <Provider store={store}>
         <Router>

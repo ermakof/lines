@@ -1,21 +1,34 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import {Provider, useDispatch, useSelector} from 'react-redux';
 import { render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
+import configureMockStore from 'redux-mock-store';
 
 import UserForm from '@src/modules/UserForm';
-import { store } from '@src/store';
+import initialState from "@src/store/initialState";
+
+const mockStore = configureMockStore();
+
+jest.mock('react-redux', () => ({
+  __esModule: true,
+  ...jest.requireActual('react-redux'),
+  useSelector: jest.fn(),
+  useDispatch: jest.fn(),
+}));
+
+let store;
+let mockDispatch;
 
 describe('UserForm', () => {
+  beforeEach(() => {
+    store = mockStore(initialState);
+    mockDispatch = jest.fn();
+    useDispatch.mockReturnValue(mockDispatch);
+    useSelector.mockReturnValue(initialState);
+  });
+
   it('Render <UserForm>', () => {
-    const state = {
-      gameLevel: '1',
-      gameFieldSize: 3,
-      gameFieldPercentFilled: 10,
-      gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
-    };
-    const dispatch = jest.fn();
     const { asFragment } = render(
       <Provider store={store}>
         <Router>
@@ -35,13 +48,6 @@ describe('UserForm', () => {
   });
 
   it('Reset game <UserForm>', async () => {
-    const state = {
-      gameLevel: '1',
-      gameFieldSize: 3,
-      gameFieldPercentFilled: 10,
-      gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
-    };
-    const dispatch = jest.fn();
     render(
       <Provider store={store}>
         <Router>
@@ -52,20 +58,13 @@ describe('UserForm', () => {
     userEvent.click(screen.getByRole('buttonReset'));
 
     await waitFor(() =>
-      expect(dispatch).toHaveBeenCalledWith({
-        type: 'APP__RESET',
+      expect(mockDispatch).toHaveBeenCalledWith({
+        type: 'app/resetApp',
       })
     );
   });
 
   it('Logout app <UserForm>', async () => {
-    const state = {
-      gameLevel: '1',
-      gameFieldSize: 3,
-      gameFieldPercentFilled: 10,
-      gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
-    };
-    const dispatch = jest.fn();
     render(
       <Provider store={store}>
         <Router>
@@ -76,20 +75,13 @@ describe('UserForm', () => {
     userEvent.click(screen.getByRole('buttonLogout'));
 
     await waitFor(() =>
-      expect(dispatch).toHaveBeenCalledWith({
-        type: 'APP__LOGOUT',
+      expect(mockDispatch).toHaveBeenCalledWith({
+        type: 'auth/logout',
       })
     );
   });
 
   it('Select level <UserForm>', async () => {
-    const state = {
-      gameLevel: '1',
-      gameFieldSize: 3,
-      gameFieldPercentFilled: 10,
-      gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
-    };
-    const dispatch = jest.fn();
     render(
       <Provider store={store}>
         <Router>
@@ -99,13 +91,13 @@ describe('UserForm', () => {
     );
     const select = screen.getByRole(/select/gi);
     userEvent.selectOptions(select, '2');
-    const option = screen.getByRole('option', { name: 'Джедай' }) as HTMLOptionElement;
+    const option = screen.getByRole('option', { name: 'Джедай' });
     expect(option.selected).toBe(true);
 
     await waitFor(() =>
-      expect(dispatch).toHaveBeenCalledWith({
-        payload: { gameLevel: '2' },
-        type: 'APP__SET_LEVEL',
+      expect(mockDispatch).toHaveBeenCalledWith({
+        type: 'app/setUserLevel',
+        payload: '2',
       })
     );
   });

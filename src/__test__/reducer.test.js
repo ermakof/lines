@@ -1,88 +1,76 @@
-import {
-  clearGameField,
-  loginApp,
-  logoutApp,
-  resetApp,
-  setLevel,
-  waitOff,
-  waitOn,
-} from '@src/App/actions';
-import { setSelectedCell } from '@src/modules/Cell/actions';
-import { setGameFieldSize } from '@src/modules/GameField/actions';
-import reducer from '@src/reducer';
+import appSlice from '@src/App/appSlice';
+import authSlice from '@src/modules/Auth/authSlice';
+import initialState from "@src/store/initialState";
 
 describe('reducer', () => {
   it('resetApp', () => {
     const state = {
-      gameLevel: '3',
+      userLevel: '3',
       gameFieldSize: 5,
       gameFieldPercentFilled: 30,
       gameFieldData: [0, 1, 0, 0, 0, 0, 0, 0, 0],
       selectedCell: 1,
     };
-    const newState = reducer(state, resetApp());
+    const newState = appSlice.reducer(state, appSlice.actions.resetApp());
     expect(newState.gameFieldPercentFilled).toBe(30);
     expect(newState.gameFieldSize).toBe(5);
-    expect(newState.gameLevel).toBe('3');
+    expect(newState.userLevel).toBe('3');
     expect(newState.selectedCell).toEqual(1);
     expect(newState.gameFieldData.length).toBe(25);
   });
 
-  it('setLevel', () => {
+  it('setUserLevel', () => {
     const state = {
-      gameLevel: '3',
+      userLevel: '3',
       gameFieldSize: 5,
       gameFieldPercentFilled: 30,
       gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
       selectedCell: 1,
     };
-    const newState = reducer(state, setLevel('2'));
+    const newState = appSlice.reducer(state, appSlice.actions.setUserLevel('2'));
     expect(newState.gameFieldPercentFilled).toBe(20);
     expect(newState.gameFieldSize).toBe(5);
-    expect(newState.gameLevel).toBe('2');
+    expect(newState.userLevel).toBe('2');
     expect(newState.selectedCell).toEqual(1);
     expect(newState.gameFieldData.length).toBe(25);
   });
 
   it('setSelectedCell', () => {
     const state = {
-      gameLevel: '3',
+      userLevel: '3',
       gameFieldSize: 5,
       gameFieldPercentFilled: 30,
       gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
       selectedCell: 1,
     };
-    const newState = reducer(state, setSelectedCell(2));
+    const newState = appSlice.reducer(state, appSlice.actions.setSelectedCell(2));
     expect(newState.selectedCell).toEqual(2);
   });
 
   it('setGameFieldSize', () => {
     const state = {
-      gameLevel: '3',
+      userLevel: '3',
       gameFieldSize: 2,
       gameFieldPercentFilled: 30,
       gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
     };
-    const newState = reducer(state, setGameFieldSize(2));
+    const newState = appSlice.reducer(state, appSlice.actions.setGameFieldSize(2));
     expect(newState.gameFieldSize).toEqual(2);
     expect(newState.gameFieldData.length).toEqual(4);
   });
 
-  it('loginApp', () => {
+  it('login', () => {
     const state = {
-      gameLevel: '3',
+      userLevel: '3',
       gameFieldSize: 2,
       gameFieldPercentFilled: 30,
       gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
     };
-    const newState = reducer(
-      state,
-      loginApp({
-        login: 'user',
-        password: '123',
-        token: '8b23774d-ea51-4e64-aaf3-e3db309b9efc',
-      })
-    );
+    const newState = authSlice.reducer(state, authSlice.actions.login({
+      login: 'user',
+      password: '123',
+      token: '8b23774d-ea51-4e64-aaf3-e3db309b9efc',
+    }));
     expect(newState.userProfile).toEqual({
       login: 'user',
       password: '123',
@@ -90,9 +78,9 @@ describe('reducer', () => {
     });
   });
 
-  it('logoutApp', () => {
+  it('logout', () => {
     const state = {
-      gameLevel: '3',
+      userLevel: '3',
       gameFieldSize: 2,
       gameFieldPercentFilled: 30,
       gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -102,13 +90,13 @@ describe('reducer', () => {
         token: '8b23774d-ea51-4e64-aaf3-e3db309b9efc',
       },
     };
-    const newState = reducer(state, logoutApp());
-    expect(newState.userProfile).toEqual(null);
+    const newState = authSlice.reducer(state, authSlice.actions.logout());
+    expect(newState.userProfile).toEqual(undefined);
   });
 
-  it('clearGameField', () => {
+  it('initApp', () => {
     const state = {
-      gameLevel: '3',
+      userLevel: '3',
       gameFieldSize: 3,
       gameFieldPercentFilled: 50,
       gameFieldData: [1, 1, 0, 0, 1, 0, 0, 1, 0],
@@ -118,30 +106,30 @@ describe('reducer', () => {
         token: '8b23774d-ea51-4e64-aaf3-e3db309b9efc',
       },
     };
-    const newState = reducer(state, clearGameField());
+    const newState = appSlice.reducer(state, appSlice.actions.initApp());
     expect(newState.gameFieldPercentFilled).toEqual(0);
-    expect(newState.gameFieldData).toEqual([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    expect(newState.gameFieldData).toEqual([...Array(initialState.gameFieldSize ** 2)].map(v => 0));
   });
 
   it('waitOn', () => {
     const state = {
-      gameLevel: '3',
+      userLevel: '3',
       gameFieldSize: 3,
       gameFieldPercentFilled: 50,
       gameFieldData: [1, 1, 0, 0, 1, 0, 0, 1, 0],
     };
-    const newState = reducer(state, waitOn());
+    const newState = appSlice.reducer(state, appSlice.actions.waitOn());
     expect(newState.isLoading).toEqual(true);
   });
 
   it('waitOff', () => {
     const state = {
-      gameLevel: '3',
+      userLevel: '3',
       gameFieldSize: 3,
       gameFieldPercentFilled: 50,
       gameFieldData: [1, 1, 0, 0, 1, 0, 0, 1, 0],
     };
-    const newState = reducer(state, waitOff());
+    const newState = appSlice.reducer(state, appSlice.actions.waitOff());
     expect(newState.isLoading).toEqual(false);
   });
 });
