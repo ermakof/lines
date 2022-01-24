@@ -1,7 +1,10 @@
 import React, { FC } from 'react';
+import { Provider } from 'react-redux';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Cell from '../index';
 import { withKnobs, number, boolean } from '@storybook/addon-knobs';
+import { store } from '@src/store';
+import appSlice from '@src/App/appSlice';
 
 export default {
   component: Cell,
@@ -9,7 +12,20 @@ export default {
   title: 'Modules/Cell',
 } as ComponentMeta<typeof Cell>;
 
-const Template: ComponentStory<typeof Cell> = (args) => <Cell {...args} />;
+const payload = {
+  gameLevel: '1',
+  gameFieldSize: 4,
+  gameFieldPercentFilled: 10,
+  gameFieldData: [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+};
+
+store.dispatch(appSlice.actions.hydrate(payload));
+
+const Template: ComponentStory<typeof Cell> = (args) => (
+  <Provider store={store}>
+    <Cell {...args} />
+  </Provider>
+);
 
 export const Static = Template.bind({});
 
@@ -26,12 +42,14 @@ export const Dynamic: FC = () => {
   const num = number('num', 3);
 
   return (
-    <Cell
-      num={num}
-      isSelected={status}
-      isRight={boolean('isRight', true)}
-      isBottom={boolean('isBottom', true)}
-      isLeft={boolean('isLeft', true)}
-    />
+    <Provider store={store}>
+      <Cell
+        num={num}
+        isSelected={status}
+        isRight={boolean('isRight', true)}
+        isBottom={boolean('isBottom', true)}
+        isLeft={boolean('isLeft', true)}
+      />
+    </Provider>
   );
 };
