@@ -5,7 +5,7 @@ import configureMockStore from 'redux-mock-store';
 import { useSelector, useDispatch } from 'react-redux';
 
 import GameField from '../index';
-import initialState from "@src/store/initialState";
+import initialState from '@src/App/initialState';
 
 const mockStore = configureMockStore();
 let store;

@@ -13,6 +13,7 @@ import createGameField from '@src/utils/createGameField';
 import getIndByPos from '@src/utils/getIndByPos';
 import getChainsByInd from '@src/utils/getChainsByInd';
 import filterChainsByInd from '@src/utils/filterChainsByInd';
+import uuidv4 from '@src/utils/uuidv4';
 
 export {
   addNewCells,
@@ -30,4 +31,5 @@ export {
   getIndByPos,
   getChainsByInd,
   filterChainsByInd,
+  uuidv4,
 };

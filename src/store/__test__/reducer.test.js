@@ -1,6 +1,6 @@
 import appSlice from '@src/App/appSlice';
 import authSlice from '@src/modules/Auth/authSlice';
-import initialState from "@src/store/initialState";
+import initialState from '@src/App/initialState';
 
 describe('reducer', () => {
   it('resetApp', () => {
@@ -66,11 +66,14 @@ describe('reducer', () => {
       gameFieldPercentFilled: 30,
       gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
     };
-    const newState = authSlice.reducer(state, authSlice.actions.login({
-      login: 'user',
-      password: '123',
-      token: '8b23774d-ea51-4e64-aaf3-e3db309b9efc',
-    }));
+    const newState = authSlice.reducer(
+      state,
+      authSlice.actions.login({
+        login: 'user',
+        password: '123',
+        token: '8b23774d-ea51-4e64-aaf3-e3db309b9efc',
+      })
+    );
     expect(newState.userProfile).toEqual({
       login: 'user',
       password: '123',
@@ -108,7 +111,9 @@ describe('reducer', () => {
     };
     const newState = appSlice.reducer(state, appSlice.actions.initApp());
     expect(newState.gameFieldPercentFilled).toEqual(0);
-    expect(newState.gameFieldData).toEqual([...Array(initialState.gameFieldSize ** 2)].map(() => 0));
+    expect(newState.gameFieldData).toEqual(
+      [...Array(initialState.gameFieldSize ** 2)].map(() => 0)
+    );
   });
 
   it('waitOn', () => {
@@ -144,7 +149,7 @@ describe('reducer', () => {
       };
       const newState = appSlice.reducer(state, appSlice.actions.moveToCell(10));
       expect(newState.selectedCell).toBeUndefined();
-      const newCount = newState.gameFieldData.filter(v => !!v).length;
+      const newCount = newState.gameFieldData.filter((v) => !!v).length;
       expect(newCount).toBe(7);
       expect(newState.gameFieldData[10]).toBe(1);
     });
@@ -161,5 +166,5 @@ describe('reducer', () => {
       expect(newState.selectedCell).toBeUndefined();
       expect(newState.gameFieldData).toEqual([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     });
-  })
+  });
 });

@@ -1,9 +1,11 @@
 import { getChainByInd, HORIZONTAL, VERTICAL } from '@src/utils/getChainByInd';
 import getPosByInd from '@src/utils/getPosByInd';
 
-const getVerticalChain = (order: number, cells: Array<number>) => getChainByInd(VERTICAL, order, cells);
+const getVerticalChain = (order: number, cells: Array<number>) =>
+  getChainByInd(VERTICAL, order, cells);
 
-const getHorizontalChain = (order: number, cells: Array<number>) => getChainByInd(HORIZONTAL, order, cells);
+const getHorizontalChain = (order: number, cells: Array<number>) =>
+  getChainByInd(HORIZONTAL, order, cells);
 
 const getChainsByInd = (targetCell: number) => (cells: Array<number>) => {
   const pos = getPosByInd(targetCell, Math.sqrt(cells.length));

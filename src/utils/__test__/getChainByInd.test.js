@@ -12,7 +12,11 @@ describe('getChainByInd', () => {
   });
 
   it('direction = H, y = 2, cells = array(25), 2 chains => 1 chain', () => {
-    const arr = getChainByInd('H', 1, [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    const arr = getChainByInd(
+      'H',
+      1,
+      [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    );
     expect(arr).toEqual([[1, 2, 3, 4]]);
   });
 });

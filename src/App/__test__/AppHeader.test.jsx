@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import configureMockStore from 'redux-mock-store';
 
 import AppHeader from '@src/App/AppHeader';
-import initialState from "@src/store/initialState";
+import initialState from '@src/App/initialState';
 
 const mockStore = configureMockStore();
 

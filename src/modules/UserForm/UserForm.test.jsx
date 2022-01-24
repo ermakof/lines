@@ -1,12 +1,12 @@
 import React from 'react';
-import {Provider, useDispatch, useSelector} from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import configureMockStore from 'redux-mock-store';
 
 import UserForm from '@src/modules/UserForm';
-import initialState from "@src/store/initialState";
+import initialState from '@src/App/initialState';
 
 const mockStore = configureMockStore();
 

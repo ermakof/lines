@@ -96,11 +96,11 @@ describe('AuthForm', () => {
     await waitFor(() =>
       expect(mockDispatch).toHaveBeenCalledWith({
         type: 'auth/login',
-        "payload": {
-          "login": "Иван",
-          "password": "123",
-          "token": "01111111-0111-4111-9111-011111111111",
-          },
+        payload: {
+          login: 'Иван',
+          password: '123',
+          token: '01111111-0111-4111-9111-011111111111',
+        },
       })
     );
   });

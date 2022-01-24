@@ -16,7 +16,10 @@ describe('removeOrderedChains', () => {
   it('cells = array(25), 2 chains', () => {
     const props = {
       cells: [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      chains: [[1, 2, 3, 4], [6, 7, 8, 9]],
+      chains: [
+        [1, 2, 3, 4],
+        [6, 7, 8, 9],
+      ],
     };
     const arr = removeOrderedChains(props);
     expect(arr).toEqual({

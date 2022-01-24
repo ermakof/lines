@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { IUserProfile } from '@src/model';
+import IUserProfile from '@src/modules/Auth/model/IUserProfile';
 import authSlice from '@src/modules/Auth/authSlice';
 import appSlice from '@src/App/appSlice';
 import { useDispatch } from 'react-redux';

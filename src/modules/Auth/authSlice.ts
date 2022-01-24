@@ -1,12 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import initialState from '@src/store/initialState';
 import IUserProfile from '@src/modules/Auth/model/IUserProfile';
+
+interface IAuthState {
+  userProfile: IUserProfile | undefined;
+}
+const initialState: IAuthState = {
+  userProfile: undefined,
+};
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: initialState,
+  initialState,
   reducers: {
-    login: (state, { payload }: PayloadAction<IUserProfile>) => {
+    login: (state, { payload }: PayloadAction<IUserProfile | undefined>) => {
       state.userProfile = payload;
     },
     logout: (state) => {

@@ -1,11 +1,8 @@
-import IUserProfile from '@src/modules/Auth/model/IUserProfile';
-
-export interface IState {
+export interface IAppState {
   isLoading?: boolean;
   gameFieldSize: number;
   gameFieldPercentFilled: number;
   gameFieldData: Array<number>;
   selectedCell?: number;
   userLevel: string;
-  userProfile?: IUserProfile;
 }

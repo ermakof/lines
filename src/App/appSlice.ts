@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import initialState from '@src/store/initialState';
+
+import initialState from '@src/App/initialState';
 import { createGameField, updateGameField } from '@src/utils/';
 
 const appSlice = createSlice({
   name: 'app',
   initialState: initialState,
   reducers: {
+    hydrate: (state, action) => action.payload,
     setUserLevel: (state, { payload }: PayloadAction<string>) => {
       const gameFieldPercentFilled = Number(payload) * 10;
       state.userLevel = payload;

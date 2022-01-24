@@ -1,10 +1,10 @@
 import React from 'react';
-import {Provider, useSelector} from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import { render, screen } from '@testing-library/react';
 import configureMockStore from 'redux-mock-store';
 
 import AppBottom from '@src/App/AppBottom';
-import initialState from "@src/store/initialState";
+import initialState from '@src/App/initialState';
 
 const mockStore = configureMockStore();
 
