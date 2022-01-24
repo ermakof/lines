@@ -39,7 +39,7 @@ describe('Cell', () => {
     expect(cellContent).toBeInTheDocument();
   });
 
-  it('Click on cell', () => {
+  it('Click on content cell', () => {
     const mockDispatch = jest.fn();
     useDispatch.mockReturnValue(mockDispatch);
     render(
@@ -47,9 +47,22 @@ describe('Cell', () => {
         <Cell num={2} isFilled={1} isSelected={true} />
       </Provider>
     );
-    const cellContainer = screen.getByRole(/cellContent-2/i);
+    const cellContent = screen.getByRole(/cellContent-2/i);
+    fireEvent.click(cellContent);
+    expect(mockDispatch).toHaveBeenCalledTimes(1);
+    expect(cellContent).toHaveStyle('background: #ffff00');
+  });
+
+  it('Click on container cell', () => {
+    const mockDispatch = jest.fn();
+    useDispatch.mockReturnValue(mockDispatch);
+    render(
+      <Provider store={store}>
+        <Cell num={2} isFilled={1} isSelected={false} />
+      </Provider>
+    );
+    const cellContainer = screen.getByRole(/cellContainer-2/i);
     fireEvent.click(cellContainer);
     expect(mockDispatch).toHaveBeenCalledTimes(1);
-    expect(cellContainer).toHaveStyle('background: #ffff00');
   });
 });

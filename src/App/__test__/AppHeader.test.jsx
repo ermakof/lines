@@ -27,10 +27,6 @@ describe('AppHeader', () => {
 
   it('Render authorised <AppHeader>', () => {
     useSelector.mockReturnValue({
-      gameLevel: '1',
-      gameFieldSize: 3,
-      gameFieldPercentFilled: 10,
-      gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
       userProfile: { login: '123', password: '123', token: '7a0cbf93-aa13-4b50-8a41-97ddbfba00d5' },
     });
     const { asFragment } = render(
@@ -48,7 +44,7 @@ describe('AppHeader', () => {
   });
 
   it('Render unauthorised <AppHeader>', () => {
-    useSelector.mockReturnValue(initialState);
+    useSelector.mockReturnValue({});
     const { asFragment } = render(
       <Provider store={store}>
         <AppHeader />

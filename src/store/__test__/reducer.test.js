@@ -108,7 +108,7 @@ describe('reducer', () => {
     };
     const newState = appSlice.reducer(state, appSlice.actions.initApp());
     expect(newState.gameFieldPercentFilled).toEqual(0);
-    expect(newState.gameFieldData).toEqual([...Array(initialState.gameFieldSize ** 2)].map(v => 0));
+    expect(newState.gameFieldData).toEqual([...Array(initialState.gameFieldSize ** 2)].map(() => 0));
   });
 
   it('waitOn', () => {
@@ -132,4 +132,34 @@ describe('reducer', () => {
     const newState = appSlice.reducer(state, appSlice.actions.waitOff());
     expect(newState.isLoading).toEqual(false);
   });
+
+  describe('moveToCell', () => {
+    it('without create chains', () => {
+      const state = {
+        userLevel: '1',
+        gameFieldSize: 4,
+        gameFieldPercentFilled: 30,
+        gameFieldData: [1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        selectedCell: 0,
+      };
+      const newState = appSlice.reducer(state, appSlice.actions.moveToCell(10));
+      expect(newState.selectedCell).toBeUndefined();
+      const newCount = newState.gameFieldData.filter(v => !!v).length;
+      expect(newCount).toBe(7);
+      expect(newState.gameFieldData[10]).toBe(1);
+    });
+
+    it('with create chains', () => {
+      const state = {
+        userLevel: '1',
+        gameFieldSize: 4,
+        gameFieldPercentFilled: 30,
+        gameFieldData: [1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        selectedCell: 5,
+      };
+      const newState = appSlice.reducer(state, appSlice.actions.moveToCell(1));
+      expect(newState.selectedCell).toBeUndefined();
+      expect(newState.gameFieldData).toEqual([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    });
+  })
 });

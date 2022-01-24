@@ -1,5 +1,5 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import {Provider, useSelector} from 'react-redux';
 import { render, screen } from '@testing-library/react';
 import configureMockStore from 'redux-mock-store';
 
@@ -8,8 +8,16 @@ import initialState from "@src/store/initialState";
 
 const mockStore = configureMockStore();
 
+jest.mock('react-redux', () => ({
+  __esModule: true,
+  ...jest.requireActual('react-redux'),
+  useSelector: jest.fn(),
+  useDispatch: jest.fn(),
+}));
+
 describe('AppBottom', () => {
   it('Render <AppBottom> without data', () => {
+    useSelector.mockReturnValue(initialState);
     const store = mockStore(initialState);
     const { asFragment } = render(
       <Provider store={store}>
