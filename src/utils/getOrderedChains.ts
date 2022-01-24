@@ -40,8 +40,9 @@ const filterChainsByInd = (ind: number) => (chains: number[][][]) => {
   return rez;
 };
 
-const getChains = (ind: number, cells: Array<number>) => {
-  return compose(filterChainsByInd(ind), getChainsByInd(ind))(cells);
+const getOrderedChains = (ind: number) => (cells: Array<number>) => {
+  const chains = compose(filterChainsByInd(ind), getChainsByInd(ind))(cells);
+  return { chains, cells };
 };
 
-export default getChains;
+export default getOrderedChains;

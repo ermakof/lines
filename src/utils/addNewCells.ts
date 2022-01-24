@@ -11,8 +11,12 @@ const generateNewCells =
     return rez;
   };
 
-const addNewCells = (countCells: number) => (cells: Array<number>) => {
-  return compose(generateNewCells(countCells, cells), shuffle, getFreeCells)(cells);
-};
+const addNewCells =
+  (countCells: number) => (props: { cells: Array<number>; isUpdated: boolean }) => {
+    const { cells, isUpdated } = props;
+    return !isUpdated
+      ? compose(generateNewCells(countCells, cells), shuffle, getFreeCells)(cells)
+      : cells;
+  };
 
 export default addNewCells;

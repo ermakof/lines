@@ -1,20 +1,17 @@
-import getChains from '@src/utils/getChains';
-
-const updateCellsByChains = (chains: number[][], cells: Array<number>) => {
+const removeOrderedChains = (props: { cells: Array<number>; chains: number[][] }) => {
+  const { cells, chains } = props;
   const rez = [...cells];
-  chains.forEach(
-    (chain) =>
-      chain &&
-      chain.forEach((ind) => {
-        rez[ind - 1] = 0;
-      })
-  );
-  return rez;
-};
-
-const removeOrderedChains = (targetCell: number) => (gameFieldData: Array<number>) => {
-  const chains = getChains(targetCell + 1, gameFieldData);
-  return updateCellsByChains(chains, gameFieldData);
+  const isUpdated = chains.length > 0;
+  if (isUpdated) {
+    chains.forEach(
+      (chain) =>
+        chain &&
+        chain.forEach((ind) => {
+          rez[ind - 1] = 0;
+        })
+    );
+  }
+  return { cells: rez, isUpdated };
 };
 
 export default removeOrderedChains;

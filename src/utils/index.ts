@@ -1,7 +1,7 @@
 import addNewCells from '@src/utils/addNewCells';
 import generateCellsByPercent from '@src/utils/generateCellsByPercent';
 import generateCellsByCount from '@src/utils/generateCellsByCount';
-import getChains from '@src/utils/getChains';
+import getOrderedChains from '@src/utils/getOrderedChains';
 import getChainByInd from '@src/utils/getChainByInd';
 import getPosByInd from '@src/utils/getPosByInd';
 import removeOrderedChains from '@src/utils/removeOrderedChains';
@@ -15,7 +15,7 @@ export {
   addNewCells,
   getPosByInd,
   getChainByInd,
-  getChains,
+  getOrderedChains,
   generateCellsByCount,
   generateCellsByPercent,
   removeOrderedChains,
