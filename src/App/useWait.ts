@@ -1,8 +1,7 @@
-import appSlice from '@src/App/appSlice';
+import { actions } from '@src/App/appSlice';
 import { useDispatch } from 'react-redux';
 
 const useWait = () => {
-  const { actions } = appSlice;
   const dispatch = useDispatch();
 
   return (flag: boolean = true) => {

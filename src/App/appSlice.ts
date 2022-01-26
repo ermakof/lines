@@ -7,7 +7,8 @@ const appSlice = createSlice({
   name: 'app',
   initialState: initialState,
   reducers: {
-    hydrate: (state, action) => action.payload,
+    rehydrate: (state) => state,
+    restoreGame: (state, action) => action.payload,
     setUserLevel: (state, { payload }: PayloadAction<string>) => {
       const gameFieldPercentFilled = Number(payload) * 10;
       state.userLevel = payload;
@@ -48,4 +49,6 @@ const appSlice = createSlice({
   },
 });
 
-export default appSlice;
+const { actions, reducer } = appSlice;
+
+export { appSlice, actions, reducer };

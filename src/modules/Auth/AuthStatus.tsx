@@ -1,21 +1,20 @@
-import React from 'react';
-import { TRootState } from '@src/store';
+import React, { FC } from 'react';
 import styled from '@emotion/styled';
-import { useSelector } from 'react-redux';
 
 const Title = styled.p`
   font-size: 32px;
   margin: auto 20px auto 0;
 `;
 
-const AuthStatus = () => {
-  const { userProfile } = useSelector(({ auth }: TRootState) => auth);
-
-  if (!userProfile) {
+interface IAuthStatus {
+  login: string;
+}
+const AuthStatus: FC<IAuthStatus> = ({ login = '' }) => {
+  if (!login) {
     return <Title>Lines</Title>;
   }
 
-  return <Title>{`Lines ${userProfile.login}`}</Title>;
+  return <Title>{`Lines ${login}`}</Title>;
 };
 
 export default AuthStatus;

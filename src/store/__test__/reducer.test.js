@@ -1,5 +1,5 @@
-import appSlice from '@src/App/appSlice';
-import authSlice from '@src/modules/Auth/authSlice';
+import { appSlice } from '@src/App/appSlice';
+import { authSlice } from '@src/modules/Auth/authSlice';
 import initialState from '@src/App/initialState';
 
 describe('reducer', () => {

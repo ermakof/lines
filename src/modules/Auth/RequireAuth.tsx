@@ -1,13 +1,14 @@
-import React from 'react';
-import { TRootState } from '@src/store';
+import React, { FC } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
-const RequireAuth = ({ children }: { children: JSX.Element }) => {
-  const auth = useSelector(({ auth }: TRootState) => auth);
+interface IRequireAuth {
+  login: string;
+  children: JSX.Element;
+}
+const RequireAuth: FC<IRequireAuth> = ({ children, login }) => {
   let location = useLocation();
 
-  if (!auth.userProfile) {
+  if (!login) {
     return <Navigate to="/auth" state={{ from: location }} replace />;
   }
 

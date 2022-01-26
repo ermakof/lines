@@ -5,7 +5,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 
 import { store } from '@src/store';
 import AppBody from '@src/App/AppBody';
-import appSlice from '@src/App/appSlice';
+import { appSlice } from '@src/App/appSlice';
 
 export default {
   component: AppBody,
