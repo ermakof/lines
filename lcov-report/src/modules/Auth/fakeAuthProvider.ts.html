@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/16</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/7</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/16</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
@@ -98,79 +98,76 @@
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IAuthData } from '@src/modules/Auth/AuthForm';
-import IUserProfile from '@src/modules/Auth/model/IUserProfile';
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IUserInfo } from '@src/modules/Auth/AuthForm';
+import { IUserProfile } from '@src/modules/Auth/model/IUserProfile';
 import { uuidv4 } from '@src/utils';
+import { LOCAL_STORAGE_AUTH_KEY } from '@src/store';
 &nbsp;
 /**
  * This represents some generic auth provider API.
  */
-const fakeAuthProvider = {
-  isAuthenticated: false,
-  signIn(authData: IAuthData, callback: (userProfile: IUserProfile) =&gt; void) {
-    fakeAuthProvider.isAuthenticated = true;
+const signIn = (userInfo: IUserInfo): Promise&lt;IUserProfile&gt; =&gt; {
+  return new Promise((resolve, reject) =&gt; {
     setTimeout(() =&gt; {
-      let userProfile: IUserProfile = { ...authData, token: uuidv4() };
-      localStorage.setItem('lines:userProfile', JSON.stringify(userProfile));
-      callback(userProfile);
+      try {
+        if (!userInfo) {
+          throw 'Нет данных о пользователе!';
+        }
+        let userProfile: IUserProfile = { ...userInfo, token: uuidv4() };
+        localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(userProfile));
+        resolve(userProfile);
+      } catch (err) {
+        reject((err as string) || <span class="branch-1 cbranch-no" title="branch not covered" >'Ошибка получения данных!')</span>;
+      }
     }, 500); // fake async
-  },
-  signOut(callback: VoidFunction) {
-    fakeAuthProvider.isAuthenticated = false;
-    localStorage.removeItem('lines:userProfile');
-    setTimeout(callback, 100);
-  },
+  });
 };
 &nbsp;
-const getUserProfileFormLocalStorage = () =&gt; {
-  const lsUserProfile = localStorage.getItem('lines:userProfile');
-  if (lsUserProfile) {
-    const userProfile: IUserProfile = JSON.parse(lsUserProfile);
-    if (userProfile.login &amp;&amp; userProfile.password &amp;&amp; userProfile.token) {
-      return userProfile;
-    }
-  }
-  return null;
+const signOut = (): Promise&lt;boolean&gt; =&gt; {
+  return new Promise((resolve) =&gt; {
+    setTimeout(() =&gt; {
+      localStorage.removeItem(LOCAL_STORAGE_AUTH_KEY);
+      resolve(true);
+    }, 500); // fake async
+  });
 };
 &nbsp;
-export { fakeAuthProvider, getUserProfileFormLocalStorage };
+export { signIn, signOut };
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -178,7 +175,7 @@ export { fakeAuthProvider, getUserProfileFormLocalStorage };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue Jan 25 2022 20:46:29 GMT+0000 (Coordinated Universal Time)
+                at Thu Jan 27 2022 22:32:16 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

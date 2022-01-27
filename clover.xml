@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1643143589152" clover="3.2.0">
-  <project timestamp="1643143589152" name="All files">
-    <metrics statements="306" coveredstatements="299" conditionals="97" coveredconditionals="81" methods="108" coveredmethods="105" elements="511" coveredelements="485" complexity="0" loc="306" ncloc="306" packages="12" files="50" classes="50"/>
+<coverage generated="1643322736541" clover="3.2.0">
+  <project timestamp="1643322736542" name="All files">
+    <metrics statements="304" coveredstatements="303" conditionals="95" coveredconditionals="79" methods="114" coveredmethods="111" elements="513" coveredelements="493" complexity="0" loc="304" ncloc="304" packages="12" files="49" classes="49"/>
     <package name="src">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="Root.tsx" path="/home/runner/work/lines/lines/src/Root.tsx">
@@ -11,7 +11,7 @@
       </file>
     </package>
     <package name="src.App">
-      <metrics statements="45" coveredstatements="44" conditionals="7" coveredconditionals="5" methods="18" coveredmethods="17"/>
+      <metrics statements="56" coveredstatements="56" conditionals="6" coveredconditionals="4" methods="22" coveredmethods="21"/>
       <file name="AppBody.tsx" path="/home/runner/work/lines/lines/src/App/AppBody.tsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="5" count="3" type="stmt"/>
@@ -33,31 +33,50 @@
         <line num="6" count="5" type="stmt"/>
       </file>
       <file name="AppRouter.tsx" path="/home/runner/work/lines/lines/src/App/AppRouter.tsx">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="9" count="3" type="stmt"/>
-        <line num="10" count="5" type="stmt"/>
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+      </file>
+      <file name="appSaga.ts" path="/home/runner/work/lines/lines/src/App/appSaga.ts">
+        <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="3"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="23" count="5" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="25" count="5" type="stmt"/>
+        <line num="26" count="5" type="stmt"/>
       </file>
       <file name="appSlice.ts" path="/home/runner/work/lines/lines/src/App/appSlice.ts">
-        <metrics statements="19" coveredstatements="18" conditionals="2" coveredconditionals="1" methods="9" coveredmethods="8"/>
-        <line num="6" count="9" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <metrics statements="21" coveredstatements="21" conditionals="2" coveredconditionals="1" methods="10" coveredmethods="10"/>
+        <line num="6" count="11" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="25" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="26" count="2" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="26" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="27" count="2" type="stmt"/>
-        <line num="31" count="1" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
         <line num="32" count="1" type="stmt"/>
-        <line num="38" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
         <line num="40" count="1" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="52" count="11" type="stmt"/>
       </file>
       <file name="index.tsx" path="/home/runner/work/lines/lines/src/App/index.tsx">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -68,18 +87,10 @@
       </file>
       <file name="initialState.ts" path="/home/runner/work/lines/lines/src/App/initialState.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="4" count="10" type="stmt"/>
-        <line num="5" count="10" type="stmt"/>
-        <line num="6" count="10" type="stmt"/>
-        <line num="8" count="10" type="stmt"/>
-      </file>
-      <file name="useWait.ts" path="/home/runner/work/lines/lines/src/App/useWait.ts">
-        <metrics statements="5" coveredstatements="5" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
-        <line num="4" count="5" type="stmt"/>
-        <line num="5" count="22" type="stmt"/>
-        <line num="6" count="22" type="stmt"/>
-        <line num="8" count="22" type="cond" truecount="1" falsecount="0"/>
-        <line num="9" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="12" type="stmt"/>
+        <line num="5" count="12" type="stmt"/>
+        <line num="6" count="12" type="stmt"/>
+        <line num="8" count="12" type="stmt"/>
       </file>
     </package>
     <package name="src.App.model">
@@ -89,12 +100,12 @@
       </file>
     </package>
     <package name="src.components">
-      <metrics statements="15" coveredstatements="15" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="4"/>
+      <metrics statements="17" coveredstatements="17" conditionals="4" coveredconditionals="3" methods="5" coveredmethods="5"/>
       <file name="Button.tsx" path="/home/runner/work/lines/lines/src/components/Button.tsx">
         <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="5" count="5" type="stmt"/>
         <line num="15" count="5" type="cond" truecount="1" falsecount="1"/>
-        <line num="16" count="14" type="stmt"/>
+        <line num="16" count="12" type="stmt"/>
       </file>
       <file name="Loading.tsx" path="/home/runner/work/lines/lines/src/components/Loading.tsx">
         <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
@@ -109,10 +120,12 @@
         <line num="60" count="2" type="stmt"/>
       </file>
       <file name="Select.tsx" path="/home/runner/work/lines/lines/src/components/Select.tsx">
-        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="5" count="5" type="stmt"/>
-        <line num="13" count="5" type="stmt"/>
-        <line num="14" count="8" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="32" count="5" type="stmt"/>
+        <line num="33" count="7" type="stmt"/>
+        <line num="38" count="28" type="stmt"/>
       </file>
     </package>
     <package name="src.layout">
@@ -123,63 +136,50 @@
       </file>
     </package>
     <package name="src.modules.Auth">
-      <metrics statements="72" coveredstatements="72" conditionals="17" coveredconditionals="15" methods="21" coveredmethods="21"/>
+      <metrics statements="67" coveredstatements="66" conditionals="18" coveredconditionals="15" methods="22" coveredmethods="21"/>
       <file name="AuthForm.tsx" path="/home/runner/work/lines/lines/src/modules/Auth/AuthForm.tsx">
-        <metrics statements="18" coveredstatements="18" conditionals="4" coveredconditionals="4" methods="5" coveredmethods="5"/>
-        <line num="13" count="4" type="stmt"/>
-        <line num="42" count="4" type="stmt"/>
-        <line num="43" count="16" type="stmt"/>
-        <line num="44" count="16" type="stmt"/>
-        <line num="46" count="16" type="stmt"/>
-        <line num="48" count="16" type="stmt"/>
-        <line num="49" count="6" type="stmt"/>
-        <line num="50" count="6" type="cond" truecount="2" falsecount="0"/>
-        <line num="51" count="1" type="stmt"/>
-        <line num="55" count="16" type="stmt"/>
-        <line num="56" count="1" type="stmt"/>
-        <line num="57" count="1" type="stmt"/>
-        <line num="58" count="1" type="stmt"/>
-        <line num="59" count="1" type="stmt"/>
-        <line num="63" count="16" type="stmt"/>
-        <line num="64" count="7" type="stmt"/>
-        <line num="65" count="7" type="stmt"/>
-        <line num="68" count="16" type="stmt"/>
+        <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="39" count="4" type="stmt"/>
+        <line num="40" count="13" type="stmt"/>
+        <line num="41" count="13" type="stmt"/>
+        <line num="43" count="13" type="stmt"/>
+        <line num="45" count="13" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="49" count="13" type="stmt"/>
+        <line num="50" count="7" type="stmt"/>
+        <line num="51" count="7" type="stmt"/>
+        <line num="54" count="13" type="stmt"/>
       </file>
       <file name="AuthLayout.tsx" path="/home/runner/work/lines/lines/src/modules/Auth/AuthLayout.tsx">
-        <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+        <metrics statements="8" coveredstatements="8" conditionals="5" coveredconditionals="4" methods="3" coveredmethods="3"/>
         <line num="10" count="3" type="stmt"/>
-        <line num="14" count="3" type="stmt"/>
-        <line num="15" count="5" type="stmt"/>
-        <line num="17" count="5" type="stmt"/>
+        <line num="17" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="18" count="10" type="stmt"/>
+        <line num="19" count="10" type="stmt"/>
+        <line num="21" count="10" type="stmt"/>
+        <line num="22" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="27" count="10" type="stmt"/>
       </file>
       <file name="AuthStatus.tsx" path="/home/runner/work/lines/lines/src/modules/Auth/AuthStatus.tsx">
-        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <line num="6" count="3" type="stmt"/>
-        <line num="11" count="3" type="stmt"/>
-        <line num="12" count="5" type="stmt"/>
-        <line num="14" count="5" type="cond" truecount="2" falsecount="0"/>
-        <line num="15" count="4" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
+        <metrics statements="5" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="13" count="3" type="cond" truecount="0" falsecount="1"/>
+        <line num="14" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="8" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
       </file>
       <file name="RequireAuth.tsx" path="/home/runner/work/lines/lines/src/modules/Auth/RequireAuth.tsx">
-        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <line num="6" count="3" type="stmt"/>
-        <line num="7" count="5" type="stmt"/>
-        <line num="8" count="5" type="stmt"/>
-        <line num="10" count="5" type="cond" truecount="2" falsecount="0"/>
-        <line num="11" count="4" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="11" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
       </file>
-      <file name="authSlice.ts" path="/home/runner/work/lines/lines/src/modules/Auth/authSlice.ts">
-        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="7" count="6" type="stmt"/>
-        <line num="11" count="6" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-      </file>
-      <file name="fakeAuthProvider.ts" path="/home/runner/work/lines/lines/src/modules/Auth/fakeAuthProvider.ts">
-        <metrics statements="16" coveredstatements="16" conditionals="7" coveredconditionals="6" methods="4" coveredmethods="4"/>
-        <line num="8" count="5" type="stmt"/>
+      <file name="authSaga.ts" path="/home/runner/work/lines/lines/src/modules/Auth/authSaga.ts">
+        <metrics statements="16" coveredstatements="16" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
@@ -188,37 +188,42 @@
         <line num="19" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
         <line num="21" count="1" type="stmt"/>
-        <line num="25" count="5" type="stmt"/>
-        <line num="26" count="6" type="stmt"/>
-        <line num="27" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="26" count="5" type="stmt"/>
+        <line num="27" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="28" count="1" type="stmt"/>
-        <line num="29" count="1" type="cond" truecount="4" falsecount="1"/>
-        <line num="30" count="1" type="stmt"/>
-        <line num="33" count="5" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="34" count="5" type="stmt"/>
+        <line num="35" count="5" type="stmt"/>
+        <line num="36" count="5" type="stmt"/>
       </file>
-      <file name="useLogin.ts" path="/home/runner/work/lines/lines/src/modules/Auth/useLogin.ts">
-        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="8" count="4" type="stmt"/>
-        <line num="9" count="16" type="stmt"/>
-        <line num="10" count="16" type="stmt"/>
-        <line num="12" count="16" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
-        <line num="18" count="2" type="stmt"/>
-        <line num="20" count="2" type="stmt"/>
-        <line num="21" count="2" type="stmt"/>
-        <line num="22" count="2" type="stmt"/>
-      </file>
-      <file name="useLogout.ts" path="/home/runner/work/lines/lines/src/modules/Auth/useLogout.ts">
-        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="7" count="4" type="stmt"/>
-        <line num="8" count="6" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
-        <line num="11" count="6" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
+      <file name="authSlice.ts" path="/home/runner/work/lines/lines/src/modules/Auth/authSlice.ts">
+        <metrics statements="7" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3"/>
+        <line num="8" count="9" type="stmt"/>
+        <line num="12" count="9" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="27" count="9" type="stmt"/>
+      </file>
+      <file name="fakeAuthProvider.ts" path="/home/runner/work/lines/lines/src/modules/Auth/fakeAuthProvider.ts">
+        <metrics statements="15" coveredstatements="15" conditionals="4" coveredconditionals="3" methods="6" coveredmethods="6"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="20" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.modules.Auth.model">
@@ -231,13 +236,13 @@
       </file>
     </package>
     <package name="src.modules.Cell">
-      <metrics statements="21" coveredstatements="21" conditionals="24" coveredconditionals="18" methods="10" coveredmethods="10"/>
+      <metrics statements="20" coveredstatements="20" conditionals="24" coveredconditionals="18" methods="10" coveredmethods="10"/>
       <file name="constatnts.ts" path="/home/runner/work/lines/lines/src/modules/Cell/constatnts.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="5" type="stmt"/>
       </file>
       <file name="index.tsx" path="/home/runner/work/lines/lines/src/modules/Cell/index.tsx">
-        <metrics statements="20" coveredstatements="20" conditionals="24" coveredconditionals="18" methods="10" coveredmethods="10"/>
+        <metrics statements="19" coveredstatements="19" conditionals="24" coveredconditionals="18" methods="10" coveredmethods="10"/>
         <line num="12" count="5" type="stmt"/>
         <line num="14" count="352" type="cond" truecount="2" falsecount="0"/>
         <line num="15" count="352" type="cond" truecount="1" falsecount="1"/>
@@ -249,15 +254,14 @@
         <line num="45" count="6" type="cond" truecount="2" falsecount="0"/>
         <line num="61" count="5" type="stmt"/>
         <line num="68" count="352" type="stmt"/>
-        <line num="69" count="352" type="stmt"/>
-        <line num="71" count="352" type="stmt"/>
-        <line num="72" count="1" type="stmt"/>
-        <line num="73" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="76" count="352" type="stmt"/>
-        <line num="77" count="1" type="stmt"/>
-        <line num="78" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="79" count="1" type="stmt"/>
-        <line num="83" count="352" type="stmt"/>
+        <line num="70" count="352" type="stmt"/>
+        <line num="71" count="1" type="stmt"/>
+        <line num="72" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="75" count="352" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="77" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="78" count="1" type="stmt"/>
+        <line num="82" count="352" type="stmt"/>
       </file>
       <file name="models.ts" path="/home/runner/work/lines/lines/src/modules/Cell/models.ts">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -286,90 +290,81 @@
       </file>
     </package>
     <package name="src.modules.UserForm">
-      <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+      <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="5"/>
       <file name="index.tsx" path="/home/runner/work/lines/lines/src/modules/UserForm/index.tsx">
-        <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+        <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="5"/>
         <line num="12" count="4" type="stmt"/>
-        <line num="13" count="6" type="stmt"/>
-        <line num="14" count="6" type="stmt"/>
-        <line num="15" count="6" type="stmt"/>
-        <line num="18" count="6" type="stmt"/>
-        <line num="20" count="6" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
         <line num="21" count="1" type="stmt"/>
-        <line num="24" count="6" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
-        <line num="29" count="6" type="stmt"/>
+        <line num="29" count="5" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
-        <line num="31" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="33" count="1" type="stmt"/>
-        <line num="37" count="6" type="stmt"/>
+        <line num="33" count="5" type="stmt"/>
       </file>
     </package>
     <package name="src.store">
-      <metrics statements="17" coveredstatements="11" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="2"/>
+      <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
       <file name="index.ts" path="/home/runner/work/lines/lines/src/store/index.ts">
-        <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
       </file>
-      <file name="persistApp.ts" path="/home/runner/work/lines/lines/src/store/persistApp.ts">
-        <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-      </file>
-      <file name="rehydrateState.ts" path="/home/runner/work/lines/lines/src/store/rehydrateState.ts">
-        <metrics statements="7" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
+      <file name="rehydrateApp.ts" path="/home/runner/work/lines/lines/src/store/rehydrateApp.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
       </file>
       <file name="rootReducer.ts" path="/home/runner/work/lines/lines/src/store/rootReducer.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="4" count="1" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+      </file>
+      <file name="rootSaga.ts" path="/home/runner/work/lines/lines/src/store/rootSaga.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="4" type="stmt"/>
       </file>
     </package>
     <package name="src.utils">
       <metrics statements="101" coveredstatements="101" conditionals="39" coveredconditionals="35" methods="40" coveredmethods="40"/>
       <file name="addNewCells.ts" path="/home/runner/work/lines/lines/src/utils/addNewCells.ts">
         <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="4" methods="8" coveredmethods="8"/>
-        <line num="4" count="19" type="stmt"/>
+        <line num="4" count="21" type="stmt"/>
         <line num="5" count="21" type="cond" truecount="2" falsecount="0"/>
-        <line num="8" count="19" type="stmt"/>
+        <line num="8" count="21" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
         <line num="10" count="5" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
-        <line num="15" count="19" type="stmt"/>
+        <line num="15" count="21" type="stmt"/>
         <line num="16" count="4" type="stmt"/>
         <line num="17" count="4" type="cond" truecount="2" falsecount="0"/>
       </file>
       <file name="createArrayBySize.ts" path="/home/runner/work/lines/lines/src/utils/createArrayBySize.ts">
         <metrics statements="2" coveredstatements="2" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="2"/>
-        <line num="1" count="22" type="cond" truecount="1" falsecount="0"/>
-        <line num="2" count="982" type="stmt"/>
+        <line num="1" count="24" type="cond" truecount="1" falsecount="0"/>
+        <line num="2" count="1144" type="stmt"/>
       </file>
       <file name="createGameField.ts" path="/home/runner/work/lines/lines/src/utils/createGameField.ts">
         <metrics statements="2" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="6" count="21" type="cond" truecount="0" falsecount="1"/>
-        <line num="7" count="16" type="stmt"/>
+        <line num="6" count="23" type="cond" truecount="0" falsecount="1"/>
+        <line num="7" count="18" type="stmt"/>
       </file>
       <file name="filterChainsByInd.ts" path="/home/runner/work/lines/lines/src/utils/filterChainsByInd.ts">
         <metrics statements="13" coveredstatements="13" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="6"/>
-        <line num="1" count="19" type="stmt"/>
+        <line num="1" count="21" type="stmt"/>
         <line num="2" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="4" count="19" type="stmt"/>
+        <line num="4" count="21" type="stmt"/>
         <line num="5" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="7" count="19" type="stmt"/>
+        <line num="7" count="21" type="stmt"/>
         <line num="8" count="4" type="stmt"/>
         <line num="9" count="4" type="stmt"/>
         <line num="10" count="4" type="stmt"/>
@@ -381,23 +376,23 @@
       </file>
       <file name="generateCellsByCount.ts" path="/home/runner/work/lines/lines/src/utils/generateCellsByCount.ts">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-        <line num="1" count="21" type="stmt"/>
-        <line num="2" count="994" type="stmt"/>
-        <line num="3" count="18" type="stmt"/>
+        <line num="1" count="23" type="stmt"/>
+        <line num="2" count="1156" type="stmt"/>
+        <line num="3" count="20" type="stmt"/>
         <line num="4" count="31" type="stmt"/>
-        <line num="6" count="18" type="stmt"/>
+        <line num="6" count="20" type="stmt"/>
       </file>
       <file name="generateCellsByPercent.ts" path="/home/runner/work/lines/lines/src/utils/generateCellsByPercent.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="3" count="21" type="stmt"/>
-        <line num="4" count="17" type="stmt"/>
-        <line num="5" count="17" type="stmt"/>
+        <line num="3" count="23" type="stmt"/>
+        <line num="4" count="19" type="stmt"/>
+        <line num="5" count="19" type="stmt"/>
       </file>
       <file name="getChainByInd.ts" path="/home/runner/work/lines/lines/src/utils/getChainByInd.ts">
         <metrics statements="17" coveredstatements="17" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1"/>
-        <line num="3" count="19" type="stmt"/>
-        <line num="4" count="19" type="stmt"/>
-        <line num="8" count="19" type="stmt"/>
+        <line num="3" count="21" type="stmt"/>
+        <line num="4" count="21" type="stmt"/>
+        <line num="8" count="21" type="stmt"/>
         <line num="9" count="9" type="stmt"/>
         <line num="10" count="9" type="stmt"/>
         <line num="11" count="9" type="stmt"/>
@@ -415,11 +410,11 @@
       </file>
       <file name="getChainsByInd.ts" path="/home/runner/work/lines/lines/src/utils/getChainsByInd.ts">
         <metrics statements="14" coveredstatements="14" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
-        <line num="4" count="19" type="stmt"/>
+        <line num="4" count="21" type="stmt"/>
         <line num="5" count="3" type="stmt"/>
-        <line num="7" count="19" type="stmt"/>
+        <line num="7" count="21" type="stmt"/>
         <line num="8" count="3" type="stmt"/>
-        <line num="10" count="19" type="stmt"/>
+        <line num="10" count="21" type="stmt"/>
         <line num="11" count="3" type="stmt"/>
         <line num="12" count="3" type="stmt"/>
         <line num="13" count="3" type="stmt"/>
@@ -432,18 +427,18 @@
       </file>
       <file name="getIndByPos.ts" path="/home/runner/work/lines/lines/src/utils/getIndByPos.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="19" type="stmt"/>
+        <line num="1" count="21" type="stmt"/>
         <line num="2" count="38" type="stmt"/>
       </file>
       <file name="getOrderedChains.ts" path="/home/runner/work/lines/lines/src/utils/getOrderedChains.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="6" count="19" type="stmt"/>
+        <line num="6" count="21" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
         <line num="8" count="2" type="stmt"/>
       </file>
       <file name="getPosByInd.ts" path="/home/runner/work/lines/lines/src/utils/getPosByInd.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="19" type="stmt"/>
+        <line num="1" count="21" type="stmt"/>
         <line num="2" count="4" type="stmt"/>
         <line num="3" count="4" type="stmt"/>
         <line num="4" count="4" type="stmt"/>
@@ -453,7 +448,7 @@
       </file>
       <file name="removeOrderedChains.ts" path="/home/runner/work/lines/lines/src/utils/removeOrderedChains.ts">
         <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
-        <line num="1" count="19" type="stmt"/>
+        <line num="1" count="21" type="stmt"/>
         <line num="2" count="5" type="stmt"/>
         <line num="3" count="5" type="stmt"/>
         <line num="4" count="5" type="stmt"/>
@@ -465,7 +460,7 @@
       </file>
       <file name="setCell.ts" path="/home/runner/work/lines/lines/src/utils/setCell.ts">
         <metrics statements="5" coveredstatements="5" conditionals="7" coveredconditionals="5" methods="2" coveredmethods="2"/>
-        <line num="2" count="19" type="cond" truecount="1" falsecount="0"/>
+        <line num="2" count="21" type="cond" truecount="1" falsecount="0"/>
         <line num="3" count="4" type="cond" truecount="0" falsecount="1"/>
         <line num="4" count="4" type="cond" truecount="4" falsecount="1"/>
         <line num="5" count="4" type="stmt"/>
@@ -473,23 +468,23 @@
       </file>
       <file name="shuffle.ts" path="/home/runner/work/lines/lines/src/utils/shuffle.ts">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="22" type="stmt"/>
-        <line num="2" count="21" type="stmt"/>
-        <line num="3" count="21" type="stmt"/>
-        <line num="4" count="987" type="stmt"/>
-        <line num="5" count="987" type="stmt"/>
-        <line num="6" count="987" type="stmt"/>
-        <line num="7" count="987" type="stmt"/>
-        <line num="9" count="21" type="stmt"/>
+        <line num="1" count="24" type="stmt"/>
+        <line num="2" count="23" type="stmt"/>
+        <line num="3" count="23" type="stmt"/>
+        <line num="4" count="1147" type="stmt"/>
+        <line num="5" count="1147" type="stmt"/>
+        <line num="6" count="1147" type="stmt"/>
+        <line num="7" count="1147" type="stmt"/>
+        <line num="9" count="23" type="stmt"/>
       </file>
       <file name="updateGameField.ts" path="/home/runner/work/lines/lines/src/utils/updateGameField.ts">
         <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
-        <line num="8" count="19" type="stmt"/>
+        <line num="8" count="21" type="stmt"/>
         <line num="13" count="2" type="stmt"/>
       </file>
       <file name="uuidv4.ts" path="/home/runner/work/lines/lines/src/utils/uuidv4.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="1" count="19" type="stmt"/>
+        <line num="1" count="21" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="3" count="62" type="stmt"/>
       </file>
