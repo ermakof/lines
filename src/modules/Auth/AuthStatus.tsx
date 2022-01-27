@@ -2,8 +2,9 @@ import React, { FC } from 'react';
 import styled from '@emotion/styled';
 
 const Title = styled.p`
-  font-size: 32px;
-  margin: auto 20px auto 0;
+  font-size: 20px;
+  line-height: 30px;
+  margin-right: 20px;
 `;
 
 interface IAuthStatus {
@@ -14,7 +15,7 @@ const AuthStatus: FC<IAuthStatus> = ({ login = '' }) => {
     return <Title>Lines</Title>;
   }
 
-  return <Title>{`Lines ${login}`}</Title>;
+  return <Title>{`Игрок: ${login}`}</Title>;
 };
 
 export default AuthStatus;

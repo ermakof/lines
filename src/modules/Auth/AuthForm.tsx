@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import { actions } from '@src/modules/Auth/authSlice';
 
 const Root = styled.div`
+  font-size: 16px;
+
   label {
     margin-right: 5px;
   }
@@ -21,7 +23,6 @@ const Root = styled.div`
   }
 
   form {
-    font-size: 14px;
     margin: 3vh 0;
   }
 `;
@@ -40,13 +41,6 @@ const AuthForm: FC = () => {
   const { setUser } = actions;
 
   const [userInfo, setUserInfo] = useState<IUserInfo>({ login: '', password: '' });
-
-  // useEffect(() => {
-  //   const userProfile = getUserProfileFormLocalStorage();
-  //   if (userProfile) {
-  //     login(userProfile);
-  //   }
-  // }, []);
 
   const handleSubmit = () => {
     dispatch(setUser(userInfo));

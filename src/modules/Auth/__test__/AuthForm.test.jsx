@@ -95,35 +95,12 @@ describe('AuthForm', () => {
 
     await waitFor(() =>
       expect(mockDispatch).toHaveBeenCalledWith({
-        type: 'auth/login',
+        type: 'auth/setUser',
         payload: {
           login: 'Иван',
           password: '123',
-          token: '01111111-0111-4111-9111-011111111111',
         },
       })
     );
-  });
-
-  it('Auto login <AuthForm>', async () => {
-    window.localStorage.setItem(
-      'lines:userProfile',
-      JSON.stringify({
-        login: 'user',
-        password: '123',
-        token: '8b23774d-ea51-4e64-aaf3-e3db309b9efc',
-      })
-    );
-    const getItemSpy = jest.spyOn(window.localStorage, 'getItem');
-    const mockDispatch = jest.fn();
-    useDispatch.mockReturnValue(mockDispatch);
-    render(
-      <Provider store={store}>
-        <Router>
-          <AuthForm />
-        </Router>
-      </Provider>
-    );
-    expect(getItemSpy).toBeCalledWith('lines:userProfile');
   });
 });

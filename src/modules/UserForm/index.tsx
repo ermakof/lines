@@ -1,14 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, memo, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Panel from '@src/layout/Panel';
 import Button from '@src/components/Button';
 import { actions as appActions } from '@src/App/appSlice';
 import { actions as authActions } from '@src/modules/Auth/authSlice';
 import Select from '@src/components/Select';
+import { TRootState } from '@src/store';
 
 const UserForm: FC = () => {
+  const { userLevel } = useSelector(({ app }: TRootState) => app);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,8 +32,8 @@ const UserForm: FC = () => {
 
   return (
     <Panel role="userForm">
-      <Button role="buttonReset" onClick={handleReset} title="Reset" />
-      <Select onSelect={handleSelectLevel} />
+      <Button role="buttonReset" onClick={handleReset} title="Сброс" />
+      <Select onSelect={handleSelectLevel} selectedLevel={userLevel} />
       <Button role="buttonLogout" onClick={handleLogout} title="Выйти" />
     </Panel>
   );

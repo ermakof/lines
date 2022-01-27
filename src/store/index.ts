@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
-import throttle from 'lodash.throttle';
 
 import { rootReducer } from '@src/store/rootReducer';
 import { rehydrateApp } from '@src/store/rehydrateApp';
-import { persistApp } from '@src/store/persistApp';
 import { rootSaga } from '@src/store/rootSaga';
 
 export const LOCAL_STORAGE_APP_KEY = 'lines:app';
@@ -26,12 +24,6 @@ const store = configureStore({
 });
 
 sagaMiddleware.run(rootSaga);
-
-store.subscribe(
-  throttle(() => {
-    persistApp();
-  }, 1000)
-);
 
 rehydrateApp();
 
