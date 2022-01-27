@@ -7,7 +7,7 @@ import { IUserInfo } from '@src/modules/Auth/AuthForm';
 import { IUserProfile } from '@src/modules/Auth/model/IUserProfile';
 import { LOCAL_STORAGE_AUTH_KEY } from '@src/store';
 
-function* watchSetUser({ payload }: PayloadAction<IUserInfo>): Generator {
+export function* watchSetUser({ payload }: PayloadAction<IUserInfo>): Generator {
   yield put(appActions.waitOn());
   let userProfile = yield call(signIn, payload);
   yield put(authActions.login(userProfile as IUserProfile));
@@ -15,14 +15,14 @@ function* watchSetUser({ payload }: PayloadAction<IUserInfo>): Generator {
   yield put(appActions.waitOff());
 }
 
-function* watchLogout(): Generator {
+export function* watchLogout(): Generator {
   yield put(appActions.waitOn());
   yield call(signOut);
   yield put(appActions.initApp());
   yield put(appActions.waitOff());
 }
 
-function* watchRehydrate(): Generator {
+export function* watchRehydrate(): Generator {
   const persistedAuth = yield call([localStorage, localStorage.getItem], LOCAL_STORAGE_AUTH_KEY);
   if (persistedAuth) {
     const userProfile = JSON.parse(persistedAuth as string);

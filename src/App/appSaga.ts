@@ -1,8 +1,8 @@
 import { call, put, takeEvery, select } from 'redux-saga/effects';
 import { actions as appActions, actions } from '@src/App/appSlice';
-import { LOCAL_STORAGE_APP_KEY } from '@src/store';
+import { LOCAL_STORAGE_APP_KEY, TRootState } from '@src/store';
 
-function* watchRehydrate(): Generator {
+export function* watchRehydrate(): Generator {
   yield put(appActions.waitOn());
   const persistedApp = yield call([localStorage, localStorage.getItem], LOCAL_STORAGE_APP_KEY);
   if (persistedApp) {
@@ -12,8 +12,10 @@ function* watchRehydrate(): Generator {
   yield put(appActions.waitOff());
 }
 
-function* watchPersist(): Generator {
-  const app = yield select(({ app }) => app);
+export const getApp = (state: TRootState) => state.app;
+
+export function* watchPersist(): Generator {
+  const app = yield select(getApp);
   yield call([localStorage, localStorage.setItem], LOCAL_STORAGE_APP_KEY, JSON.stringify(app));
 }
 

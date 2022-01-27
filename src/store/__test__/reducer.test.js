@@ -167,4 +167,41 @@ describe('reducer', () => {
       expect(newState.gameFieldData).toEqual([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     });
   });
+
+  it('rehydrate', () => {
+    const state = {
+      userLevel: '3',
+      gameFieldSize: 3,
+      gameFieldPercentFilled: 50,
+      gameFieldData: [1, 1, 0, 0, 1, 0, 0, 1, 0],
+    };
+    const newState = appSlice.reducer(state, appSlice.actions.rehydrate());
+    expect(newState).toEqual(state);
+  });
+
+  it('restoreGame', () => {
+    const state = {
+      userLevel: '1',
+      gameFieldSize: 3,
+      gameFieldPercentFilled: 50,
+      gameFieldData: [1, 1, 0, 0, 1, 0, 0, 1, 0],
+    };
+    const newState = appSlice.reducer(
+      state,
+      appSlice.actions.restoreGame({
+        userLevel: '3',
+        gameFieldSize: 4,
+        gameFieldPercentFilled: 50,
+        gameFieldData: [1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0],
+        selectedCell: 1,
+      })
+    );
+    expect(newState).toEqual({
+      userLevel: '3',
+      gameFieldSize: 4,
+      gameFieldPercentFilled: 50,
+      gameFieldData: [1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0],
+      selectedCell: 1,
+    });
+  });
 });
