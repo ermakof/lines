@@ -13,14 +13,7 @@ export default {
   title: 'Application/AppBody',
 } as ComponentMeta<typeof AppBody>;
 
-const payload = {
-  gameLevel: '1',
-  gameFieldSize: 4,
-  gameFieldPercentFilled: 10,
-  gameFieldData: [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-};
-
-store.dispatch(appSlice.actions.hydrate(payload));
+store.dispatch(appSlice.actions.rehydrate());
 
 const Template: ComponentStory<typeof AppBody> = (args) => (
   <Provider store={store}>
