@@ -10,8 +10,10 @@ import { LOCAL_STORAGE_AUTH_KEY } from '@src/store';
 export function* watchSetUser({ payload }: PayloadAction<IUserInfo>): Generator {
   yield put(appActions.waitOn());
   let userProfile = yield call(signIn, payload);
-  yield put(authActions.login(userProfile as IUserProfile));
-  yield put(appActions.resetApp());
+  if (userProfile) {
+    yield put(authActions.login(userProfile as IUserProfile));
+    yield put(appActions.resetApp());
+  }
   yield put(appActions.waitOff());
 }
 
@@ -25,7 +27,7 @@ export function* watchLogout(): Generator {
 export function* watchRehydrate(): Generator {
   const persistedAuth = yield call([localStorage, localStorage.getItem], LOCAL_STORAGE_AUTH_KEY);
   if (persistedAuth) {
-    const userProfile = JSON.parse(persistedAuth as string);
+    const userProfile = yield call([JSON, JSON.parse], persistedAuth as string);
     yield put(authActions.login(userProfile as IUserProfile));
   }
 }

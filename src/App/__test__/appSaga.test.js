@@ -13,31 +13,7 @@ describe('appSaga', () => {
     expect(saga.next().done).toBe(true);
   });
 
-  it('watchRehydrate - with data', () => {
-    const saga = watchRehydrate();
-    expect(saga.next().value).toEqual(put({ type: 'app/waitOn' }));
-    expect(saga.next().value).toEqual(
-      call([localStorage, localStorage.getItem], LOCAL_STORAGE_APP_KEY)
-    );
-    const persistedApp =
-      '{"userLevel":"1","gameFieldSize":4,"gameFieldPercentFilled":10,"gameFieldData":[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],"isLoading":true}';
-    expect(saga.next(persistedApp).value).toEqual(
-      put({
-        type: 'app/restoreGame',
-        payload: {
-          gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-          gameFieldPercentFilled: 10,
-          gameFieldSize: 4,
-          isLoading: true,
-          userLevel: '1',
-        },
-      })
-    );
-    expect(saga.next().value).toEqual(put({ type: 'app/waitOff' }));
-    expect(saga.next().done).toBe(true);
-  });
-
-  it('watchRehydrate - without data', () => {
+  it('watchRehydrate', () => {
     const saga = watchRehydrate();
     expect(saga.next().value).toEqual(put({ type: 'app/waitOn' }));
     expect(saga.next().value).toEqual(

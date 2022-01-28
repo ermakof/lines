@@ -6,7 +6,7 @@ export function* watchRehydrate(): Generator {
   yield put(appActions.waitOn());
   const persistedApp = yield call([localStorage, localStorage.getItem], LOCAL_STORAGE_APP_KEY);
   if (persistedApp) {
-    const dataApp = JSON.parse(persistedApp as string);
+    const dataApp = yield call([JSON, JSON.parse], persistedApp as string);
     yield put(actions.restoreGame(dataApp));
   }
   yield put(appActions.waitOff());
