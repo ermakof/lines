@@ -1,5 +1,7 @@
-const getIndByPos = (pos: [number, number], size: number): number => {
-  return pos[0] + pos[1] * size;
+import { GAME_FIELD_SIZE } from '@src/App/initialState';
+
+const getIndByPos = (pos: [number, number]): number => {
+  return pos[0] + pos[1] * GAME_FIELD_SIZE;
 };
 
 export default getIndByPos;

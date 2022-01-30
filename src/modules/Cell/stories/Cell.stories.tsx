@@ -14,12 +14,11 @@ export default {
 
 const payload = {
   gameLevel: '1',
-  gameFieldSize: 4,
   gameFieldPercentFilled: 10,
   gameFieldData: [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
 };
 
-store.dispatch(actions.hydrate(payload));
+store.dispatch(actions.rehydrate());
 
 const Template: ComponentStory<typeof Cell> = (args) => (
   <Provider store={store}>
@@ -49,6 +48,7 @@ export const Dynamic: FC = () => {
         isRight={boolean('isRight', true)}
         isBottom={boolean('isBottom', true)}
         isLeft={boolean('isLeft', true)}
+        isOutdated={boolean('isOutdated', false)}
       />
     </Provider>
   );

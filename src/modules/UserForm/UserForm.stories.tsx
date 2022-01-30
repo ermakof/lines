@@ -12,7 +12,6 @@ const dispatch = () => null;
 
 const state = {
   gameLevel: '1',
-  gameFieldSize: 4,
   gameFieldPercentFilled: 10,
   gameFieldData: [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
 };

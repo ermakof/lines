@@ -19,7 +19,6 @@ jest.mock('react-redux', () => ({
 describe('Cell', () => {
   beforeEach(() => {
     store = mockStore({
-      gameFieldSize: 3,
       gameFieldData: [1, 1, 1, 1, 1, 1, 1, 1, 1],
       gameLevel: '1',
       gameFieldPercentFilled: 100,
@@ -29,7 +28,7 @@ describe('Cell', () => {
   it('renders <Cell> using renderer cell with value=2', () => {
     const { asFragment } = render(
       <Provider store={store}>
-        <Cell num={2} isFilled={1} isSelected={true} />
+        <Cell num={2} isFilled={1} isSelected={true} isOutdated={false} />
       </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
@@ -44,7 +43,7 @@ describe('Cell', () => {
     useDispatch.mockReturnValue(mockDispatch);
     render(
       <Provider store={store}>
-        <Cell num={2} isFilled={1} isSelected={true} />
+        <Cell num={2} isFilled={1} isSelected={true} isOutdated={false} />
       </Provider>
     );
     const cellContent = screen.getByRole(/cellContent-2/i);
@@ -58,7 +57,7 @@ describe('Cell', () => {
     useDispatch.mockReturnValue(mockDispatch);
     render(
       <Provider store={store}>
-        <Cell num={2} isFilled={1} isSelected={false} />
+        <Cell num={2} isFilled={1} isSelected={false} isOutdated={false} />
       </Provider>
     );
     const cellContainer = screen.getByRole(/cellContainer-2/i);

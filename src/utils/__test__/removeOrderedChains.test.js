@@ -1,27 +1,23 @@
 import { removeOrderedChains } from '@src/utils';
 
 describe('removeOrderedChains', () => {
-  it('cells = array(25), 1 chain', () => {
-    const props = {
-      cells: [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      chains: [[1, 2, 3, 4]],
-    };
-    const arr = removeOrderedChains(props);
+  it('cells = array(25), remove 1 chain', () => {
+    const cells = [0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    const chains = [[1, 2, 3, 4]];
+    const arr = removeOrderedChains(chains)(cells);
     expect(arr).toEqual({
-      cells: [0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      cells: [0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       hasChains: true,
     });
   });
 
-  it('cells = array(25), 2 chains', () => {
-    const props = {
-      cells: [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      chains: [
-        [1, 2, 3, 4],
-        [6, 7, 8, 9],
-      ],
-    };
-    const arr = removeOrderedChains(props);
+  it('cells = array(25), remove 2 chains', () => {
+    const cells = [1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    const chains = [
+      [0, 1, 2, 3],
+      [0, 4, 8, 12],
+    ];
+    const arr = removeOrderedChains(chains)(cells);
     expect(arr).toEqual({
       cells: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       hasChains: true,
@@ -29,11 +25,9 @@ describe('removeOrderedChains', () => {
   });
 
   it('cells = array(25), no chains', () => {
-    const props = {
-      cells: [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      chains: [],
-    };
-    const arr = removeOrderedChains(props);
+    const cells = [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    const chains = [];
+    const arr = removeOrderedChains(chains)(cells);
     expect(arr).toEqual({
       cells: [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       hasChains: false,

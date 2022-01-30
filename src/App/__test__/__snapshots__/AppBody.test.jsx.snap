@@ -15,7 +15,7 @@ exports[`AppBody Render <AppBody> with data 1`] = `
         role="cellContainer-0"
       >
         <div
-          class="css-w6oewy"
+          class="css-1dgu7xs"
           role="cellContent-0"
         />
       </div>
@@ -24,7 +24,7 @@ exports[`AppBody Render <AppBody> with data 1`] = `
         role="cellContainer-1"
       >
         <div
-          class="css-w6oewy"
+          class="css-1dgu7xs"
           role="cellContent-1"
         />
       </div>
@@ -33,11 +33,11 @@ exports[`AppBody Render <AppBody> with data 1`] = `
         role="cellContainer-2"
       />
       <div
-        class="css-1jbr29x"
+        class="css-2r18jt"
         role="cellContainer-3"
       />
       <div
-        class="css-es8rv7"
+        class="css-2r18jt"
         role="cellContainer-4"
       />
       <div
@@ -49,15 +49,15 @@ exports[`AppBody Render <AppBody> with data 1`] = `
         role="cellContainer-6"
       />
       <div
-        class="css-1jbr29x"
+        class="css-2r18jt"
         role="cellContainer-7"
       />
       <div
-        class="css-es8rv7"
+        class="css-1jbr29x"
         role="cellContainer-8"
       />
       <div
-        class="css-2r18jt"
+        class="css-es8rv7"
         role="cellContainer-9"
       />
       <div
@@ -65,11 +65,11 @@ exports[`AppBody Render <AppBody> with data 1`] = `
         role="cellContainer-10"
       />
       <div
-        class="css-1jbr29x"
+        class="css-2r18jt"
         role="cellContainer-11"
       />
       <div
-        class="css-es8rv7"
+        class="css-2r18jt"
         role="cellContainer-12"
       />
       <div
@@ -81,7 +81,7 @@ exports[`AppBody Render <AppBody> with data 1`] = `
         role="cellContainer-14"
       />
       <div
-        class="css-1jbr29x"
+        class="css-2r18jt"
         role="cellContainer-15"
       />
       <div

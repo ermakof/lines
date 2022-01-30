@@ -15,12 +15,11 @@ export default {
 
 const payload = {
   gameLevel: '1',
-  gameFieldSize: 4,
   gameFieldPercentFilled: 10,
   gameFieldData: [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
 };
 
-store.dispatch(appSlice.actions.hydrate(payload));
+store.dispatch(appSlice.actions.rehydrate());
 
 const Template: ComponentStory<typeof AppBottom> = (args) => (
   <Provider store={store}>

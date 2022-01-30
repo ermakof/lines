@@ -398,7 +398,7 @@ exports[`render App 1`] = `
       </section>
     </div>
     <div
-      class="css-1563bnz"
+      class="css-eec57t"
     >
       <div
         class="css-1uv7a9d"
@@ -408,13 +408,13 @@ exports[`render App 1`] = `
           class="css-o9gtt2"
           role="messageResult"
         >
-          Результат:
+          Результат: 0
         </p>
         <p
           class="css-o9gtt2"
           role="messagePercentFilled"
         >
-          Процент заполнения: 0
+          Процент заполнения: 0.00
         </p>
       </div>
     </div>

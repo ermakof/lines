@@ -14,7 +14,6 @@ export default {
 
 const state = {
   gameLevel: '3',
-  gameFieldSize: 5,
   gameFieldPercentFilled: 30,
   gameFieldData: [0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
   selectedCell: 2,

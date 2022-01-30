@@ -40,7 +40,6 @@ describe('AppBody', () => {
   it('Render <AppBody> with data', () => {
     useSelector.mockReturnValue({
       gameLevel: '1',
-      gameFieldSize: 4,
       gameFieldPercentFilled: 10,
       gameFieldData: [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     });

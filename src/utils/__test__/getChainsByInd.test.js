@@ -1,8 +1,39 @@
+/* eslint-disable */
 import { getChainsByInd } from '@src/utils';
 
+const cells = [
+  1, 0, 0, 0, 0, 1, 1, 1, 1,
+  1, 0, 0, 0, 0, 0, 0, 0, 1,
+  1, 0, 0, 0, 0, 0, 0, 0, 1,
+  1, 0, 0, 0, 0, 0, 0, 0, 1,
+  0, 0, 0, 0, 0, 0, 0, 0, 1,
+  1, 0, 0, 0, 0, 0, 0, 0, 0,
+  1, 1, 1, 1, 0, 0, 0, 0, 0,
+  1, 0, 0, 0, 0, 0, 0, 0, 0,
+  1, 0, 0, 0, 0, 0, 0, 0, 0,
+];
+
 describe('getChainsByInd', () => {
-  it('pos = 1, cells = array(16)', () => {
-    const arr = getChainsByInd(1)([1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1]);
-    expect(arr).toEqual([[[1, 5, 9, 13]], [[1, 2, 3, 4]]]);
+  it('pos = 0, level = "1"', () => {
+    const arr = getChainsByInd(0, '1')(cells);
+    expect(arr).toEqual([
+      [[0, 9, 18, 27], [45, 54, 63, 72]],
+      [[5, 6, 7, 8]]
+    ]);
+  });
+
+  it('pos = 3, level = "1"', () => {
+    const arr = getChainsByInd(3, '1')(cells);
+    expect(arr).toEqual([
+      [[5, 6, 7, 8]]
+    ]);
+  });
+
+  it('pos = 0, level = "3"', () => {
+    const arr = getChainsByInd(0, '3')(cells);
+    expect(arr).toEqual([
+      [[45, 54, 63, 72]],
+      [[5, 6, 7, 8]]
+    ]);
   });
 });
