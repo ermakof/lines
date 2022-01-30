@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>18/18</span>
+                <span class='fraction'>19/19</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/16</span>
+                <span class='fraction'>17/17</span>
             </div>
         
             
@@ -122,7 +122,20 @@
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -146,7 +159,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
@@ -181,6 +204,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { FC } from 'react';
 import styled from '@emotion/styled';
 &nbsp;
@@ -188,6 +212,7 @@ import { ICellInfo } from '@src/modules/Cell/models';
 import Cell from '@src/modules/Cell';
 import { TRootState } from '@src/store';
 import { useSelector } from 'react-redux';
+import { GAME_FIELD_SIZE } from '@src/App/initialState';
 &nbsp;
 interface IFieldContainer {
   active?: boolean;
@@ -204,21 +229,31 @@ export const FieldContainer = styled.section&lt;IFieldContainer&gt;`
   opacity: ${({ active }) =&gt; (active ? 1 : 0.3)};
 `;
 &nbsp;
+const MessageNoData = styled.p`
+  height: 80vh;
+  position: relative;
+  text-align: center;
+`;
+&nbsp;
 const GameField: FC = () =&gt; {
   const userIsLogged = useSelector(({ auth }: TRootState) =&gt; !!auth.userProfile);
-  const { gameFieldData, gameFieldSize, selectedCell } = useSelector(({ app }: TRootState) =&gt; app);
-  const widthMinus1 = gameFieldSize - 1;
-  const heightMinus1 = Math.floor(gameFieldData.length / gameFieldSize) - 1;
+  const {
+    gameFieldData,
+    selectedCell,
+    outdatedCells = {},
+  } = useSelector(({ app }: TRootState) =&gt; app);
+  const widthMinus1 = GAME_FIELD_SIZE - 1;
+  const heightMinus1 = Math.floor(gameFieldData.length / GAME_FIELD_SIZE) - 1;
 &nbsp;
-  if (!gameFieldSize) {
-    return &lt;p role="noDataMessage"&gt;Нет данных!&lt;/p&gt;;
+  if (!gameFieldData.length) {
+    return &lt;MessageNoData role="noDataMessage"&gt;Нет данных!&lt;/MessageNoData&gt;;
   }
 &nbsp;
   return (
     &lt;FieldContainer role="cellsGrid" active={userIsLogged}&gt;
       {gameFieldData.map((item: ICellInfo, index: number) =&gt; {
-        const y = Math.floor(index / gameFieldSize);
-        const x = index % gameFieldSize;
+        const y = Math.floor(index / GAME_FIELD_SIZE);
+        const x = index % GAME_FIELD_SIZE;
         const isRight = x === widthMinus1;
         const isBottom = y === heightMinus1;
         const isLeft = x === 0;
@@ -231,6 +266,7 @@ const GameField: FC = () =&gt; {
             isLeft={isLeft}
             isRight={isRight}
             isBottom={isBottom}
+            isOutdated={outdatedCells[index]}
           /&gt;
         );
       })}
@@ -247,7 +283,7 @@ export default GameField;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri Jan 28 2022 22:36:17 GMT+0000 (Coordinated Universal Time)
+                at Sun Jan 30 2022 23:13:38 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../../../prettify.js"></script>
         <script>
