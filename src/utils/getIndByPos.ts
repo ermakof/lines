@@ -1,5 +1,5 @@
 const getIndByPos = (pos: [number, number], size: number): number => {
-  return pos[0] + (pos[1] - 1) * size;
+  return pos[0] + pos[1] * size;
 };
 
 export default getIndByPos;

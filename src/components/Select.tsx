@@ -5,9 +5,8 @@ import { FC } from 'react';
 const levelList = [
   { id: '1', name: 'Падаван' },
   { id: '2', name: 'Джедай' },
-  { id: '3', name: 'Мастер-джедай' },
   {
-    id: '4',
+    id: '3',
     name: 'Член Совета Силы',
   },
 ];

@@ -14,6 +14,8 @@ import getIndByPos from '@src/utils/getIndByPos';
 import getChainsByInd from '@src/utils/getChainsByInd';
 import filterChainsByInd from '@src/utils/filterChainsByInd';
 import uuidv4 from '@src/utils/uuidv4';
+import moveToCell from '@src/utils/moveToCell';
+import delay from '@src/utils/delay';
 
 export {
   addNewCells,
@@ -32,4 +34,6 @@ export {
   getChainsByInd,
   filterChainsByInd,
   uuidv4,
+  moveToCell,
+  delay,
 };

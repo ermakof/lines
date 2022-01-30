@@ -17,13 +17,20 @@ const Message = styled.p`
 `;
 
 const AppBottom: FC = () => {
-  const { gameFieldPercentFilled, userProfile } = useSelector(({ app }: TRootState) => app);
+  const { gameFieldData, score = 0 } = useSelector(({ app }: TRootState) => app);
+  const isAuthorised = useSelector(({ auth }: TRootState) => !!auth.userProfile);
+
+  const getCurrentPercent = () => {
+    const countFilled = gameFieldData.filter((value: number) => !!value).length;
+    const countAll = gameFieldData.length;
+    return ((countFilled / countAll) * 100).toFixed(2);
+  };
 
   return (
-    <Root active={!!userProfile}>
+    <Root active={isAuthorised}>
       <Panel role="bottomPanel">
-        <Message role="messageResult">Результат:</Message>
-        <Message role="messagePercentFilled">{`Процент заполнения: ${gameFieldPercentFilled}`}</Message>
+        <Message role="messageResult">{`Результат: ${score}`}</Message>
+        <Message role="messagePercentFilled">{`Процент заполнения: ${getCurrentPercent()}`}</Message>
       </Panel>
     </Root>
   );

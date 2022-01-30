@@ -23,7 +23,12 @@ export const FieldContainer = styled.section<IFieldContainer>`
 
 const GameField: FC = () => {
   const userIsLogged = useSelector(({ auth }: TRootState) => !!auth.userProfile);
-  const { gameFieldData, gameFieldSize, selectedCell } = useSelector(({ app }: TRootState) => app);
+  const {
+    gameFieldData,
+    gameFieldSize,
+    selectedCell,
+    outdatedCells = {},
+  } = useSelector(({ app }: TRootState) => app);
   const widthMinus1 = gameFieldSize - 1;
   const heightMinus1 = Math.floor(gameFieldData.length / gameFieldSize) - 1;
 
@@ -48,6 +53,7 @@ const GameField: FC = () => {
             isLeft={isLeft}
             isRight={isRight}
             isBottom={isBottom}
+            isOutdated={outdatedCells[index]}
           />
         );
       })}
