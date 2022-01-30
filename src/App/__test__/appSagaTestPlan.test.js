@@ -5,6 +5,8 @@ import * as matchers from 'redux-saga-test-plan/matchers';
 import { watchMoveToCell, watchRehydrate } from '@src/App/appSaga';
 
 import { actions as appActions } from '@src/App/appSlice';
+import {getOutdatedCells, moveToCell, updateGameField} from "@src/utils";
+import getOutdatedChains from "../../utils/getOutdatedChains";
 
 describe('appSaga test plan', () => {
   describe('watchRehydrate', () => {
@@ -40,11 +42,11 @@ describe('appSaga test plan', () => {
   });
 
   describe('watchMoveToCell', () => {
-    it('Rehydrate success', () => {
+    it('move to cell success', () => {
       const state = {
         app: {
           gameFieldData: [
-            1, 0, 0, 0, 0, 1, 1, 1, 1,
+            0, 1, 0, 0, 0, 1, 1, 1, 1,
             1, 0, 0, 0, 0, 0, 0, 0, 1,
             1, 0, 0, 0, 0, 0, 0, 0, 1,
             1, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -54,13 +56,83 @@ describe('appSaga test plan', () => {
             1, 0, 0, 0, 0, 0, 0, 0, 0,
             1, 0, 0, 0, 0, 0, 0, 0, 0,
           ],
-          selectedCell: 0,
+          selectedCell: 1,
           score: 100,
           userLevel: '1',
         }
       };
-      return expectSaga(watchMoveToCell, { payload: 1 })
+      const changedGameFieldData = [
+        1, 0, 0, 0, 0, 1, 1, 1, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 1,
+        0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 0,
+        1, 1, 1, 1, 0, 0, 0, 0, 0,
+        1, 0, 0, 0, 0, 0, 0, 0, 0,
+        1, 0, 0, 0, 0, 0, 0, 0, 0,
+      ];
+      const filteredGameFieldData = [
+        0, 0, 0, 0, 0, 1, 1, 1, 1,
+        0, 0, 0, 0, 0, 0, 0, 0, 1,
+        0, 0, 0, 0, 0, 0, 0, 0, 1,
+        0, 0, 0, 0, 0, 0, 0, 0, 1,
+        0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 0,
+        1, 1, 1, 1, 0, 0, 0, 0, 0,
+        1, 0, 0, 0, 0, 0, 0, 0, 0,
+        1, 0, 0, 0, 0, 0, 0, 0, 0,
+      ];
+      const outdatedChains = [[0, 8, 16, 24]];
+      const outdatedCells = {0: true, 8: true, 16: true, 24: true};
+      return expectSaga(watchMoveToCell, { payload: 0 })
         .withState(state)
+        .provide([
+          [
+            matchers.call(
+              moveToCell,
+              state.app.gameFieldData,
+              state.app.selectedCell,
+              1
+            ),
+            changedGameFieldData,
+          ],
+          [
+            matchers.call(
+              getOutdatedChains,
+              0,
+              '1',
+              changedGameFieldData
+            ),
+            outdatedChains
+          ],
+          [
+            matchers.call(
+              getOutdatedCells,
+              outdatedChains,
+            ),
+            outdatedCells
+          ],
+          [
+            matchers.call(
+              updateGameField,
+              changedGameFieldData,
+              outdatedChains,
+            ),
+            filteredGameFieldData
+          ]
+        ])
+        .put({type: 'app/updateGame', payload: { gameFieldData: changedGameFieldData }})
+        .put({type: 'app/updateGame', payload: { outdatedCells: {0: true, 8: true, 16: true, 24: true}}})
+        .put({
+          type: 'app/updateGame',
+          payload: {
+            gameFieldData: filteredGameFieldData,
+            outdatedCells: undefined,
+            selectedCell: undefined,
+            score: 104,
+          }
+        })
         .run(600);
     });
   });
