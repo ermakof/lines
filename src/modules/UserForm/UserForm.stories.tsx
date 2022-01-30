@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { Provider } from 'react-redux';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
@@ -7,14 +8,26 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import UserForm from '@src/modules/UserForm';
 import { store } from '@src/store';
+import { appSlice } from '@src/App/appSlice';
 
-const dispatch = () => null;
-
-const state = {
-  gameLevel: '1',
+const payload = {
+  gameLevel: '2',
   gameFieldPercentFilled: 10,
-  gameFieldData: [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+  score: 15,
+  gameFieldData: [
+    0, 1, 0, 0, 0, 1, 1, 1, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 1,
+    0, 0, 0, 0, 0, 0, 0, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 0,
+    1, 1, 1, 1, 0, 0, 0, 0, 0,
+    1, 0, 0, 0, 0, 0, 0, 0, 0,
+    1, 0, 0, 0, 0, 0, 0, 0, 0,
+  ],
 };
+
+store.dispatch(appSlice.actions.updateGame(payload));
 
 export default {
   component: UserForm,
