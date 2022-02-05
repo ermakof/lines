@@ -2,7 +2,7 @@
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 
-import { watchMoveToCell, watchRehydrate } from '@src/App/appSaga';
+import { watchStartGameSteps, watchRehydrate } from '@src/App/appSaga';
 
 import { actions as appActions } from '@src/App/appSlice';
 import {getOutdatedCells, moveToCell, updateGameField} from "@src/utils";
@@ -85,7 +85,7 @@ describe('appSaga test plan', () => {
       ];
       const outdatedChains = [[0, 8, 16, 24]];
       const outdatedCells = {0: true, 8: true, 16: true, 24: true};
-      return expectSaga(watchMoveToCell, { payload: 0 })
+      return expectSaga(watchStartGameSteps, { payload: 0 })
         .withState(state)
         .provide([
           [

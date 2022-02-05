@@ -1,12 +1,11 @@
-import { IOutdatedCells } from '@src/App/model/IOutdatedCells';
+import { IHighlightedCells } from '@src/App/model/IHighlightedCells';
 
 export interface IAppState {
   isLoading?: boolean;
   gameFieldPercentFilled: number;
   gameFieldData: Array<number>;
-  outdatedCells?: IOutdatedCells;
+  highlightedCells?: IHighlightedCells;
   score: number;
   selectedCell?: number;
   userLevel: string;
-  minChainLength: number;
 }

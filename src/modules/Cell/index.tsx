@@ -31,14 +31,14 @@ const Container = styled.div<IContainer>`
 
 interface IContent {
   selected?: boolean;
-  isOutdated?: boolean;
+  highlighted?: string;
 }
 const Content = styled.div<IContent>`
   cursor: pointer;
   background: #ffff00;
   border-radius: 50%;
-  background: ${({ selected, isOutdated }) =>
-    isOutdated ? '#ff0000' : selected ? '#ffff00' : '#ffff0070'};
+  background: ${({ selected, highlighted }) =>
+    !highlighted ? '#ffff0070' : selected ? '#ffff00' : highlighted};
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -46,7 +46,7 @@ const Content = styled.div<IContent>`
   border: 0.6vh solid transparent;
   border-color: ${({ selected }) => (selected ? '#555' : '#9e9e9e')};
 
-  ${({ isOutdated }) => (!isOutdated ? ':hover {background: #ffff00;}' : '')}
+  ${({ highlighted }) => (!highlighted ? ':hover {background: #ffff00;}' : '')}
 `;
 
 export interface CellProps {
@@ -56,7 +56,7 @@ export interface CellProps {
   isLeft?: boolean;
   isRight?: boolean;
   isBottom?: boolean;
-  isOutdated: boolean;
+  highlighted: string;
 }
 
 const Cell: React.FC<CellProps> = ({
@@ -65,21 +65,21 @@ const Cell: React.FC<CellProps> = ({
   isSelected = false,
   isLeft = true,
   isRight = true,
-  isOutdated = false,
+  highlighted = '',
 }) => {
   const dispatch = useDispatch();
 
   const handleSelectCell = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
-    if (!isOutdated) {
+    if (!highlighted) {
       dispatch(actions.setSelectedCell(!isSelected ? num : undefined));
     }
   };
 
   const handleSelectContainer = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
-    if (!isSelected && !isOutdated) {
-      dispatch(actions.moveToCell(num));
+    if (!isSelected && !highlighted) {
+      dispatch(actions.startGameSteps(num));
     }
   };
 
@@ -95,7 +95,7 @@ const Cell: React.FC<CellProps> = ({
           role={`cellContent-${num}`}
           selected={isSelected}
           onClick={handleSelectCell}
-          isOutdated={isOutdated}
+          highlighted={highlighted}
         />
       )}
     </Container>
