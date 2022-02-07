@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/utils/removeOrderedChains.ts</title>
+    <title>Code coverage report for src/utils/getNewCells.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/utils</a> removeOrderedChains.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/utils</a> getNewCells.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -79,38 +79,38 @@
 <a name='L14'></a><a href='#L14'>14</a>
 <a name='L15'></a><a href='#L15'>15</a>
 <a name='L16'></a><a href='#L16'>16</a>
-<a name='L17'></a><a href='#L17'>17</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">29x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">21x</span>
+<a name='L17'></a><a href='#L17'>17</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const removeOrderedChains = (chains: Array&lt;Array&lt;number&gt;&gt;) =&gt; (cells: Array&lt;number&gt;) =&gt; {
-  const rez = [...cells];
-  const hasChains = chains.length &gt; 0;
-  if (hasChains) {
-    chains.forEach(
-      (chain) =&gt;
-        chain &amp;&amp;
-        chain.forEach((ind) =&gt; {
-          rez[ind] = 0;
-        })
-    );
-  }
-  return { cells: rez, hasChains };
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { compose } from 'ramda';
+import shuffle from '@src/utils/shuffle';
+import { GAME_LEVEL_SETTINGS } from '@src/App/initialState';
+&nbsp;
+const getFreeCells = (cells: Array&lt;number&gt;) =&gt;
+  cells.map((cell, ind) =&gt; (!cell ? ind : -1)).filter((pos) =&gt; pos &gt; -1);
+&nbsp;
+const generateNewCells = (countCells: number) =&gt; (randomArray: Array&lt;number&gt;) =&gt;
+  randomArray.slice(0, countCells);
+&nbsp;
+const getNewCells = (cells: Array&lt;number&gt;, level: string) =&gt; {
+  const increase = GAME_LEVEL_SETTINGS[level].increase;
+  return compose(generateNewCells(increase), shuffle, getFreeCells)(cells);
 };
 &nbsp;
-export default removeOrderedChains;
+export default getNewCells;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -118,7 +118,7 @@ export default removeOrderedChains;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sun Jan 30 2022 23:13:38 GMT+0000 (Coordinated Universal Time)
+                at Mon Feb 07 2022 13:12:45 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
