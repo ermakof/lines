@@ -38,7 +38,7 @@ const Content = styled.div<IContent>`
   background: #ffff00;
   border-radius: 50%;
   background: ${({ selected, highlighted }) =>
-    !highlighted ? '#ffff0070' : selected ? '#ffff00' : highlighted};
+    highlighted ? highlighted : selected ? '#ffff00' : '#ffff0070'};
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -56,7 +56,7 @@ export interface CellProps {
   isLeft?: boolean;
   isRight?: boolean;
   isBottom?: boolean;
-  highlighted: string;
+  highlighted?: string;
 }
 
 const Cell: React.FC<CellProps> = ({

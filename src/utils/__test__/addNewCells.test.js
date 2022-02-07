@@ -1,16 +1,16 @@
 import { getNewCells } from '@src/utils';
+import { GAME_LEVEL_SETTINGS } from '@src/App/initialState';
 
 describe('addNewCells', () => {
-  it('do not add 2 balls this chains', () => {
-    const cells = [0, 0, 0, 0, 0];
-    const arr = getNewCells(2)({ cells, hasChains: true });
-    expect(arr).toEqual(cells);
+  it('do not generate new cells', () => {
+    const cells = [1, 1, 1, 1, 1, 1, 1];
+    const arr = getNewCells(cells, '3');
+    expect(arr.length).toBe(0);
   });
 
-  it('add 2 balls without chains', () => {
-    const cells = [1, 0, 0, 0, 0];
-    const arr = getNewCells(2)({ cells, hasChains: false });
-    const newCounts = arr.filter((num) => num).length;
-    expect(newCounts).toBe(3);
+  it('add 5 new cells', () => {
+    const cells = [0, 0, 0, 0, 0, 0, 0];
+    const arr = getNewCells(cells, '3');
+    expect(arr.length).toBe(GAME_LEVEL_SETTINGS['3'].increase);
   });
 });

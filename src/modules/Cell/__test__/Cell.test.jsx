@@ -28,7 +28,7 @@ describe('Cell', () => {
   it('renders <Cell> using renderer cell with value=2', () => {
     const { asFragment } = render(
       <Provider store={store}>
-        <Cell num={2} isFilled={1} isSelected={true} isOutdated={false} />
+        <Cell num={2} isFilled={1} isSelected={true} />
       </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
@@ -43,7 +43,7 @@ describe('Cell', () => {
     useDispatch.mockReturnValue(mockDispatch);
     render(
       <Provider store={store}>
-        <Cell num={2} isFilled={1} isSelected={true} isOutdated={false} />
+        <Cell num={2} isFilled={1} isSelected={true} highlighted={''} />
       </Provider>
     );
     const cellContent = screen.getByRole(/cellContent-2/i);

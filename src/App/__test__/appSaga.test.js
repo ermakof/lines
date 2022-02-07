@@ -14,7 +14,7 @@ describe('appSaga', () => {
     const saga = appSaga();
     expect(saga.next().value).toEqual(takeEvery(actions.rehydrate.type, watchRehydrate));
     expect(saga.next().value).toEqual(takeEvery(actions.setUserLevel.type, watchPersist));
-    expect(saga.next().value).toEqual(takeEvery(actions.moveToCell.type, watchStartGameSteps));
+    expect(saga.next().value).toEqual(takeEvery(actions.startGameSteps.type, watchStartGameSteps));
     expect(saga.next().value).toEqual(takeEvery(actions.resetApp.type, watchPersist));
     expect(saga.next().done).toBe(true);
   });

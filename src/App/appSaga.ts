@@ -34,36 +34,52 @@ export function* watchPersist(): Generator {
   yield call([localStorage, localStorage.setItem], LOCAL_STORAGE_APP_KEY, JSON.stringify(app));
 }
 
-/*
- * Step 0
- * show target cell as unreachable with delay
- */
-export function* step0(targetCell: number, time: number): Generator {
+/**
+ * showCell
+ * show target cell with props
+ **/
+export function* showCell(
+  targetCell: number,
+  props: { highlightedCells?: IHighlightedCells } = {}
+): Generator {
   const app = yield select(getApp);
   const { gameFieldData: gameData, selectedCell } = app as unknown as IAppState;
 
   let gameFieldData = yield call(moveToCell, gameData, selectedCell, targetCell);
-  const highlightedCells = { [targetCell]: '#ff0000' };
-  yield put(appActions.updateGame({ gameFieldData, highlightedCells }));
-  yield call(delay, time);
-  yield put(appActions.updateGame({ gameFieldData: gameData, highlightedCells: undefined }));
+  yield put(appActions.updateGame({ gameFieldData, selectedCell: targetCell, ...props }));
 }
 
+/**
+ * Step 0
+ * show target cell as unreachable with delay
+ **/
+export function* step0(selectedCell: number, targetCell: number, time: number): Generator {
+  yield* showCell(targetCell, { highlightedCells: { [targetCell]: '#ff0000' } });
+  yield call(delay, time);
+  yield* showCell(selectedCell, { highlightedCells: undefined });
+}
+
+/**
+ * moveTo
+ * move cell from source to target and show it
+ **/
 export function* moveTo(p1: Array<number>, p2: Array<number>, time: number): Generator {
   const app = yield select(getApp);
   const { gameFieldData: gameData } = app as unknown as IAppState;
-  const from = getIndByPos(p1);
-  const to = getIndByPos(p2);
+  const ind1 = yield call(getIndByPos, p1);
+  const from = ind1 as unknown as number;
+  const ind2 = yield call(getIndByPos, p2);
+  const to = ind2 as unknown as number;
   const gameFieldData = yield call(moveToCell, gameData, from, to);
   const highlightedCells = { [to]: '#ffff00' };
   yield put(appActions.updateGame({ gameFieldData, highlightedCells }));
   yield call(delay, time);
 }
 
-/*
+/**
  * Step 1
  * move cell from selected to target and show it with delay
- */
+ **/
 export function* step1(
   targetCell: number,
   route: Array<Array<number>>,
@@ -84,20 +100,20 @@ export function* step1(
   return gameFieldData;
 }
 
-/*
+/**
  * Step 2
  * get outdated cells and show it with delay
- */
+ **/
 export function* step2(chains: Array<Array<number>>, time: number): Generator {
   const highlightedCells = yield call(getOutdatedCells, chains);
   yield put(appActions.updateGame({ highlightedCells }));
   yield call(delay, time);
 }
 
-/*
+/**
  * Step 3
  * remove outdated cells from game field
- */
+ **/
 export function* step3(chains: Array<Array<number>>): Generator {
   const app = yield select(getApp);
   const {
@@ -107,38 +123,38 @@ export function* step3(chains: Array<Array<number>>): Generator {
   } = app as unknown as IAppState;
 
   const gameFieldData = yield call(removeOutdatedChains, gameData, chains);
-  const score = oldScore + Object.keys(highlightedCells as unknown as IHighlightedCells).length;
+  const score =
+    oldScore +
+    (highlightedCells ? Object.keys(highlightedCells as unknown as IHighlightedCells).length : 0);
   yield put(
     appActions.updateGame({
       gameFieldData,
       highlightedCells: undefined,
-      selectedCell: undefined,
       score,
     })
   );
 }
 
-/*
+/**
  * Step 4
  * get new cells and show it on game field
- */
+ **/
 export function* step4(time: number): Generator {
   const app = yield select(getApp);
   const { gameFieldData: gameData, userLevel } = app as unknown as IAppState;
 
   const newCells = yield call(getNewCells, gameData, userLevel);
-  const cells = yield getHighlightedCells(newCells as Array<number>);
+  const cells = yield call(getHighlightedCells, newCells as Array<number>);
   const highlightedCells = cells as IHighlightedCells;
-  const gameFieldData = yield addNewCellsToGameField(gameData, highlightedCells);
+  const gameFieldData = yield call(addNewCellsToGameField, gameData, highlightedCells);
   yield put(appActions.updateGame({ gameFieldData, highlightedCells }));
   yield call(delay, time);
-  return highlightedCells;
 }
 
-/*
+/**
  * Step 5
  * update game field with un-highlighted new cells
- */
+ **/
 export function* step5(): Generator {
   yield put(appActions.updateGame({ highlightedCells: undefined }));
 }
@@ -150,7 +166,7 @@ export function* watchStartGameSteps({ payload }: PayloadAction<number>): Genera
     const route = yield call(lee, gameData, selectedCell, payload);
     let gameFieldData;
     if (!route) {
-      yield* step0(payload, 250);
+      yield* step0(selectedCell, payload, 250);
       return;
     } else {
       gameFieldData = yield* step1(payload, route as unknown as Array<Array<number>>, 250);
