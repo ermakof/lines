@@ -1,11 +1,12 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import UserForm from '@src/modules/UserForm';
-import Store from '@src/store';
+import { store } from '@src/store';
 
 const dispatch = () => null;
 
@@ -23,11 +24,11 @@ export default {
 } as ComponentMeta<typeof UserForm>;
 
 const Template: ComponentStory<typeof UserForm> = (args) => (
-  <Store.Provider value={{ dispatch, state }}>
+  <Provider store={store}>
     <Router>
       <UserForm {...args} />
     </Router>
-  </Store.Provider>
+  </Provider>
 );
 export const Static = Template.bind({});
 

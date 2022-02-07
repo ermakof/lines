@@ -1,9 +1,11 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 
-import Store from '@src/store';
+import { store } from '@src/store';
 import AppBody from '@src/App/AppBody';
+import appSlice from '@src/App/appSlice';
 
 export default {
   component: AppBody,
@@ -11,19 +13,19 @@ export default {
   title: 'Application/AppBody',
 } as ComponentMeta<typeof AppBody>;
 
-const state = {
+const payload = {
   gameLevel: '1',
   gameFieldSize: 4,
   gameFieldPercentFilled: 10,
   gameFieldData: [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
 };
 
-const dispatch = () => null;
+store.dispatch(appSlice.actions.hydrate(payload));
 
 const Template: ComponentStory<typeof AppBody> = (args) => (
-  <Store.Provider value={{ dispatch, state }}>
+  <Provider store={store}>
     <AppBody {...args} />
-  </Store.Provider>
+  </Provider>
 );
 
 export const Static = Template.bind({});

@@ -1,9 +1,10 @@
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
 import styled from '@emotion/styled';
 
 import { ICellInfo } from '@src/modules/Cell/models';
 import Cell from '@src/modules/Cell';
-import store from '@src/store';
+import { TRootState } from '@src/store';
+import { useSelector } from 'react-redux';
 
 interface IFieldContainer {
   active?: boolean;
@@ -21,8 +22,8 @@ export const FieldContainer = styled.section<IFieldContainer>`
 `;
 
 const GameField: FC = () => {
-  const { state } = useContext(store);
-  const { gameFieldData, gameFieldSize, selectedCell, userProfile } = state;
+  const userIsLogged = useSelector(({ auth }: TRootState) => !!auth.userProfile);
+  const { gameFieldData, gameFieldSize, selectedCell } = useSelector(({ app }: TRootState) => app);
   const widthMinus1 = gameFieldSize - 1;
   const heightMinus1 = Math.floor(gameFieldData.length / gameFieldSize) - 1;
 
@@ -31,7 +32,7 @@ const GameField: FC = () => {
   }
 
   return (
-    <FieldContainer role="cellsGrid" active={!!userProfile}>
+    <FieldContainer role="cellsGrid" active={userIsLogged}>
       {gameFieldData.map((item: ICellInfo, index: number) => {
         const y = Math.floor(index / gameFieldSize);
         const x = index % gameFieldSize;

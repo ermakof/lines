@@ -1,22 +1,25 @@
-import { useContext } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import store from '@src/store';
-import { IUserProfile } from '@src/model';
-import { loginApp, resetApp } from '@src/App/actions';
+import IUserProfile from '@src/modules/Auth/model/IUserProfile';
+import authSlice from '@src/modules/Auth/authSlice';
+import appSlice from '@src/App/appSlice';
+import { useDispatch } from 'react-redux';
 
 const useLogin = () => {
-  const { dispatch } = useContext(store);
+  const dispatch = useDispatch();
   let navigate = useNavigate();
-  let location = useLocation();
 
   return (userProfile: IUserProfile) => {
-    // @ts-ignore
-    const from = location.state?.from?.pathname || '/';
+    const {
+      actions: { login },
+    } = authSlice;
+    const {
+      actions: { resetApp },
+    } = appSlice;
 
-    dispatch(loginApp(userProfile));
+    dispatch(login(userProfile));
     dispatch(resetApp());
-    navigate(from, { replace: true });
+    navigate('/', { replace: true });
   };
 };
 

@@ -1,7 +1,9 @@
-import React, { FC, memo, useContext } from 'react';
+import React, { FC, memo } from 'react';
+import { useSelector } from 'react-redux';
+
 import Panel from '@src/layout/Panel';
 import styled from '@emotion/styled';
-import store from '@src/store';
+import { TRootState } from '@src/store';
 
 interface IRoot {
   active: boolean;
@@ -15,8 +17,7 @@ const Message = styled.p`
 `;
 
 const AppBottom: FC = () => {
-  const { state } = useContext(store);
-  const { gameFieldPercentFilled, userProfile } = state;
+  const { gameFieldPercentFilled, userProfile } = useSelector(({ app }: TRootState) => app);
 
   return (
     <Root active={!!userProfile}>

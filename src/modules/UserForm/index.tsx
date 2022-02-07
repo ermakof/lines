@@ -1,20 +1,21 @@
-import React, { FC, memo, useContext } from 'react';
+import React, { FC, memo } from 'react';
+import { useDispatch } from 'react-redux';
+
 import Panel from '@src/layout/Panel';
 import Button from '@src/components/Button';
-import store from '@src/store';
-import { clearGameField, logoutApp, resetApp, setLevel, waitOff, waitOn } from '@src/App/actions';
+import appSlice from '@src/App/appSlice';
 import Select from '@src/components/Select';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { fakeAuthProvider } from '@src/modules/Auth/fakeAuthProvider';
+import useWait from '@src/App/useWait';
+import useLogout from '@src/modules/Auth/useLogout';
 
 const UserForm: FC = () => {
-  const { dispatch } = useContext(store);
-
-  let navigate = useNavigate();
-  let location = useLocation();
-
-  // @ts-ignore
-  const from = location.state?.from?.pathname || '/';
+  const dispatch = useDispatch();
+  const wait = useWait();
+  const logout = useLogout();
+  const {
+    actions: { resetApp, setUserLevel },
+  } = appSlice;
 
   const handleReset = () => {
     dispatch(resetApp());
@@ -22,16 +23,14 @@ const UserForm: FC = () => {
 
   const handleSelectLevel = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = event.currentTarget;
-    dispatch(setLevel(value));
+    dispatch(setUserLevel(value));
   };
 
   const handleLogout = () => {
-    dispatch(waitOn());
+    wait();
     fakeAuthProvider.signOut(() => {
-      dispatch(logoutApp());
-      dispatch(clearGameField());
-      navigate(from, { replace: true });
-      dispatch(waitOff());
+      logout();
+      wait(false);
     });
   };
 

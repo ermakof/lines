@@ -1,25 +1,23 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from '@emotion/styled';
 import { CELL_SIZE } from '@src/modules/Cell/constatnts';
-import store from '@src/store';
-import { setSelectedCell } from '@src/modules/Cell/actions';
-import ICellInfo from '@src/model/ICellInfo';
+import appSlice from '@src/App/appSlice';
 
 interface IContainer {
   isRight?: boolean;
   isLeft?: boolean;
   isBottom?: boolean;
-  frameColor?: string;
 }
 const Container = styled.div<IContainer>`
   display: block;
   width: ${({ isRight }) => CELL_SIZE - (isRight ? 2 : 1)}px;
   height: ${({ isBottom }) => CELL_SIZE - (isBottom ? 2 : 1)}px;
   text-align: center;
-  border-top: ${({ frameColor }) => `1px solid ${frameColor}`};
-  border-left: ${({ frameColor }) => `1px solid ${frameColor}`};
-  border-right: ${({ isRight, frameColor }) => `1px solid ${isRight ? frameColor : ''};`}
-  border-bottom: ${({ isBottom, frameColor }) => `1px solid ${isBottom ? frameColor : ''};`}
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-right: ${({ isRight }) => `1px solid ${isRight ? '#ddd' : ''};`}
+  border-bottom: ${({ isBottom }) => `1px solid ${isBottom ? '#ddd' : ''};`}
   float: left;
   ${({ isLeft }) => (isLeft ? 'clear: both;' : '')}
   transition-property: background;
@@ -53,7 +51,7 @@ const Content = styled.div<IContent>`
 
 export interface CellProps {
   num: number;
-  isFilled?: ICellInfo;
+  isFilled?: number;
   isSelected?: boolean;
   isLeft?: boolean;
   isRight?: boolean;
@@ -67,22 +65,30 @@ const Cell: React.FC<CellProps> = ({
   isLeft = true,
   isRight = true,
 }) => {
-  const { dispatch } = useContext(store);
+  const dispatch = useDispatch();
+  const { actions } = appSlice;
 
-  const handleClick = () => {
-    dispatch(setSelectedCell(!isSelected ? num : undefined));
+  const handleSelectCell = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+    dispatch(actions.setSelectedCell(!isSelected ? num : undefined));
   };
-  const frameColor = '#ddd';
+
+  const handleSelectContainer = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+    if (!isSelected) {
+      dispatch(actions.moveToCell(num));
+    }
+  };
 
   return (
     <Container
       role={`cellContainer-${num}`}
       isRight={isRight}
       isLeft={isLeft}
-      frameColor={frameColor}
+      onClick={handleSelectContainer}
     >
       {!!isFilled && (
-        <Content role={`cellContent-${num}`} selected={isSelected} onClick={handleClick} />
+        <Content role={`cellContent-${num}`} selected={isSelected} onClick={handleSelectCell} />
       )}
     </Container>
   );
