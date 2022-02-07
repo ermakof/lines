@@ -28,12 +28,6 @@ exports[`Select render <Select> 1`] = `
         role="option"
         value="3"
       >
-        Мастер-джедай
-      </option>
-      <option
-        role="option"
-        value="4"
-      >
         Член Совета Силы
       </option>
     </select>

@@ -50,7 +50,6 @@ describe('AuthForm', () => {
     window.localStorage.clear();
     store = mockStore({
       gameLevel: '1',
-      gameFieldSize: 3,
       gameFieldPercentFilled: 10,
       gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
     });

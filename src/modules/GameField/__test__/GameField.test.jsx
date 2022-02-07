@@ -22,12 +22,11 @@ describe('GameField', () => {
     store = mockStore(initialState);
   });
 
-  it('No render cells with gameFieldSize = 0', () => {
+  it('No render cells, game field size = 0', () => {
     const mockDispatch = jest.fn();
     useDispatch.mockReturnValue(mockDispatch);
     useSelector.mockReturnValue({
       gameFieldData: [],
-      gameFieldSize: 0,
     });
     const { asFragment } = render(
       <Provider store={store}>
@@ -43,7 +42,6 @@ describe('GameField', () => {
     const mockDispatch = jest.fn();
     useDispatch.mockReturnValue(mockDispatch);
     useSelector.mockReturnValue({
-      gameFieldSize: 3,
       gameFieldPercentFilled: 10,
       gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
     });

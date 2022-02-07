@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { Provider } from 'react-redux';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
@@ -13,7 +14,24 @@ export default {
   title: 'Application/AppBody',
 } as ComponentMeta<typeof AppBody>;
 
-store.dispatch(appSlice.actions.rehydrate());
+const payload = {
+  gameLevel: '1',
+  gameFieldPercentFilled: 30,
+  gameFieldData: [
+    0, 1, 0, 0, 0, 1, 1, 1, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 1,
+    0, 0, 0, 0, 0, 0, 0, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 0,
+    1, 1, 1, 1, 0, 0, 0, 0, 0,
+    1, 0, 0, 0, 0, 0, 0, 0, 0,
+    1, 0, 0, 0, 0, 0, 0, 0, 0,
+  ],
+  selectedCell: 1,
+};
+
+store.dispatch(appSlice.actions.updateGame(payload));
 
 const Template: ComponentStory<typeof AppBody> = (args) => (
   <Provider store={store}>

@@ -22,8 +22,6 @@ describe('Select', () => {
     expect(option1.selected).toBe(false);
     const option2 = screen.getByRole('option', { name: 'Джедай' }) as HTMLOptionElement;
     expect(option2.selected).toBe(true);
-    const option3 = screen.getByRole('option', { name: 'Мастер-джедай' }) as HTMLOptionElement;
-    expect(option3.selected).toBe(false);
     const option4 = screen.getByRole('option', { name: 'Член Совета Силы' }) as HTMLOptionElement;
     expect(option4.selected).toBe(false);
   });
