@@ -17,11 +17,11 @@ describe('Select', () => {
     const handleSelect = jest.fn();
     render(<Select onSelect={handleSelect} />);
     const select = screen.getByRole(/select/gi);
-    userEvent.selectOptions(select, '1');
+    userEvent.selectOptions(select, '2');
     const option1 = screen.getByRole('option', { name: 'Падаван' }) as HTMLOptionElement;
-    expect(option1.selected).toBe(true);
+    expect(option1.selected).toBe(false);
     const option2 = screen.getByRole('option', { name: 'Джедай' }) as HTMLOptionElement;
-    expect(option2.selected).toBe(false);
+    expect(option2.selected).toBe(true);
     const option3 = screen.getByRole('option', { name: 'Мастер-джедай' }) as HTMLOptionElement;
     expect(option3.selected).toBe(false);
     const option4 = screen.getByRole('option', { name: 'Член Совета Силы' }) as HTMLOptionElement;

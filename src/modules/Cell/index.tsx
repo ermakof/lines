@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from '@emotion/styled';
 import { CELL_SIZE } from '@src/modules/Cell/constatnts';
-import appSlice from '@src/App/appSlice';
+import { actions } from '@src/App/appSlice';
 
 interface IContainer {
   isRight?: boolean;
@@ -66,7 +66,6 @@ const Cell: React.FC<CellProps> = ({
   isRight = true,
 }) => {
   const dispatch = useDispatch();
-  const { actions } = appSlice;
 
   const handleSelectCell = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();

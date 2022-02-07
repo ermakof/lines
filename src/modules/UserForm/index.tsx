@@ -1,43 +1,39 @@
-import React, { FC, memo } from 'react';
-import { useDispatch } from 'react-redux';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { FC, memo, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Panel from '@src/layout/Panel';
 import Button from '@src/components/Button';
-import appSlice from '@src/App/appSlice';
+import { actions as appActions } from '@src/App/appSlice';
+import { actions as authActions } from '@src/modules/Auth/authSlice';
 import Select from '@src/components/Select';
-import { fakeAuthProvider } from '@src/modules/Auth/fakeAuthProvider';
-import useWait from '@src/App/useWait';
-import useLogout from '@src/modules/Auth/useLogout';
+import { TRootState } from '@src/store';
 
 const UserForm: FC = () => {
+  const { userLevel } = useSelector(({ app }: TRootState) => app);
   const dispatch = useDispatch();
-  const wait = useWait();
-  const logout = useLogout();
-  const {
-    actions: { resetApp, setUserLevel },
-  } = appSlice;
+
+  useEffect(() => {
+    dispatch(appActions.rehydrate());
+  }, []);
 
   const handleReset = () => {
-    dispatch(resetApp());
+    dispatch(appActions.resetApp());
   };
 
   const handleSelectLevel = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = event.currentTarget;
-    dispatch(setUserLevel(value));
+    dispatch(appActions.setUserLevel(value));
   };
 
   const handleLogout = () => {
-    wait();
-    fakeAuthProvider.signOut(() => {
-      logout();
-      wait(false);
-    });
+    dispatch(authActions.logout());
   };
 
   return (
     <Panel role="userForm">
-      <Button role="buttonReset" onClick={handleReset} title="Reset" />
-      <Select onSelect={handleSelectLevel} />
+      <Button role="buttonReset" onClick={handleReset} title="Сброс" />
+      <Select onSelect={handleSelectLevel} selectedLevel={userLevel} />
       <Button role="buttonLogout" onClick={handleLogout} title="Выйти" />
     </Panel>
   );

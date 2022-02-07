@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Cell from '../index';
 import { withKnobs, number, boolean } from '@storybook/addon-knobs';
 import { store } from '@src/store';
-import appSlice from '@src/App/appSlice';
+import { actions } from '@src/App/appSlice';
 
 export default {
   component: Cell,
@@ -19,7 +19,7 @@ const payload = {
   gameFieldData: [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
 };
 
-store.dispatch(appSlice.actions.hydrate(payload));
+store.dispatch(actions.hydrate(payload));
 
 const Template: ComponentStory<typeof Cell> = (args) => (
   <Provider store={store}>

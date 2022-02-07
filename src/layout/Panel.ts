@@ -5,7 +5,7 @@ const Panel = styled.div`
   height: 10vh;
   display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 16px;
 `;
 
 export default Panel;

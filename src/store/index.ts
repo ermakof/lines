@@ -1,11 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
+import createSagaMiddleware from 'redux-saga';
 
-import rootReducer from '@src/store/rootReducer';
-import rehydrateState from '@src/store/rehydrateState';
-import persistApp from '@src/store/persistApp';
+import { rootReducer } from '@src/store/rootReducer';
+import { rehydrateApp } from '@src/store/rehydrateApp';
+import { rootSaga } from '@src/store/rootSaga';
 
 export const LOCAL_STORAGE_APP_KEY = 'lines:app';
+export const LOCAL_STORAGE_AUTH_KEY = 'lines:userProfile';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
   reducer: rootReducer,
@@ -15,14 +19,13 @@ const store = configureStore({
       // correctly typed middlewares can just be used
       ()
       // prepend and concat calls can be chained
+      .concat(sagaMiddleware)
       .concat(logger),
 });
 
-store.subscribe(() => {
-  persistApp();
-});
+sagaMiddleware.run(rootSaga);
 
-rehydrateState();
+rehydrateApp();
 
 type TRootState = ReturnType<typeof store.getState>;
 

@@ -7,19 +7,19 @@ exports[`render App 1`] = `
     role="rootApp"
   >
     <div
-      class="css-lgrtma"
+      class="css-1uv7a9d"
       role="topPanel"
     >
       <div
         class="css-ov1ktg"
       >
         <p
-          class="css-gbrjra"
+          class="css-z1cqd0"
         >
           Lines
         </p>
         <div
-          class="css-115ni0s"
+          class="css-qkmzfx"
           role="authForm"
         >
           <form
@@ -401,7 +401,7 @@ exports[`render App 1`] = `
       class="css-1563bnz"
     >
       <div
-        class="css-lgrtma"
+        class="css-1uv7a9d"
         role="bottomPanel"
       >
         <p

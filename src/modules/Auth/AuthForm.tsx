@@ -1,16 +1,14 @@
-import React, { FC, useEffect, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { FC, useState } from 'react';
 import { Formik, Field, Form } from 'formik';
 import styled from '@emotion/styled';
 
-import {
-  fakeAuthProvider,
-  getUserProfileFormLocalStorage,
-} from '@src/modules/Auth/fakeAuthProvider';
-import IUserProfile from '@src/modules/Auth/model/IUserProfile';
-import useLogin from '@src/modules/Auth/useLogin';
-import useWait from '@src/App/useWait';
+import { useDispatch } from 'react-redux';
+import { actions } from '@src/modules/Auth/authSlice';
 
 const Root = styled.div`
+  font-size: 16px;
+
   label {
     margin-right: 5px;
   }
@@ -25,49 +23,37 @@ const Root = styled.div`
   }
 
   form {
-    font-size: 14px;
     margin: 3vh 0;
   }
 `;
 
 export interface IUserFormProps {
-  onSubmit: (values: IAuthData) => void;
+  onSubmit: (values: IUserInfo) => void;
 }
 
-export type IAuthData = {
+export type IUserInfo = {
   login: string;
   password: string;
 };
 
 const AuthForm: FC = () => {
-  const wait = useWait();
-  const login = useLogin();
+  const dispatch = useDispatch();
+  const { setUser } = actions;
 
-  const [authData, setAuthData] = useState<IAuthData>({ login: '', password: '' });
-
-  useEffect(() => {
-    const userProfile = getUserProfileFormLocalStorage();
-    if (userProfile) {
-      login(userProfile);
-    }
-  }, []);
+  const [userInfo, setUserInfo] = useState<IUserInfo>({ login: '', password: '' });
 
   const handleSubmit = () => {
-    wait();
-    fakeAuthProvider.signIn(authData, (userProfile: IUserProfile) => {
-      login(userProfile);
-      wait(false);
-    });
+    dispatch(setUser(userInfo));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.currentTarget;
-    setAuthData({ ...authData, [id]: value });
+    setUserInfo({ ...userInfo, [id]: value });
   };
 
   return (
     <Root role="authForm">
-      <Formik initialValues={{ ...authData }} onSubmit={handleSubmit}>
+      <Formik initialValues={{ ...userInfo }} onSubmit={handleSubmit}>
         <Form>
           <label htmlFor="login">Имя</label>
           <Field
@@ -75,7 +61,7 @@ const AuthForm: FC = () => {
             id="login"
             name="login"
             placeholder="Введите логин"
-            value={authData.login}
+            value={userInfo.login}
             onChange={handleChange}
           />
 
@@ -85,11 +71,11 @@ const AuthForm: FC = () => {
             id="password"
             name="password"
             placeholder="Введите пароль"
-            value={authData.password}
+            value={userInfo.password}
             onChange={handleChange}
           />
 
-          <button role="buttonLogin" disabled={!authData.login || !authData.password} type="submit">
+          <button role="buttonLogin" disabled={!userInfo.login || !userInfo.password} type="submit">
             Войти
           </button>
         </Form>

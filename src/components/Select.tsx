@@ -2,29 +2,44 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { FC } from 'react';
 
-const Root = styled.select`
-  height: 30px;
-  margin: auto 20px;
+const levelList = [
+  { id: '1', name: 'Падаван' },
+  { id: '2', name: 'Джедай' },
+  { id: '3', name: 'Мастер-джедай' },
+  {
+    id: '4',
+    name: 'Член Совета Силы',
+  },
+];
+
+const Root = styled.div`
+  display: flex;
+
+  select {
+    height: 30px;
+    margin: auto 5px;
+  }
+
+  p {
+    margin: auto;
+  }
 `;
 
 export interface ISelect {
   onSelect?: (level: React.ChangeEvent<HTMLSelectElement>) => void;
+  selectedLevel?: string;
 }
-const Select: FC<ISelect> = ({ onSelect }) => {
+const Select: FC<ISelect> = ({ onSelect, selectedLevel }) => {
   return (
-    <Root role="select" name="select" onChange={onSelect}>
-      <option role="option" value="1" defaultValue="1">
-        Падаван
-      </option>
-      <option role="option" value="2">
-        Джедай
-      </option>
-      <option role="option" value="3">
-        Мастер-джедай
-      </option>
-      <option role="option" value="4">
-        Член Совета Силы
-      </option>
+    <Root>
+      <p>Уровень</p>
+      <select value={selectedLevel} role="select" name="select" onChange={onSelect}>
+        {levelList.map((level) => (
+          <option key={level.id} role="option" value={level.id}>
+            {level.name}
+          </option>
+        ))}
+      </select>
     </Root>
   );
 };

@@ -91,8 +91,6 @@ describe('UserForm', () => {
     );
     const select = screen.getByRole(/select/gi);
     userEvent.selectOptions(select, '2');
-    const option = screen.getByRole('option', { name: 'Джедай' });
-    expect(option.selected).toBe(true);
 
     await waitFor(() =>
       expect(mockDispatch).toHaveBeenCalledWith({

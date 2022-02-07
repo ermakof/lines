@@ -5,7 +5,7 @@ import { withKnobs, number } from '@storybook/addon-knobs';
 
 import AppBottom from '@src/App/AppBottom';
 import { store } from '@src/store';
-import appSlice from '@src/App/appSlice';
+import { appSlice } from '@src/App/appSlice';
 
 export default {
   component: AppBottom,

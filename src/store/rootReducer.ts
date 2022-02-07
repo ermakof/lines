@@ -1,9 +1,4 @@
-import appSlice from '@src/App/appSlice';
-import authSlice from '@src/modules/Auth/authSlice';
+import { reducer as app } from '@src/App/appSlice';
+import { reducer as auth } from '@src/modules/Auth/authSlice';
 
-const rootReducer: any = {
-  app: appSlice.reducer,
-  auth: authSlice.reducer,
-};
-
-export default rootReducer;
+export const rootReducer: any = { app, auth };
