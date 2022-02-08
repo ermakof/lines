@@ -23,7 +23,7 @@
     "test:snapshot": "npx jest --updateSnapshot",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic --project-token=d86f78a622d2",
+    "chromatic": "npx chromatic --project-token=e0b0aeece5aa",
     "prepare": "husky install"
   },
   "browserslist": {
