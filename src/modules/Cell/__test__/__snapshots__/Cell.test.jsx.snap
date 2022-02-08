@@ -7,7 +7,7 @@ exports[`Cell renders <Cell> using renderer cell with value=2 1`] = `
     role="cellContainer-2"
   >
     <div
-      class="css-1h0bxvf"
+      class="css-vba8le"
       role="cellContent-2"
     />
   </div>

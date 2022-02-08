@@ -1,9 +1,9 @@
-import { IHighlightedCells } from '@src/App/model/IHighlightedCells';
+import { ICellsProps } from '@src/App/model/ICellsProps';
 
 export const getHighlightedCells = (cells: Array<number>) => {
-  const highlightedCells: IHighlightedCells = {};
+  const highlightedCells: ICellsProps = {};
   cells.forEach((id) => {
-    highlightedCells[id] = '#ffff00';
+    highlightedCells[id] = '';
   });
   return highlightedCells;
 };

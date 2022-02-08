@@ -54,7 +54,7 @@ const GameField: FC = () => {
           <Cell
             key={`${y}-${x}`}
             num={index}
-            isFilled={item}
+            filled={item}
             isSelected={selectedCell === index}
             isLeft={isLeft}
             isRight={isRight}

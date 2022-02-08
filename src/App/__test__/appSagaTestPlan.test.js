@@ -17,7 +17,7 @@ import {
 
 import { actions as appActions, reducer} from '@src/App/appSlice';
 import { combineReducers} from '@reduxjs/toolkit';
-import { getNewCells } from '@src/utils';
+import {addNewCellsToGameField, getNewCells} from '@src/utils';
 
 describe('appSaga test plan', () => {
   describe('watchRehydrate', () => {
@@ -196,7 +196,7 @@ describe('appSaga test plan', () => {
             1, 0, 0, 0, 0, 0, 0, 1, 1,
             1, 0, 0, 0, 0, 0, 0, 1, 0,
           ],
-          highlightedCells: { 0: '#ffff00' }
+          highlightedCells: { 0: '' }
         }))
         .hasFinalState({
           app: {
@@ -211,7 +211,7 @@ describe('appSaga test plan', () => {
               1, 0, 0, 0, 0, 0, 0, 1, 1,
               1, 0, 0, 0, 0, 0, 0, 1, 0,
             ],
-            highlightedCells: { 0: '#ffff00' }
+            highlightedCells: { 0: '' }
           }})
         .run(500);
     });
@@ -290,7 +290,7 @@ describe('appSaga test plan', () => {
                 1, 0, 0, 0, 0, 0, 0, 1, 0,
               ],
               selectedCell: undefined,
-              highlightedCells: {0: '#0000ff'}
+              highlightedCells: {0: ''}
             }
           })
           .run(500);
@@ -303,7 +303,7 @@ describe('appSaga test plan', () => {
           }), {app: {}})
           .hasFinalState({
             app: {
-              highlightedCells: {0: '#00ff00', 9: '#00ff00', 18: '#00ff00', 27: '#00ff00'}
+              highlightedCells: {0: '', 9: '', 18: '', 27: ''}
             }
           })
           .run(500);
@@ -382,6 +382,31 @@ describe('appSaga test plan', () => {
               1, 0, 0, 0, 0, 0, 0, 1, 1,
               1, 0, 0, 0, 0, 0, 0, 1, 0,
             ], '1'), [0, 1, 2]],
+            [matchers.call(addNewCellsToGameField,
+              [
+                0, 0, 0, 0, 0, 1, 1, 1, 1,
+                0, 0, 0, 0, 0, 0, 0, 0, 1,
+                0, 0, 0, 0, 0, 0, 0, 0, 1,
+                0, 0, 0, 0, 0, 0, 0, 0, 1,
+                0, 0, 0, 0, 0, 0, 0, 0, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 0,
+                1, 1, 1, 1, 0, 0, 0, 0, 0,
+                1, 0, 0, 0, 0, 0, 0, 1, 1,
+                1, 0, 0, 0, 0, 0, 0, 1, 0,
+              ],
+              {0: '', 1: '', 2: ''}),
+              [
+                1, 1, 1, 0, 0, 1, 1, 1, 1,
+                0, 0, 0, 0, 0, 0, 0, 0, 1,
+                0, 0, 0, 0, 0, 0, 0, 0, 1,
+                0, 0, 0, 0, 0, 0, 0, 0, 1,
+                0, 0, 0, 0, 0, 0, 0, 0, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 0,
+                1, 1, 1, 1, 0, 0, 0, 0, 0,
+                1, 0, 0, 0, 0, 0, 0, 1, 1,
+                1, 0, 0, 0, 0, 0, 0, 1, 0,
+              ]
+            ]
           ])
           .hasFinalState({
             app: {
@@ -396,7 +421,7 @@ describe('appSaga test plan', () => {
                 1, 0, 0, 0, 0, 0, 0, 1, 1,
                 1, 0, 0, 0, 0, 0, 0, 1, 0,
               ],
-              highlightedCells: {0: '#ffff00', 1: '#ffff00', 2: '#ffff00'},
+              highlightedCells: {0: '', 1: '', 2: ''},
               userLevel: '1',
             }
           })
@@ -467,7 +492,7 @@ describe('appSaga test plan', () => {
       });
 
       it('generate new cells', () => {
-        return expectSaga(watchStartGameSteps, {payload: 2})
+        return expectSaga(watchStartGameSteps, { payload: 2 })
           .withReducer(combineReducers({
             app: reducer,
           }), {
@@ -500,11 +525,31 @@ describe('appSaga test plan', () => {
               1, 0, 0, 0, 0, 0, 0, 1, 1,
               1, 0, 0, 0, 0, 0, 0, 1, 0,
             ], '1'), [10, 11, 12]],
-            // [matchers.call(lee, state.app.gameFieldData, 1, 0), [[1, 0], [0, 0]]],
-            // [matchers.call(moveToCell, state.app.gameFieldData, 1, 0), changedGameFieldData],
-            // [matchers.call(getOutdatedChains, 1, '1', changedGameFieldData), highlightedChains],
-            // [matchers.call(getOutdatedCells, highlightedChains), highlightedCells],
-            // [matchers.call(removeOutdatedChains, changedGameFieldData, highlightedChains), filteredGameFieldData],
+            [matchers.call(addNewCellsToGameField,
+              [
+                0, 0, 1, 0, 0, 1, 1, 1, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 1,
+                0, 0, 0, 0, 0, 0, 0, 0, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 0,
+                1, 1, 1, 1, 0, 0, 0, 0, 0,
+                1, 0, 0, 0, 0, 0, 0, 1, 1,
+                1, 0, 0, 0, 0, 0, 0, 1, 0,
+              ],
+              {10: '', 11: '', 12: ''}),
+              [
+                0, 0, 1, 0, 0, 1, 1, 1, 1,
+                1, 1, 1, 1, 0, 0, 0, 0, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 1,
+                0, 0, 0, 0, 0, 0, 0, 0, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 0,
+                1, 1, 1, 1, 0, 0, 0, 0, 0,
+                1, 0, 0, 0, 0, 0, 0, 1, 1,
+                1, 0, 0, 0, 0, 0, 0, 1, 0,
+              ]
+            ]
           ])
           .hasFinalState({
             app: {

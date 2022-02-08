@@ -1,10 +1,11 @@
-import { IHighlightedCells } from '@src/App/model/IHighlightedCells';
+import { ICellsProps } from '@src/App/model/ICellsProps';
 
 export interface IAppState {
   isLoading?: boolean;
   gameFieldPercentFilled: number;
   gameFieldData: Array<number>;
-  highlightedCells?: IHighlightedCells;
+  highlightedCells?: ICellsProps;
+  colorCells: ICellsProps;
   score: number;
   selectedCell?: number;
   userLevel: string;

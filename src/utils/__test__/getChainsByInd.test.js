@@ -24,16 +24,11 @@ describe('getChainsByInd', () => {
 
   it('pos = 3, level = "1"', () => {
     const arr = getChainsByInd(3, '1')(cells);
-    expect(arr).toEqual([
-      [[5, 6, 7, 8]]
-    ]);
+    expect(arr).toEqual([]);
   });
 
   it('pos = 0, level = "3"', () => {
     const arr = getChainsByInd(0, '3')(cells);
-    expect(arr).toEqual([
-      [[45, 54, 63, 72]],
-      [[5, 6, 7, 8]]
-    ]);
+    expect(arr).toEqual([]);
   });
 });

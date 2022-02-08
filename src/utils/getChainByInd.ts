@@ -5,24 +5,39 @@ const VERTICAL = 'V';
 const HORIZONTAL = 'H';
 
 type TDirection = typeof VERTICAL | typeof HORIZONTAL;
+interface ILines {
+  [key: string]: Array<number>;
+}
 
-const getChainByInd = (direction: TDirection, pos: number, level: string, cells: Array<number>) => {
-  const chains = [];
-  let line = [];
+const getChainByInd = (
+  direction: TDirection,
+  pos: number,
+  level: string,
+  cells: Array<number>,
+  idColor: number
+) => {
+  const chains: Array<Array<number>> = [];
+  const lines: ILines = {
+    1: [],
+    2: [],
+    3: [],
+  };
+  const maxChainLen = GAME_LEVEL_SETTINGS[level].chain;
   for (let i = 0; i < GAME_FIELD_SIZE; i = i + 1) {
     const curPos: [number, number] = direction === 'H' ? [i, pos] : [pos, i];
     const curInd = getIndByPos(curPos);
-    if (!cells[curInd]) {
-      if (line.length > GAME_LEVEL_SETTINGS[level].chain) {
-        chains.push([...line]);
+    const curIdColor = cells[curInd];
+    if (!cells[curInd] || curIdColor !== idColor) {
+      if (idColor && lines[idColor].length > maxChainLen) {
+        chains.push([...lines[idColor]]);
       }
-      line = [];
+      lines[idColor] = [];
     } else {
-      line.push(curInd);
+      lines[idColor].push(curInd);
     }
   }
-  if (line.length > GAME_LEVEL_SETTINGS['2'].chain) {
-    chains.push([...line]);
+  if (lines[idColor].length > maxChainLen) {
+    chains.push([...lines[idColor]]);
   }
   return chains;
 };

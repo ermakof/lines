@@ -13,7 +13,7 @@ import {
 import { IAppState } from '@src/App/model/IAppState';
 import { PayloadAction } from '@reduxjs/toolkit';
 import getOutdatedChains from '@src/utils/getOutdatedChains';
-import { IHighlightedCells } from '@src/App/model/IHighlightedCells';
+import { ICellsProps } from '@src/App/model/ICellsProps';
 import removeOutdatedChains from '@src/utils/removeOutdatedChains';
 import getNewCells from '@src/utils/getNewCells';
 
@@ -40,7 +40,7 @@ export function* watchPersist(): Generator {
  **/
 export function* showCell(
   targetCell: number,
-  props: { highlightedCells?: IHighlightedCells } = {}
+  props: { highlightedCells?: ICellsProps } = {}
 ): Generator {
   const app = yield select(getApp);
   const { gameFieldData: gameData, selectedCell } = app as unknown as IAppState;
@@ -54,7 +54,7 @@ export function* showCell(
  * show target cell as unreachable with delay
  **/
 export function* step0(selectedCell: number, targetCell: number, time: number): Generator {
-  yield* showCell(targetCell, { highlightedCells: { [targetCell]: '#ff0000' } });
+  yield* showCell(targetCell, { highlightedCells: { [targetCell]: '#00000070' } });
   yield call(delay, time);
   yield* showCell(selectedCell, { highlightedCells: undefined });
 }
@@ -71,7 +71,7 @@ export function* moveTo(p1: Array<number>, p2: Array<number>, time: number): Gen
   const ind2 = yield call(getIndByPos, p2);
   const to = ind2 as unknown as number;
   const gameFieldData = yield call(moveToCell, gameData, from, to);
-  const highlightedCells = { [to]: '#ffff00' };
+  const highlightedCells = { [to]: '' };
   yield put(appActions.updateGame({ gameFieldData, highlightedCells }));
   yield call(delay, time);
 }
@@ -94,7 +94,7 @@ export function* step1(
   }
 
   const gameFieldData = yield call(moveToCell, gameData, selectedCell, targetCell);
-  const highlightedCells = { [targetCell]: '#0000ff' };
+  const highlightedCells = { [targetCell]: '' };
   yield put(appActions.updateGame({ highlightedCells }));
   yield call(delay, time);
   return gameFieldData;
@@ -125,7 +125,7 @@ export function* step3(chains: Array<Array<number>>): Generator {
   const gameFieldData = yield call(removeOutdatedChains, gameData, chains);
   const score =
     oldScore +
-    (highlightedCells ? Object.keys(highlightedCells as unknown as IHighlightedCells).length : 0);
+    (highlightedCells ? Object.keys(highlightedCells as unknown as ICellsProps).length : 0);
   yield put(
     appActions.updateGame({
       gameFieldData,
@@ -145,7 +145,7 @@ export function* step4(time: number): Generator {
 
   const newCells = yield call(getNewCells, gameData, userLevel);
   const cells = yield call(getHighlightedCells, newCells as Array<number>);
-  const highlightedCells = cells as IHighlightedCells;
+  const highlightedCells = cells as ICellsProps;
   const gameFieldData = yield call(addNewCellsToGameField, gameData, highlightedCells);
   yield put(appActions.updateGame({ gameFieldData, highlightedCells }));
   yield call(delay, time);
@@ -162,7 +162,7 @@ export function* step5(): Generator {
 export function* watchStartGameSteps({ payload }: PayloadAction<number>): Generator {
   const app = yield select(getApp);
   const { gameFieldData: gameData, selectedCell, userLevel } = app as unknown as IAppState;
-  if (selectedCell != null) {
+  if (selectedCell != null && !gameData[payload]) {
     const route = yield call(lee, gameData, selectedCell, payload);
     let gameFieldData;
     if (!route) {
@@ -173,7 +173,7 @@ export function* watchStartGameSteps({ payload }: PayloadAction<number>): Genera
     }
     const outdatedChains = yield call(getOutdatedChains, payload, userLevel, gameFieldData);
     if (Array.isArray(outdatedChains) && outdatedChains.length) {
-      yield* step2(outdatedChains, 250);
+      yield* step2(outdatedChains, 100);
       yield* step3(outdatedChains);
     } else {
       yield* step4(250);
