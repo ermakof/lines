@@ -1,10 +1,15 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
   devtool: 'source-map',
   plugins: [
+    new CleanWebpackPlugin({
+      dry: true,
+      dangerouslyAllowCleanPatternsOutsideProject: true,
+    }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
@@ -14,10 +19,11 @@ module.exports = {
   },
   entry: './src/index.tsx',
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public'),
+    filename: '[name].[fullhash].js',
+    path: path.join(__dirname, '/dist'),
   },
   devServer: {
+    historyApiFallback: true,
     open: true,
     port: 8081,
   },
@@ -33,5 +39,17 @@ module.exports = {
         use: ['css-loader'],
       },
     ],
+  },
+  optimization: {
+    minimizer: [
+      new TerserJSPlugin({
+        parallel: true,
+      }),
+    ],
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'all',
+    },
+    moduleIds: 'deterministic',
   },
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import AuthForm from '@src/modules/Auth/AuthForm';
 import UserForm from '@src/modules/UserForm';
@@ -12,7 +12,7 @@ const AppRouter = () => {
   const { userProfile } = useSelector(({ auth }: TRootState) => auth);
 
   return (
-    <Router>
+    <HashRouter>
       <Routes>
         <Route element={<AuthLayout login={userProfile?.login} />}>
           <Route path="/auth" element={<AuthForm />} />
@@ -26,7 +26,7 @@ const AppRouter = () => {
           />
         </Route>
       </Routes>
-    </Router>
+    </HashRouter>
   );
 };
 
