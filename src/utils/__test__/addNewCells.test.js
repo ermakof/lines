@@ -1,16 +1,15 @@
-import { addNewCells } from '@src/utils';
+import { getNewCells } from '@src/utils';
 
 describe('addNewCells', () => {
-  it('do not add 2 balls this chains', () => {
-    const cells = [0, 0, 0, 0, 0];
-    const arr = addNewCells(2)({ cells, hasChains: true });
-    expect(arr).toEqual(cells);
+  it('do not generate new cells', () => {
+    const cells = [1, 1, 1, 1, 1, 1, 1];
+    const arr = getNewCells(cells, '3');
+    expect(arr).toHaveLength(0);
   });
 
-  it('add 2 balls without chains', () => {
-    const cells = [1, 0, 0, 0, 0];
-    const arr = addNewCells(2)({ cells, hasChains: false });
-    const newCounts = arr.filter((num) => num).length;
-    expect(newCounts).toBe(3);
+  it('add 5 new cells', () => {
+    const cells = [0, 0, 0, 0, 0, 0, 0];
+    const arr = getNewCells(cells, '3');
+    expect(arr).toHaveLength(5);
   });
 });

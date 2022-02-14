@@ -1,9 +1,9 @@
-import { IOutdatedCells } from '@src/App/model/IOutdatedCells';
+import { ICellsProps } from '@src/App/model/ICellsProps';
 
 export const getOutdatedCells = (chains: Array<Array<number>>) =>
   chains.reduce((rez, chain) => {
-    return chain.reduce((acc: IOutdatedCells, cur) => {
-      acc[cur] = true;
+    return chain.reduce((acc: ICellsProps, cur) => {
+      acc[cur] = '';
       return acc;
     }, rez);
   }, {});

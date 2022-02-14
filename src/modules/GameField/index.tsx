@@ -33,7 +33,7 @@ const GameField: FC = () => {
   const {
     gameFieldData,
     selectedCell,
-    outdatedCells = {},
+    highlightedCells = {},
   } = useSelector(({ app }: TRootState) => app);
   const widthMinus1 = GAME_FIELD_SIZE - 1;
   const heightMinus1 = Math.floor(gameFieldData.length / GAME_FIELD_SIZE) - 1;
@@ -54,12 +54,12 @@ const GameField: FC = () => {
           <Cell
             key={`${y}-${x}`}
             num={index}
-            isFilled={item}
+            filled={item}
             isSelected={selectedCell === index}
             isLeft={isLeft}
             isRight={isRight}
             isBottom={isBottom}
-            isOutdated={outdatedCells[index]}
+            highlighted={highlightedCells[index]}
           />
         );
       })}

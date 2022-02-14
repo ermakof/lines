@@ -15,7 +15,7 @@ exports[`AppBody Render <AppBody> with data 1`] = `
         role="cellContainer-0"
       >
         <div
-          class="css-1dgu7xs"
+          class="css-zzdbx3"
           role="cellContent-0"
         />
       </div>
@@ -24,7 +24,7 @@ exports[`AppBody Render <AppBody> with data 1`] = `
         role="cellContainer-1"
       >
         <div
-          class="css-1dgu7xs"
+          class="css-zzdbx3"
           role="cellContent-1"
         />
       </div>

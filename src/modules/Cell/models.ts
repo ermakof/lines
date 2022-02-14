@@ -1,8 +1,10 @@
 export type TPoss = [number, number];
 
 export enum ICellInfo {
-  alive = 1,
-  dead = 0,
+  empty = 0,
+  red = 1,
+  yellow = 2,
+  green = 3,
 }
 
 export interface CellArray {

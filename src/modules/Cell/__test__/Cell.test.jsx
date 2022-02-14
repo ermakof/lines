@@ -28,7 +28,7 @@ describe('Cell', () => {
   it('renders <Cell> using renderer cell with value=2', () => {
     const { asFragment } = render(
       <Provider store={store}>
-        <Cell num={2} isFilled={1} isSelected={true} isOutdated={false} />
+        <Cell num={2} isFilled={1} isSelected={true} filled={1} />
       </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
@@ -43,13 +43,13 @@ describe('Cell', () => {
     useDispatch.mockReturnValue(mockDispatch);
     render(
       <Provider store={store}>
-        <Cell num={2} isFilled={1} isSelected={true} isOutdated={false} />
+        <Cell num={2} isFilled={1} isSelected={true} highlighted={''} filled={1} />
       </Provider>
     );
     const cellContent = screen.getByRole(/cellContent-2/i);
     fireEvent.click(cellContent);
     expect(mockDispatch).toHaveBeenCalledTimes(1);
-    expect(cellContent).toHaveStyle('background: #ffff00');
+    expect(cellContent).toHaveStyle('background: #ff0000');
   });
 
   it('Click on container cell', () => {
@@ -57,7 +57,7 @@ describe('Cell', () => {
     useDispatch.mockReturnValue(mockDispatch);
     render(
       <Provider store={store}>
-        <Cell num={2} isFilled={1} isSelected={false} isOutdated={false} />
+        <Cell num={2} isFilled={1} isSelected={false} isOutdated={false} filled={1} />
       </Provider>
     );
     const cellContainer = screen.getByRole(/cellContainer-2/i);

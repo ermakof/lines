@@ -1,8 +1,36 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from '@emotion/styled';
+import { keyframes } from '@emotion/react';
+
 import { CELL_SIZE } from '@src/modules/Cell/constatnts';
 import { actions } from '@src/App/appSlice';
+import { ICellsProps } from '@src/App/model/ICellsProps';
+
+const bounce = keyframes`
+  from, 20%, 53%, 80%, to {
+    transform: translate3d(0,0,0);
+  }
+
+  40%, 43% {
+    transform: translate3d(0, -15px, 0);
+  }
+
+  70% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, -5px,0);
+  }
+`;
+
+const color: ICellsProps = {
+  1: '#ff0000',
+  2: '#ffff00',
+  3: '#00ff00',
+};
+const getColor = (id: number, opacity = ''): string => `${color[id]}${opacity ? opacity : ''}`;
 
 interface IContainer {
   isRight?: boolean;
@@ -31,55 +59,58 @@ const Container = styled.div<IContainer>`
 
 interface IContent {
   selected?: boolean;
-  isOutdated?: boolean;
+  highlighted?: string;
+  filled: number;
 }
 const Content = styled.div<IContent>`
   cursor: pointer;
   background: #ffff00;
   border-radius: 50%;
-  background: ${({ selected, isOutdated }) =>
-    isOutdated ? '#ff0000' : selected ? '#ffff00' : '#ffff0070'};
+  background: ${({ selected, highlighted, filled }) =>
+    highlighted ? highlighted : selected ? getColor(filled) : getColor(filled, 'a0')};
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  margin: 5px;
-  border: 0.6vh solid transparent;
+  width: 25px;
+  height: 25px;
+  margin: 10px;
+  border: 0.2vh solid transparent;
   border-color: ${({ selected }) => (selected ? '#555' : '#9e9e9e')};
 
-  ${({ isOutdated }) => (!isOutdated ? ':hover {background: #ffff00;}' : '')}
+  animation: ${({ selected }) => (selected ? bounce : '')} 1s ease infinite;
+
+  ${({ highlighted, filled }) => (!highlighted ? `:hover {background: ${getColor(filled)};}` : '')}
 `;
 
 export interface CellProps {
   num: number;
-  isFilled?: number;
+  filled: number;
   isSelected: boolean;
   isLeft?: boolean;
   isRight?: boolean;
   isBottom?: boolean;
-  isOutdated: boolean;
+  highlighted?: string;
 }
 
 const Cell: React.FC<CellProps> = ({
   num,
-  isFilled = 0,
+  filled = 0,
   isSelected = false,
   isLeft = true,
   isRight = true,
-  isOutdated = false,
+  highlighted = '',
 }) => {
   const dispatch = useDispatch();
 
   const handleSelectCell = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
-    if (!isOutdated) {
+    if (!highlighted) {
       dispatch(actions.setSelectedCell(!isSelected ? num : undefined));
     }
   };
 
   const handleSelectContainer = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
-    if (!isSelected && !isOutdated) {
-      dispatch(actions.moveToCell(num));
+    if (!isSelected && !highlighted) {
+      dispatch(actions.startGameSteps(num));
     }
   };
 
@@ -90,12 +121,13 @@ const Cell: React.FC<CellProps> = ({
       isLeft={isLeft}
       onClick={handleSelectContainer}
     >
-      {!!isFilled && (
+      {filled > 0 && (
         <Content
           role={`cellContent-${num}`}
           selected={isSelected}
           onClick={handleSelectCell}
-          isOutdated={isOutdated}
+          highlighted={highlighted}
+          filled={filled}
         />
       )}
     </Container>

@@ -13,7 +13,7 @@ describe('reducer', () => {
     const newState = appSlice.reducer(state, appSlice.actions.resetApp());
     expect(newState.gameFieldPercentFilled).toBe(30);
     expect(newState.userLevel).toBe('3');
-    expect(newState.selectedCell).toEqual(1);
+    expect(newState.selectedCell).toEqual(undefined);
     expect(newState.gameFieldData.length).toBe(GAME_FIELD_SIZE ** 2);
   });
 
@@ -27,7 +27,7 @@ describe('reducer', () => {
     const newState = appSlice.reducer(state, appSlice.actions.setUserLevel('2'));
     expect(newState.gameFieldPercentFilled).toBe(20);
     expect(newState.userLevel).toBe('2');
-    expect(newState.selectedCell).toEqual(1);
+    expect(newState.selectedCell).toEqual(undefined);
     expect(newState.gameFieldData.length).toBe(GAME_FIELD_SIZE ** 2);
   });
 
@@ -163,13 +163,13 @@ describe('reducer', () => {
     });
   });
 
-  it('moveToCell', () => {
+  it('startGameSteps', () => {
     const state = {
       userLevel: '3',
       gameFieldPercentFilled: 50,
       gameFieldData: [1, 1, 0, 0, 1, 0, 0, 1, 0],
     };
-    const newState = appSlice.reducer(state, appSlice.actions.moveToCell(1));
+    const newState = appSlice.reducer(state, appSlice.actions.startGameSteps(1));
     expect(newState).toEqual(state);
   });
 

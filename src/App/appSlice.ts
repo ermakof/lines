@@ -15,6 +15,8 @@ const appSlice = createSlice({
     restoreGame: (state, action) => action.payload,
     setUserLevel: (state, { payload }: PayloadAction<string>) => {
       state.userLevel = payload;
+      state.selectedCell = undefined;
+      state.highlightedCells = undefined;
       state.score = 0;
       state.gameFieldPercentFilled = GAME_LEVEL_SETTINGS[payload].percent;
       state.gameFieldData = createGameField(GAME_FIELD_SIZE ** 2, state.gameFieldPercentFilled);
@@ -22,7 +24,7 @@ const appSlice = createSlice({
     setSelectedCell: (state, { payload }: PayloadAction<number | undefined>) => {
       state.selectedCell = payload;
     },
-    moveToCell: (state, { payload }: PayloadAction<number>) => state,
+    startGameSteps: (state, { payload }: PayloadAction<number>) => state,
     updateGame: (state, action) => ({ ...state, ...action.payload }),
     initApp: (state) => {
       state.gameFieldPercentFilled = INIT_GAME_FIELD_PERCENT_FILLED;
@@ -30,6 +32,8 @@ const appSlice = createSlice({
     },
     resetApp: (state) => {
       const gameFieldPercentFilled = Number(state.userLevel) * 10;
+      state.selectedCell = undefined;
+      state.highlightedCells = undefined;
       state.score = 0;
       state.gameFieldPercentFilled = gameFieldPercentFilled;
       state.gameFieldData = createGameField(GAME_FIELD_SIZE ** 2, gameFieldPercentFilled);

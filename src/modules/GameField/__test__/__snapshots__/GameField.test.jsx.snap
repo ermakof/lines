@@ -22,7 +22,7 @@ exports[`GameField renders 9 cells from data:[9 items] 1`] = `
       role="cellContainer-0"
     >
       <div
-        class="css-1dgu7xs"
+        class="css-zzdbx3"
         role="cellContent-0"
       />
     </div>

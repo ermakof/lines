@@ -1,14 +1,13 @@
-import addNewCells from '@src/utils/addNewCells';
+import getNewCells from '@src/utils/getNewCells';
 import generateCellsByPercent from '@src/utils/generateCellsByPercent';
 import generateCellsByCount from '@src/utils/generateCellsByCount';
 import getOutdatedChains from '@src/utils/getOutdatedChains';
 import { getChainByInd } from '@src/utils/getChainByInd';
 import getPosByInd from '@src/utils/getPosByInd';
-import removeOrderedChains from '@src/utils/removeOrderedChains';
+import removeOutdatedChains from '@src/utils/removeOutdatedChains';
 import setCell from '@src/utils/setCell';
 import shuffle from '@src/utils/shuffle';
 import createArrayBySize from '@src/utils/createArrayBySize';
-import updateGameField from '@src/utils/updateGameField';
 import createGameField from '@src/utils/createGameField';
 import getIndByPos from '@src/utils/getIndByPos';
 import getChainsByInd from '@src/utils/getChainsByInd';
@@ -17,19 +16,21 @@ import uuidv4 from '@src/utils/uuidv4';
 import moveToCell from '@src/utils/moveToCell';
 import delay from '@src/utils/delay';
 import { getOutdatedCells } from '@src/utils/getOutdatedCells';
+import { getHighlightedCells } from '@src/utils/getHighlightedCells';
+import { addNewCellsToGameField } from '@src/utils/addNewCellsToGameField';
+import { lee } from '@src/utils/Lee';
 
 export {
-  addNewCells,
+  getNewCells,
   getPosByInd,
   getChainByInd,
   getOutdatedChains,
   generateCellsByCount,
   generateCellsByPercent,
-  removeOrderedChains,
+  removeOutdatedChains,
   setCell,
   shuffle,
   createArrayBySize,
-  updateGameField,
   createGameField,
   getIndByPos,
   getChainsByInd,
@@ -38,4 +39,7 @@ export {
   moveToCell,
   delay,
   getOutdatedCells,
+  getHighlightedCells,
+  addNewCellsToGameField,
+  lee,
 };

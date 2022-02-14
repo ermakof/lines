@@ -1,4 +1,4 @@
-const removeOrderedChains = (chains: Array<Array<number>>) => (cells: Array<number>) => {
+const removeOutdatedChains = (cells: Array<number>, chains: Array<Array<number>>) => {
   const rez = [...cells];
   const hasChains = chains.length > 0;
   if (hasChains) {
@@ -10,7 +10,7 @@ const removeOrderedChains = (chains: Array<Array<number>>) => (cells: Array<numb
         })
     );
   }
-  return { cells: rez, hasChains };
+  return rez;
 };
 
-export default removeOrderedChains;
+export default removeOutdatedChains;
