@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1644524700422" clover="3.2.0">
-  <project timestamp="1644524700422" name="All files">
+<coverage generated="1644851234243" clover="3.2.0">
+  <project timestamp="1644851234243" name="All files">
     <metrics statements="463" coveredstatements="463" conditionals="171" coveredconditionals="149" methods="142" coveredmethods="141" elements="776" coveredelements="753" complexity="0" loc="463" ncloc="463" packages="12" files="55" classes="55"/>
     <package name="src">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -405,7 +405,7 @@
       </file>
       <file name="rootReducer.ts" path="/home/runner/work/lines/lines/src/store/rootReducer.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="4" count="6" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
       </file>
       <file name="rootSaga.ts" path="/home/runner/work/lines/lines/src/store/rootSaga.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
