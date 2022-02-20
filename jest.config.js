@@ -27,10 +27,12 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/settings/JestSetup.js'],
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
+    '^.+\\.mdx$': '@storybook/addon-docs/jest-transform-mdx',
   },
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/settings/__mocks__/fileMock.js',
     '\\.(css|less)$': '<rootDir>/settings/__mocks__/styleMock.js',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
 };

@@ -8,7 +8,7 @@ import { getPosByInd } from '@src/utils/index';
 const WALL = -1; // непроходимая ячейка
 const BLANK = -2; // свободная непомеченная ячейка
 
-const initLee = (dwf: Array<number>) => {
+const initLee = (dwf?: Array<number>) => {
   /**
    * Размер дискретного рабочего поля
    */
@@ -52,7 +52,7 @@ const initLee = (dwf: Array<number>) => {
 
 // поиск пути из ячейки (ax, ay) в ячейку (bx, by)
 export const lee = (
-  gameField: Array<number>,
+  gameField?: Array<number>,
   from?: Array<number> | number,
   to?: Array<number> | number
 ) => {

@@ -5,12 +5,10 @@
 
 # testing
 /coverage
-
 /temp
-
 /public
-
 /storybook-static
+/stryker-tmp
 
 # misc
 .idea

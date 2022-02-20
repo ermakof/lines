@@ -24,7 +24,7 @@ describe('removeOrderedChains', () => {
 
   it('cells = array(25), no chains', () => {
     const cells = [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    const chains = [];
+    const chains: Array<Array<number>> = [];
     const arr = removeOutdatedChains(cells, chains);
     expect(arr).toEqual([
       1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

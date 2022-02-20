@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { lee } from '@src/utils';
 
-const gameField = [
+const gameField: Array<number> = [
   1, 0, 1, 0, 0, 0, 0, 0,
   1, 0, 1, 1, 1, 0, 1, 1,
   1, 0, 0, 0, 1, 0, 0, 1,

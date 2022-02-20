@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { moveToCell } from '@src/utils';
 
-const cells = [
+const cells: Array<number> = [
   1, 0, 0, 0, 0, 1, 1, 1, 1,
   1, 0, 0, 0, 0, 0, 0, 0, 1,
   1, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -57,5 +57,15 @@ describe('moveToCell', () => {
       1, 0, 0, 0, 0, 0, 0, 0, 0,
       1, 0, 0, 0, 0, 0, 0, 0, 0,
     ]);
+  });
+
+  it('Move cell from undefined to 1', () => {
+    const newCells = moveToCell(Object.freeze(cells),undefined, 1);
+    expect(newCells).toEqual(cells);
+  });
+
+  it('Move cell from 1 to undefined', () => {
+    const newCells = moveToCell(Object.freeze(cells),1, undefined);
+    expect(newCells).toEqual(cells);
   });
 });
