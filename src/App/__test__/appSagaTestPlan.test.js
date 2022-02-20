@@ -17,7 +17,7 @@ import {
 
 import { actions as appActions, reducer} from '@src/App/appSlice';
 import { combineReducers} from '@reduxjs/toolkit';
-import {addNewCellsToGameField, getNewCells} from '@src/utils';
+import { addNewCellsToGameField, getNewCells } from '@src/utils';
 
 describe('appSaga test plan', () => {
   describe('watchRehydrate', () => {

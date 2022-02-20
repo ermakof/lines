@@ -5,7 +5,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { signIn, signOut } from '@src/modules/Auth/fakeAuthProvider';
 import { IUserInfo } from '@src/modules/Auth/AuthForm';
 import { IUserProfile } from '@src/modules/Auth/model/IUserProfile';
-import { LOCAL_STORAGE_AUTH_KEY } from '@src/store';
+// import { LOCAL_STORAGE_AUTH_KEY } from '@src/store';
 
 export function* watchSetUser({ payload }: PayloadAction<IUserInfo>): Generator {
   yield put(appActions.waitOn());
@@ -25,7 +25,7 @@ export function* watchLogout(): Generator {
 }
 
 export function* watchRehydrate(): Generator {
-  const persistedAuth = yield call([localStorage, localStorage.getItem], LOCAL_STORAGE_AUTH_KEY);
+  const persistedAuth = yield call([localStorage, localStorage.getItem], 'lines:userProfile');
   if (persistedAuth) {
     const userProfile = yield call([JSON, JSON.parse], persistedAuth as string);
     yield put(authActions.login(userProfile as IUserProfile));
