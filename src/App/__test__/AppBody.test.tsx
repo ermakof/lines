@@ -5,6 +5,7 @@ import configureMockStore from 'redux-mock-store';
 
 import AppBody from '@src/App/AppBody';
 import initialState from '@src/App/initialState';
+import { TRootState } from '@src/store';
 
 const mockStore = configureMockStore();
 
@@ -15,18 +16,18 @@ jest.mock('react-redux', () => ({
   useDispatch: jest.fn(),
 }));
 
-let store;
+let store: TRootState;
 let mockDispatch;
 
 describe('AppBody', () => {
   beforeEach(() => {
     store = mockStore(initialState);
     mockDispatch = jest.fn();
-    useDispatch.mockReturnValue(mockDispatch);
+    (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
   });
 
   it('Render <AppBody> without data', () => {
-    useSelector.mockReturnValue(initialState);
+    (useSelector as jest.Mock).mockReturnValue(initialState);
     const { asFragment } = render(
       <Provider store={store}>
         <AppBody />
@@ -38,7 +39,7 @@ describe('AppBody', () => {
   });
 
   it('Render <AppBody> with data', () => {
-    useSelector.mockReturnValue({
+    (useSelector as jest.Mock).mockReturnValue({
       gameLevel: '1',
       gameFieldPercentFilled: 10,
       gameFieldData: [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

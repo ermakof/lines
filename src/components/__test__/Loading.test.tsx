@@ -5,7 +5,7 @@ import { screen } from '@testing-library/react';
 
 import Loading from '@/src/components/Loading';
 
-let container;
+let container: HTMLElement | null;
 
 beforeEach(() => {
   container = document.createElement('div');
@@ -14,7 +14,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  document.body.removeChild(container);
+  container && document.body.removeChild(container);
   container = null;
 });
 

@@ -5,7 +5,7 @@ import { screen } from '@testing-library/react';
 
 import Root from '@/src/Root';
 
-let container;
+let container: HTMLElement | null;
 
 beforeEach(() => {
   container = document.createElement('root');
@@ -13,7 +13,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  document.body.removeChild(container);
+  container && document.body.removeChild(container);
   container = null;
 });
 

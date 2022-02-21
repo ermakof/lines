@@ -10,7 +10,7 @@ describe('fakeAuthProvider', () => {
     return signIn(userInfo).then((data) => {
       expect(data.login).toEqual('user');
       expect(data.password).toEqual('123');
-      expect(data.token.length).toEqual(36);
+      expect(data?.token?.length).toEqual(36);
     });
   });
 

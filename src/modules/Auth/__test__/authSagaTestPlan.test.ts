@@ -13,7 +13,7 @@ describe('authSaga test plan', () => {
     expect.assertions(0);
     const userInfo = { login: 'user', password: '123' };
     const userProfile = { login: 'user', password: '123', token: '123-123-123-123' };
-    return expectSaga(watchSetUser, { payload: { ...userInfo } })
+    return expectSaga(watchSetUser, { payload: { ...userInfo }, type: '' })
       .put(appActions.waitOn())
       .provide([[call(signIn, userInfo), userProfile]])
       .put(authActions.login(userProfile))
@@ -25,7 +25,7 @@ describe('authSaga test plan', () => {
     expect.assertions(0);
     const userInfo = { login: 'user', password: '123' };
     const userProfile = undefined;
-    return expectSaga(watchSetUser, { payload: userInfo })
+    return expectSaga(watchSetUser, { payload: userInfo, type: 'auth/setUser' })
       .put(appActions.waitOn())
       .provide([[call(signIn, userInfo), userProfile]])
       .put(appActions.waitOff())

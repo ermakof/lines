@@ -6,7 +6,7 @@ import { LOCAL_STORAGE_AUTH_KEY } from '@src/store';
 /**
  * This represents some generic auth provider API.
  */
-const signIn = (userInfo: IUserInfo): Promise<IUserProfile> => {
+const signIn = (userInfo: IUserInfo | undefined): Promise<IUserProfile> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       try {

@@ -18,6 +18,7 @@ import {
 import { actions as appActions, reducer} from '@src/App/appSlice';
 import { combineReducers} from '@reduxjs/toolkit';
 import { addNewCellsToGameField, getNewCells } from '@src/utils';
+import { IAppState } from '@src/App/model/IAppState';
 
 describe('appSaga test plan', () => {
   describe('watchRehydrate', () => {
@@ -72,7 +73,7 @@ describe('appSaga test plan', () => {
                 1, 0, 0, 0, 0, 0, 0, 1, 0,
               ],
               selectedCell: 1,
-            }
+            } as IAppState
           })
           .put(appActions.updateGame({
             gameFieldData: [
@@ -128,7 +129,7 @@ describe('appSaga test plan', () => {
               ],
               selectedCell: 80,
               highlightedCells: {80: '#ff0000'},
-            }
+            } as IAppState
           })
           .put(appActions.updateGame({
             gameFieldData: [
@@ -300,7 +301,7 @@ describe('appSaga test plan', () => {
         return expectSaga(step2, [[0, 0], [0, 9], [0, 18], [0, 27]], 250)
           .withReducer(combineReducers({
             app: reducer,
-          }), {app: {}})
+          }), {app: {} as IAppState})
           .hasFinalState({
             app: {
               highlightedCells: {0: '', 9: '', 18: '', 27: ''}
@@ -310,7 +311,7 @@ describe('appSaga test plan', () => {
       });
 
       it('#3 => remove outdated cells from game field', () => {
-        return expectSaga(step3, [[0, 0], [0, 9], [0, 18], [0, 27]], 250)
+        return expectSaga(step3, [[0, 0], [0, 9], [0, 18], [0, 27]])
           .withReducer(combineReducers({
             app: reducer,
           }), {
@@ -434,11 +435,13 @@ describe('appSaga test plan', () => {
             app: reducer,
           }), {
             app: {
+              gameFieldData: [],
               highlightedCells: {0: '#ffff00', 1: '#ffff00', 2: '#ffff00'},
-            }
+            } as IAppState
           })
           .hasFinalState({
             app: {
+              gameFieldData: [],
               highlightedCells: undefined,
             }
           })
@@ -448,7 +451,7 @@ describe('appSaga test plan', () => {
 
     describe('start steps with:', () => {
       it('remove chains', () => {
-        return expectSaga(watchStartGameSteps, {payload: 0})
+        return expectSaga(watchStartGameSteps, {payload: 0, type: 'app/startGameSteps'})
           .withReducer(combineReducers({
             app: reducer,
           }), {
@@ -492,7 +495,7 @@ describe('appSaga test plan', () => {
       });
 
       it('generate new cells', () => {
-        return expectSaga(watchStartGameSteps, { payload: 2 })
+        return expectSaga(watchStartGameSteps, { payload: 2, type: 'app/startGameSteps' })
           .withReducer(combineReducers({
             app: reducer,
           }), {
@@ -574,7 +577,7 @@ describe('appSaga test plan', () => {
       });
 
       it('unreachable target cells', () => {
-        return expectSaga(watchStartGameSteps, {payload: 80})
+        return expectSaga(watchStartGameSteps, {payload: 80, type: 'app/startGameSteps'})
           .withReducer(combineReducers({
             app: reducer,
           }), {

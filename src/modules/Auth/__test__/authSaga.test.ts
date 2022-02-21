@@ -23,7 +23,7 @@ describe('authSlice', () => {
 
   it('watchSetUser', () => {
     const userInfo = { login: 'user', password: '123' };
-    const saga = watchSetUser({ payload: userInfo });
+    const saga = watchSetUser({ payload: userInfo, type: 'app/setUSer' });
     expect(saga.next().value).toEqual(put({ type: 'app/waitOn' }));
     expect(saga.next().value).toEqual(call(signIn, userInfo));
     expect(saga.next().value).toEqual(put({ type: 'app/waitOff' }));

@@ -44,9 +44,7 @@ describe('reducer', () => {
 
   it('setUser', () => {
     const state = {
-      userLevel: '3',
-      gameFieldPercentFilled: 30,
-      gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
+      userProfile: undefined,
     };
     const newState = authSlice.reducer(
       state,
@@ -55,14 +53,14 @@ describe('reducer', () => {
         password: '123',
       })
     );
-    expect(newState).toEqual(state);
+    expect(newState).toEqual({
+      userProfile: undefined,
+    });
   });
 
   it('login', () => {
     const state = {
-      userLevel: '3',
-      gameFieldPercentFilled: 30,
-      gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
+      userProfile: undefined,
     };
     const newState = authSlice.reducer(
       state,

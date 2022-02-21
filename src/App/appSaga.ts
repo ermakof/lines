@@ -134,7 +134,7 @@ export function* step3(
   const app = yield select(getApp);
   const {
     gameFieldData: gameData,
-    score: oldScore,
+    score: oldScore = 0,
     highlightedCells,
   } = app as unknown as IAppState;
 
@@ -158,7 +158,7 @@ export function* step3(
 export function* step4(
   time: number
 ): Generator<SelectEffect | PutEffect | CallEffect, void, IAppState> {
-  const { gameFieldData: gameData, userLevel } = yield select(getApp);
+  const { gameFieldData: gameData, userLevel = '1' } = yield select(getApp);
 
   const newCells = yield call(getNewCells, gameData, userLevel);
   const highlightedCells = yield call(getHighlightedCells, newCells as unknown as Array<number>);
@@ -182,7 +182,7 @@ export function* step5(): Generator<SelectEffect | PutEffect | CallEffect, void,
 export function* watchStartGameSteps({
   payload,
 }: PayloadAction<number>): Generator<SelectEffect | PutEffect | CallEffect, void, IAppState> {
-  const { gameFieldData: gameData, selectedCell, userLevel } = yield select(getApp);
+  const { gameFieldData: gameData, selectedCell, userLevel = '1' } = yield select(getApp);
   if (selectedCell != null && !gameData[payload]) {
     const route = yield call(lee, gameData, selectedCell, payload);
     let gameFieldData;
@@ -196,7 +196,7 @@ export function* watchStartGameSteps({
     const outdatedChains = yield call(
       getOutdatedChains,
       Number(payload),
-      userLevel.toString(),
+      userLevel,
       gameFieldData as unknown as Array<number>
     );
     if (Array.isArray(outdatedChains) && outdatedChains.length) {

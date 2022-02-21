@@ -7,6 +7,7 @@ import configureMockStore from 'redux-mock-store';
 
 import UserForm from '@src/modules/UserForm';
 import initialState from '@src/App/initialState';
+import { TRootState } from '@src/store';
 
 const mockStore = configureMockStore();
 
@@ -17,15 +18,15 @@ jest.mock('react-redux', () => ({
   useDispatch: jest.fn(),
 }));
 
-let store;
-let mockDispatch;
+let store: TRootState;
+let mockDispatch: jest.Mock;
 
 describe('UserForm', () => {
   beforeEach(() => {
     store = mockStore(initialState);
     mockDispatch = jest.fn();
-    useDispatch.mockReturnValue(mockDispatch);
-    useSelector.mockReturnValue(initialState);
+    (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
+    (useSelector as jest.Mock).mockReturnValue(initialState);
   });
 
   it('Render <UserForm>', () => {

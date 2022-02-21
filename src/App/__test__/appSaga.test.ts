@@ -8,6 +8,7 @@ import {
 } from '@src/App/appSaga';
 import { actions } from '@src/App/appSlice';
 import { LOCAL_STORAGE_APP_KEY } from '@src/store';
+import { IAppState } from '@src/App/model/IAppState';
 
 describe('appSaga', () => {
   it('call takeEvery 4 times', () => {
@@ -34,7 +35,7 @@ describe('appSaga', () => {
     expect(saga.next().value).toEqual(select(getApp));
     const persistApp =
       '{"userLevel":"1","gameFieldPercentFilled":10,"gameFieldData":[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],"isLoading":true}';
-    expect(saga.next(persistApp).value).toEqual(
+    expect(saga.next(persistApp as unknown as IAppState).value).toEqual(
       call(
         [localStorage, localStorage.setItem],
         LOCAL_STORAGE_APP_KEY,

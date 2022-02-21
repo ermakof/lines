@@ -18,8 +18,8 @@ jest.mock('react-redux', () => ({
 test('render App', () => {
   const store = mockStore(initialState);
   const mockDispatch = jest.fn();
-  useDispatch.mockReturnValue(mockDispatch);
-  useSelector.mockReturnValue(initialState);
+  (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
+  (useSelector as jest.Mock).mockReturnValue(initialState);
   const { asFragment } = render(
     <Provider store={store}>
       <App />

@@ -5,6 +5,7 @@ import configureMockStore from 'redux-mock-store';
 
 import AppHeader from '@src/App/AppHeader';
 import initialState from '@src/App/initialState';
+import { TRootState } from '@src/store';
 
 const mockStore = configureMockStore();
 
@@ -15,18 +16,18 @@ jest.mock('react-redux', () => ({
   useDispatch: jest.fn(),
 }));
 
-let store;
+let store: TRootState;
 let mockDispatch;
 
 describe('AppHeader', () => {
   beforeEach(() => {
     store = mockStore(initialState);
     mockDispatch = jest.fn();
-    useDispatch.mockReturnValue(mockDispatch);
+    (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
   });
 
   it('Render authorised <AppHeader>', () => {
-    useSelector.mockReturnValue({
+    (useSelector as jest.Mock).mockReturnValue({
       userProfile: { login: '123', password: '123', token: '7a0cbf93-aa13-4b50-8a41-97ddbfba00d5' },
     });
     const { asFragment } = render(
@@ -44,7 +45,7 @@ describe('AppHeader', () => {
   });
 
   it('Render unauthorised <AppHeader>', () => {
-    useSelector.mockReturnValue({});
+    (useSelector as jest.Mock).mockReturnValue({});
     const { asFragment } = render(
       <Provider store={store}>
         <AppHeader />

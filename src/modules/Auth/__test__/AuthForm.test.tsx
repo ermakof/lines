@@ -7,10 +7,11 @@ import configureMockStore from 'redux-mock-store';
 import { useDispatch } from 'react-redux';
 
 import AuthForm from '@src/modules/Auth/AuthForm';
+import { TRootState } from '@src/store';
 
 const mockStore = configureMockStore();
 
-let store;
+let store: TRootState;
 jest.mock('react-redux', () => ({
   __esModule: true,
   ...jest.requireActual('react-redux'),
@@ -19,7 +20,7 @@ jest.mock('react-redux', () => ({
 }));
 
 const storageMock = (() => {
-  let store = {};
+  store = {};
 
   return {
     getItem(key = '') {
@@ -75,7 +76,7 @@ describe('AuthForm', () => {
 
   it('Submit <AuthForm>', async () => {
     const mockDispatch = jest.fn();
-    useDispatch.mockReturnValue(mockDispatch);
+    (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
     render(
       <Provider store={store}>
         <Router>

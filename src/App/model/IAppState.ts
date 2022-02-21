@@ -2,11 +2,11 @@ import { ICellsProps } from '@src/App/model/ICellsProps';
 
 export interface IAppState {
   isLoading?: boolean;
-  gameFieldPercentFilled: number;
+  gameFieldPercentFilled?: number;
   gameFieldData: Array<number>;
   highlightedCells?: ICellsProps;
-  colorCells: ICellsProps;
-  score: number;
+  colorCells?: ICellsProps;
+  score?: number;
   selectedCell?: number;
-  userLevel: string;
+  userLevel?: string;
 }

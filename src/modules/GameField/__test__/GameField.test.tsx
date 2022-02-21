@@ -6,9 +6,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import GameField from '../index';
 import initialState from '@src/App/initialState';
+import { TRootState } from '@src/store';
 
 const mockStore = configureMockStore();
-let store;
+let store: TRootState;
 
 jest.mock('react-redux', () => ({
   __esModule: true,
@@ -24,8 +25,8 @@ describe('GameField', () => {
 
   it('No render cells, game field size = 0', () => {
     const mockDispatch = jest.fn();
-    useDispatch.mockReturnValue(mockDispatch);
-    useSelector.mockReturnValue({
+    (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
+    (useSelector as jest.Mock).mockReturnValue({
       gameFieldData: [],
     });
     const { asFragment } = render(
@@ -40,8 +41,8 @@ describe('GameField', () => {
 
   it('renders 9 cells from data:[9 items]', () => {
     const mockDispatch = jest.fn();
-    useDispatch.mockReturnValue(mockDispatch);
-    useSelector.mockReturnValue({
+    (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
+    (useSelector as jest.Mock).mockReturnValue({
       gameFieldPercentFilled: 10,
       gameFieldData: [1, 0, 0, 0, 0, 0, 0, 0, 0],
     });
