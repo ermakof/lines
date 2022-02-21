@@ -91,3 +91,12 @@ jobs:
           BRANCH: gh-pages-test # The branch the action should deploy to.
           FOLDER: ./coverage  # The folder the action should deploy.
           CLEAN: true # Automatically remove deleted files from the deploy branch
+
+      - name: Deploy stryker-report to GHP, branch gh-pages-stryker 🚀
+        id: Deploy-test-stryker
+        uses: JamesIves/github-pages-deploy-action@v4.2.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages-stryker # The branch the action should deploy to.
+          FOLDER: ./reports  # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch

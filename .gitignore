@@ -9,6 +9,8 @@
 /public
 /storybook-static
 /stryker-tmp
+/dist
+/reports
 
 # misc
 .idea
