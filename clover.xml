@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1645394234974" clover="3.2.0">
-  <project timestamp="1645394234974" name="All files">
-    <metrics statements="453" coveredstatements="453" conditionals="173" coveredconditionals="151" methods="142" coveredmethods="141" elements="768" coveredelements="745" complexity="0" loc="453" ncloc="453" packages="12" files="55" classes="55"/>
+<coverage generated="1645432837497" clover="3.2.0">
+  <project timestamp="1645432837497" name="All files">
+    <metrics statements="453" coveredstatements="453" conditionals="176" coveredconditionals="151" methods="142" coveredmethods="141" elements="771" coveredelements="745" complexity="0" loc="453" ncloc="453" packages="12" files="55" classes="55"/>
     <package name="src">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="Root.tsx" path="/home/runner/work/lines/lines/src/Root.tsx">
@@ -11,7 +11,7 @@
       </file>
     </package>
     <package name="src.App">
-      <metrics statements="113" coveredstatements="113" conditionals="19" coveredconditionals="14" methods="34" coveredmethods="34"/>
+      <metrics statements="113" coveredstatements="113" conditionals="22" coveredconditionals="14" methods="34" coveredmethods="34"/>
       <file name="AppBody.tsx" path="/home/runner/work/lines/lines/src/App/AppBody.tsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="5" count="3" type="stmt"/>
@@ -44,7 +44,7 @@
         <line num="14" count="5" type="stmt"/>
       </file>
       <file name="appSaga.ts" path="/home/runner/work/lines/lines/src/App/appSaga.ts">
-        <metrics statements="62" coveredstatements="62" conditionals="16" coveredconditionals="12" methods="13" coveredmethods="13"/>
+        <metrics statements="62" coveredstatements="62" conditionals="19" coveredconditionals="12" methods="13" coveredmethods="13"/>
         <line num="33" count="3" type="stmt"/>
         <line num="34" count="3" type="stmt"/>
         <line num="35" count="3" type="cond" truecount="2" falsecount="0"/>
@@ -81,14 +81,14 @@
         <line num="141" count="2" type="stmt"/>
         <line num="143" count="2" type="stmt"/>
         <line num="145" count="2" type="stmt"/>
-        <line num="161" count="2" type="stmt"/>
+        <line num="161" count="2" type="cond" truecount="0" falsecount="1"/>
         <line num="163" count="2" type="stmt"/>
         <line num="164" count="2" type="stmt"/>
         <line num="165" count="2" type="stmt"/>
         <line num="170" count="2" type="stmt"/>
         <line num="171" count="2" type="stmt"/>
         <line num="179" count="2" type="stmt"/>
-        <line num="185" count="3" type="stmt"/>
+        <line num="185" count="3" type="cond" truecount="0" falsecount="1"/>
         <line num="186" count="3" type="cond" truecount="3" falsecount="1"/>
         <line num="187" count="3" type="stmt"/>
         <line num="189" count="3" type="cond" truecount="2" falsecount="0"/>
