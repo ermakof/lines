@@ -7,7 +7,7 @@ module.exports = {
   testRunner: 'jest',
   coverageAnalysis: 'perTest',
   tsconfigFile: 'tsconfig.json',
-  mutate: ['src/**/*.ts?(x)', '!src/**/*@(.spec|Spec|stories).ts?(x)'],
   buildCommand: 'npm run build',
   tempDirName: 'stryker-tmp',
+  checkers: ['typescript'],
 };

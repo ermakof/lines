@@ -44,11 +44,12 @@ export const Dynamic: FC = () => {
     <Provider store={store}>
       <Cell
         num={num}
-        isSelected={status}
+        filled={number('filled', 1)}
+        isSelected={boolean('status', true)}
         isRight={boolean('isRight', true)}
         isBottom={boolean('isBottom', true)}
         isLeft={boolean('isLeft', true)}
-        isOutdated={boolean('isOutdated', false)}
+        highlighted=""
       />
     </Provider>
   );
