@@ -5,9 +5,10 @@ import configureMockStore from 'redux-mock-store';
 import { useDispatch } from 'react-redux';
 
 import Cell from '@src/modules/Cell';
+import { TRootState } from '@src/store';
 
 const mockStore = configureMockStore();
-let store;
+let store: TRootState;
 
 jest.mock('react-redux', () => ({
   __esModule: true,
@@ -28,7 +29,7 @@ describe('Cell', () => {
   it('renders <Cell> using renderer cell with value=2', () => {
     const { asFragment } = render(
       <Provider store={store}>
-        <Cell num={2} isFilled={1} isSelected={true} filled={1} />
+        <Cell num={2} filled={1} isSelected={true} />
       </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
@@ -40,10 +41,10 @@ describe('Cell', () => {
 
   it('Click on content cell', () => {
     const mockDispatch = jest.fn();
-    useDispatch.mockReturnValue(mockDispatch);
+    (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
     render(
       <Provider store={store}>
-        <Cell num={2} isFilled={1} isSelected={true} highlighted={''} filled={1} />
+        <Cell num={2} isSelected={true} highlighted={''} filled={1} />
       </Provider>
     );
     const cellContent = screen.getByRole(/cellContent-2/i);
@@ -54,10 +55,10 @@ describe('Cell', () => {
 
   it('Click on container cell', () => {
     const mockDispatch = jest.fn();
-    useDispatch.mockReturnValue(mockDispatch);
+    (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
     render(
       <Provider store={store}>
-        <Cell num={2} isFilled={1} isSelected={false} isOutdated={false} filled={1} />
+        <Cell num={2} isSelected={false} filled={1} />
       </Provider>
     );
     const cellContainer = screen.getByRole(/cellContainer-2/i);
