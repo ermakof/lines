@@ -11,4 +11,8 @@ module.exports = {
   buildCommand: 'npm run build',
   tempDirName: 'stryker-tmp',
   checkers: ['typescript'],
+  jest: {
+    configFile: 'jest.config.js',
+    enableFindRelatedTests: false,
+  },
 };

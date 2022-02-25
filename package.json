@@ -26,6 +26,7 @@
     "lint:fix": "npx eslint --ext .js,.ts,.jsx,.tsx --fix src/",
     "test": "npx jest",
     "test:snapshot": "npx jest --updateSnapshot",
+    "test:mutate": "npx stryker run",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "chromatic": "npx chromatic --project-token=e0b0aeece5aa",
