@@ -53,6 +53,18 @@ describe('Cell', () => {
     expect(cellContent).toHaveStyle('background: #ff0000');
   });
 
+  it('Highlight cell', () => {
+    const mockDispatch = jest.fn();
+    (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
+    render(
+      <Provider store={store}>
+        <Cell num={2} isSelected={true} highlighted={'#333'} filled={1} />
+      </Provider>
+    );
+    const cellContent = screen.getByRole(/cellContent-2/i);
+    expect(cellContent).toHaveStyle('background: #333');
+  });
+
   it('Click on container cell', () => {
     const mockDispatch = jest.fn();
     (useDispatch as jest.Mock).mockReturnValue(mockDispatch);

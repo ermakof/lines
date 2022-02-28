@@ -8,7 +8,7 @@ const getFreeCells = (cells: Array<number>) =>
 const generateNewCells = (countCells: number) => (randomArray: Array<number>) =>
   randomArray.slice(0, countCells);
 
-const getNewCells = (cells: Array<number>, level: string) => {
+const getNewCells = (cells: Array<number> = [], level: string = '1') => {
   const increase = GAME_LEVEL_SETTINGS[level].increase;
   return compose(generateNewCells(increase), shuffle, getFreeCells)(cells);
 };

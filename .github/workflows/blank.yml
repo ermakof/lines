@@ -51,6 +51,10 @@ jobs:
         id: Run-tests
         run: npm run test
 
+      - name: Run mutation tests
+        id: Run-mutation-tests
+        run: npm run test:mutate
+
       - name: Run chromatic test
         id: Chromatic-test
         env:

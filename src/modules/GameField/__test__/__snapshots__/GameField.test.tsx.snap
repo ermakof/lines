@@ -14,11 +14,11 @@ exports[`GameField No render cells, game field size = 0 1`] = `
 exports[`GameField renders 9 cells from data:[9 items] 1`] = `
 <DocumentFragment>
   <section
-    class="css-1werspr"
+    class="css-mssbf2"
     role="cellsGrid"
   >
     <div
-      class="css-es8rv7"
+      class="css-1iwoml2"
       role="cellContainer-0"
     >
       <div
@@ -27,35 +27,35 @@ exports[`GameField renders 9 cells from data:[9 items] 1`] = `
       />
     </div>
     <div
-      class="css-2r18jt"
+      class="css-9onvxl"
       role="cellContainer-1"
     />
     <div
-      class="css-2r18jt"
+      class="css-9onvxl"
       role="cellContainer-2"
     />
     <div
-      class="css-2r18jt"
+      class="css-9onvxl"
       role="cellContainer-3"
     />
     <div
-      class="css-2r18jt"
+      class="css-9onvxl"
       role="cellContainer-4"
     />
     <div
-      class="css-2r18jt"
+      class="css-9onvxl"
       role="cellContainer-5"
     />
     <div
-      class="css-2r18jt"
+      class="css-9onvxl"
       role="cellContainer-6"
     />
     <div
-      class="css-2r18jt"
+      class="css-9onvxl"
       role="cellContainer-7"
     />
     <div
-      class="css-1jbr29x"
+      class="css-2o4s2t"
       role="cellContainer-8"
     />
     <div

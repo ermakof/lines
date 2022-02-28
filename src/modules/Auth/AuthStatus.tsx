@@ -8,7 +8,7 @@ const Title = styled.p`
 `;
 
 interface IAuthStatus {
-  login: string;
+  login?: string;
 }
 const AuthStatus: FC<IAuthStatus> = ({ login = '' }) => {
   if (!login) {

@@ -1,12 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button render <Button> 1`] = `
+exports[`Button render <Button> with props 1`] = `
 <DocumentFragment>
   <button
     class="css-tv5zn1"
     role="button"
   >
     Reset
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button render <Button> without props 1`] = `
+<DocumentFragment>
+  <button
+    class="css-tv5zn1"
+    role="button"
+  >
+    Button
   </button>
 </DocumentFragment>
 `;

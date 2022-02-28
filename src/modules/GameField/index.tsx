@@ -20,6 +20,8 @@ export const FieldContainer = styled.section<IFieldContainer>`
   height: fit-content;
   width: fit-content;
   opacity: ${({ active }) => (active ? 1 : 0.3)};
+  min-width: 550px;
+  min-height: 550px;
 `;
 
 const MessageNoData = styled.p`
@@ -36,7 +38,6 @@ const GameField: FC = () => {
     highlightedCells = {},
   } = useSelector(({ app }: TRootState) => app);
   const widthMinus1 = GAME_FIELD_SIZE - 1;
-  const heightMinus1 = Math.floor(gameFieldData.length / GAME_FIELD_SIZE) - 1;
 
   if (!gameFieldData.length) {
     return <MessageNoData role="noDataMessage">Нет данных!</MessageNoData>;
@@ -48,7 +49,6 @@ const GameField: FC = () => {
         const y = Math.floor(index / GAME_FIELD_SIZE);
         const x = index % GAME_FIELD_SIZE;
         const isRight = x === widthMinus1;
-        const isBottom = y === heightMinus1;
         const isLeft = x === 0;
         return (
           <Cell
@@ -58,7 +58,6 @@ const GameField: FC = () => {
             isSelected={selectedCell === index}
             isLeft={isLeft}
             isRight={isRight}
-            isBottom={isBottom}
             highlighted={highlightedCells[index]}
           />
         );

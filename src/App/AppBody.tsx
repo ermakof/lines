@@ -5,6 +5,7 @@ import GameField from '@src/modules/GameField';
 const Root = styled.div`
   height: 80vh;
   position: relative;
+  overflow: auto;
 `;
 
 const AppBody: FC = () => {

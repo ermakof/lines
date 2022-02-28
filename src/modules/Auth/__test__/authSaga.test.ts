@@ -1,7 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { authSaga, watchLogout, watchRehydrate, watchSetUser } from '@src/modules/Auth/authSaga';
 import { actions } from '@src/modules/Auth/authSlice';
-import { LOCAL_STORAGE_AUTH_KEY } from '@src/store';
 import { signIn, signOut } from '@src/modules/Auth/fakeAuthProvider';
 
 describe('authSlice', () => {
@@ -16,7 +15,7 @@ describe('authSlice', () => {
   it('watchRehydrate', () => {
     const saga = watchRehydrate();
     expect(saga.next().value).toEqual(
-      call([localStorage, localStorage.getItem], LOCAL_STORAGE_AUTH_KEY)
+      call([localStorage, localStorage.getItem], 'lines:userProfile')
     );
     expect(saga.next().done).toBe(true);
   });

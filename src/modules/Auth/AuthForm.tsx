@@ -51,6 +51,8 @@ const AuthForm: FC = () => {
     setUserInfo({ ...userInfo, [id]: value });
   };
 
+  const isDisabled = !userInfo.login.trim() || !userInfo.password.trim();
+
   return (
     <Root role="authForm">
       <Formik initialValues={{ ...userInfo }} onSubmit={handleSubmit}>
@@ -75,7 +77,7 @@ const AuthForm: FC = () => {
             onChange={handleChange}
           />
 
-          <button role="buttonLogin" disabled={!userInfo.login || !userInfo.password} type="submit">
+          <button role="buttonLogin" disabled={isDisabled} type="submit">
             Войти
           </button>
         </Form>

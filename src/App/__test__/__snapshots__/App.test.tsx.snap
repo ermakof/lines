@@ -61,335 +61,335 @@ exports[`render App 1`] = `
       </div>
     </div>
     <div
-      class="css-xt4orx"
+      class="css-rt6bs7"
       role="gamePanel"
     >
       <section
-        class="css-1werspr"
+        class="css-mssbf2"
         role="cellsGrid"
       >
         <div
-          class="css-es8rv7"
+          class="css-1iwoml2"
           role="cellContainer-0"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-1"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-2"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-3"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-4"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-5"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-6"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-7"
         />
         <div
-          class="css-1jbr29x"
+          class="css-2o4s2t"
           role="cellContainer-8"
         />
         <div
-          class="css-es8rv7"
+          class="css-1iwoml2"
           role="cellContainer-9"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-10"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-11"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-12"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-13"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-14"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-15"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-16"
         />
         <div
-          class="css-1jbr29x"
+          class="css-2o4s2t"
           role="cellContainer-17"
         />
         <div
-          class="css-es8rv7"
+          class="css-1iwoml2"
           role="cellContainer-18"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-19"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-20"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-21"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-22"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-23"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-24"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-25"
         />
         <div
-          class="css-1jbr29x"
+          class="css-2o4s2t"
           role="cellContainer-26"
         />
         <div
-          class="css-es8rv7"
+          class="css-1iwoml2"
           role="cellContainer-27"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-28"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-29"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-30"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-31"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-32"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-33"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-34"
         />
         <div
-          class="css-1jbr29x"
+          class="css-2o4s2t"
           role="cellContainer-35"
         />
         <div
-          class="css-es8rv7"
+          class="css-1iwoml2"
           role="cellContainer-36"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-37"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-38"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-39"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-40"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-41"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-42"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-43"
         />
         <div
-          class="css-1jbr29x"
+          class="css-2o4s2t"
           role="cellContainer-44"
         />
         <div
-          class="css-es8rv7"
+          class="css-1iwoml2"
           role="cellContainer-45"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-46"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-47"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-48"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-49"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-50"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-51"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-52"
         />
         <div
-          class="css-1jbr29x"
+          class="css-2o4s2t"
           role="cellContainer-53"
         />
         <div
-          class="css-es8rv7"
+          class="css-1iwoml2"
           role="cellContainer-54"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-55"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-56"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-57"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-58"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-59"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-60"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-61"
         />
         <div
-          class="css-1jbr29x"
+          class="css-2o4s2t"
           role="cellContainer-62"
         />
         <div
-          class="css-es8rv7"
+          class="css-1iwoml2"
           role="cellContainer-63"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-64"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-65"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-66"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-67"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-68"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-69"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-70"
         />
         <div
-          class="css-1jbr29x"
+          class="css-2o4s2t"
           role="cellContainer-71"
         />
         <div
-          class="css-es8rv7"
+          class="css-1iwoml2"
           role="cellContainer-72"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-73"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-74"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-75"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-76"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-77"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-78"
         />
         <div
-          class="css-2r18jt"
+          class="css-9onvxl"
           role="cellContainer-79"
         />
         <div
-          class="css-1jbr29x"
+          class="css-2o4s2t"
           role="cellContainer-80"
         />
         <div

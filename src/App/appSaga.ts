@@ -8,7 +8,7 @@ import {
   CallEffect,
 } from 'redux-saga/effects';
 import { actions as appActions, actions } from '@src/App/appSlice';
-import { LOCAL_STORAGE_APP_KEY, TRootState } from '@src/store';
+import { TRootState } from '@src/store';
 import {
   addNewCellsToGameField,
   delay,
@@ -24,6 +24,8 @@ import getOutdatedChains from '@src/utils/getOutdatedChains';
 import { ICellsProps } from '@src/App/model/ICellsProps';
 import removeOutdatedChains from '@src/utils/removeOutdatedChains';
 import getNewCells from '@src/utils/getNewCells';
+
+const LOCAL_STORAGE_APP_KEY = 'lines:app';
 
 export function* watchRehydrate(): Generator<
   SelectEffect | PutEffect | CallEffect,
@@ -158,7 +160,7 @@ export function* step3(
 export function* step4(
   time: number
 ): Generator<SelectEffect | PutEffect | CallEffect, void, IAppState> {
-  const { gameFieldData: gameData, userLevel = '1' } = yield select(getApp);
+  const { gameFieldData: gameData, userLevel } = yield select(getApp);
 
   const newCells = yield call(getNewCells, gameData, userLevel);
   const highlightedCells = yield call(getHighlightedCells, newCells as unknown as Array<number>);
@@ -182,7 +184,7 @@ export function* step5(): Generator<SelectEffect | PutEffect | CallEffect, void,
 export function* watchStartGameSteps({
   payload,
 }: PayloadAction<number>): Generator<SelectEffect | PutEffect | CallEffect, void, IAppState> {
-  const { gameFieldData: gameData, selectedCell, userLevel = '1' } = yield select(getApp);
+  const { gameFieldData: gameData, selectedCell, userLevel } = yield select(getApp);
   if (selectedCell != null && !gameData[payload]) {
     const route = yield call(lee, gameData, selectedCell, payload);
     let gameFieldData;

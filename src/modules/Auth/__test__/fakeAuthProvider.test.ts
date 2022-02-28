@@ -14,7 +14,7 @@ describe('fakeAuthProvider', () => {
     });
   });
 
-  it('fail signIn => error message', () => {
+  it('fail signIn => error user message', () => {
     expect.assertions(1);
     // eslint-disable-next-line jest/no-conditional-expect
     return signIn(undefined).catch((data) => expect(data).toEqual('Нет данных о пользователе!'));

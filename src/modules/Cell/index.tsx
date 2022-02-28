@@ -35,17 +35,16 @@ const getColor = (id: number, opacity = ''): string => `${color[id]}${opacity ? 
 interface IContainer {
   isRight?: boolean;
   isLeft?: boolean;
-  isBottom?: boolean;
 }
 const Container = styled.div<IContainer>`
   display: block;
   width: ${({ isRight }) => CELL_SIZE - (isRight ? 2 : 1)}px;
-  height: ${({ isBottom }) => CELL_SIZE - (isBottom ? 2 : 1)}px;
+  height: ${CELL_SIZE - 1}px;
   text-align: center;
   border-top: 1px solid #ddd;
   border-left: 1px solid #ddd;
   border-right: ${({ isRight }) => `1px solid ${isRight ? '#ddd' : ''};`}
-  border-bottom: ${({ isBottom }) => `1px solid ${isBottom ? '#ddd' : ''};`}
+  border-bottom: 1px solid;
   float: left;
   ${({ isLeft }) => (isLeft ? 'clear: both;' : '')}
   transition-property: background;
@@ -86,14 +85,13 @@ export interface CellProps {
   isSelected: boolean;
   isLeft?: boolean;
   isRight?: boolean;
-  isBottom?: boolean;
   highlighted?: string;
 }
 
 const Cell: React.FC<CellProps> = ({
   num,
   filled = 0,
-  isSelected = false,
+  isSelected,
   isLeft = true,
   isRight = true,
   highlighted = '',

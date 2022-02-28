@@ -7,7 +7,6 @@ import {
   watchRehydrate,
 } from '@src/App/appSaga';
 import { actions } from '@src/App/appSlice';
-import { LOCAL_STORAGE_APP_KEY } from '@src/store';
 import { IAppState } from '@src/App/model/IAppState';
 
 describe('appSaga', () => {
@@ -23,9 +22,7 @@ describe('appSaga', () => {
   it('watchRehydrate', () => {
     const saga = watchRehydrate();
     expect(saga.next().value).toEqual(put({ type: 'app/waitOn' }));
-    expect(saga.next().value).toEqual(
-      call([localStorage, localStorage.getItem], LOCAL_STORAGE_APP_KEY)
-    );
+    expect(saga.next().value).toEqual(call([localStorage, localStorage.getItem], 'lines:app'));
     expect(saga.next().value).toEqual(put({ type: 'app/waitOff' }));
     expect(saga.next().done).toBe(true);
   });
@@ -38,7 +35,7 @@ describe('appSaga', () => {
     expect(saga.next(persistApp as unknown as IAppState).value).toEqual(
       call(
         [localStorage, localStorage.setItem],
-        LOCAL_STORAGE_APP_KEY,
+        'lines:app',
         '"{\\"userLevel\\":\\"1\\",\\"gameFieldPercentFilled\\":10,\\"gameFieldData\\":[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],\\"isLoading\\":true}"'
       )
     );

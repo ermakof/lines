@@ -74,3 +74,5 @@ Open [http://localhost:8081](http://localhost:8081) в браузере.
 
 Запуск chromatic.
 
+### `npx stryker run`
+Запуск stryker.

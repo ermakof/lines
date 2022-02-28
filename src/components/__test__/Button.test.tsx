@@ -3,7 +3,14 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Button from '@src/components/Button';
 
 describe('Button', () => {
-  it('render <Button>', () => {
+  it('render <Button> without props', () => {
+    const { asFragment } = render(<Button />);
+    expect(asFragment()).toMatchSnapshot();
+    const button = screen.getByText(/Button/gi);
+    expect(button).toBeInTheDocument();
+  });
+
+  it('render <Button> with props', () => {
     const handleClick = jest.fn();
     const { asFragment } = render(<Button onClick={handleClick} title="Reset" />);
     expect(asFragment()).toMatchSnapshot();

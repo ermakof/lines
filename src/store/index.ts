@@ -3,11 +3,8 @@ import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 
 import { rootReducer } from '@src/store/rootReducer';
-import { rehydrateApp } from '@src/store/rehydrateApp';
 import { rootSaga } from '@src/store/rootSaga';
-
-export const LOCAL_STORAGE_APP_KEY = 'lines:app';
-export const LOCAL_STORAGE_AUTH_KEY = 'lines:userProfile';
+import { actions } from '@src/modules/Auth/authSlice';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -25,7 +22,7 @@ const store = configureStore({
 
 sagaMiddleware.run(rootSaga);
 
-rehydrateApp();
+store.dispatch(actions.rehydrate());
 
 type TRootState = ReturnType<typeof store.getState>;
 
