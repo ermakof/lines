@@ -76,3 +76,153 @@ Open [http://localhost:8081](http://localhost:8081) в браузере.
 
 ### `npx stryker run`
 Запуск stryker.
+
+## Tests
+```
+----------------------------|---------|----------|---------|---------|-------------------
+File                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+----------------------------|---------|----------|---------|---------|-------------------
+All files                   |   99.79 |    88.37 |   99.28 |     100 |                  
+ src                        |     100 |      100 |     100 |     100 |                  
+  Root.tsx                  |     100 |      100 |     100 |     100 |                  
+ src/App                    |     100 |       70 |     100 |     100 |                  
+  AppBody.tsx               |     100 |      100 |     100 |     100 |                  
+  AppBottom.tsx             |     100 |    66.66 |     100 |     100 | 20               
+  AppHeader.tsx             |     100 |      100 |     100 |     100 |                  
+  AppRouter.tsx             |     100 |      100 |     100 |     100 |                  
+  appSaga.ts                |     100 |    70.58 |     100 |     100 | 57-188           
+  appSlice.ts               |     100 |      100 |     100 |     100 |                  
+  index.tsx                 |     100 |      100 |     100 |     100 |                  
+  initialState.ts           |     100 |      100 |     100 |     100 |                  
+ src/App/model              |       0 |        0 |       0 |       0 |                  
+  IAppState.ts              |       0 |        0 |       0 |       0 |                  
+  ICellsProps.ts            |       0 |        0 |       0 |       0 |                  
+ src/components             |     100 |      100 |     100 |     100 |                  
+  Button.tsx                |     100 |      100 |     100 |     100 |                  
+  Loading.tsx               |     100 |      100 |     100 |     100 |                  
+  Select.tsx                |     100 |      100 |     100 |     100 |                  
+ src/layout                 |     100 |      100 |     100 |     100 |                  
+  Panel.ts                  |     100 |      100 |     100 |     100 |                  
+ src/modules/Auth           |     100 |    94.44 |     100 |     100 |                  
+  AuthForm.tsx              |     100 |      100 |     100 |     100 |                  
+  AuthLayout.tsx            |     100 |       80 |     100 |     100 | 31               
+  AuthStatus.tsx            |     100 |      100 |     100 |     100 |                  
+  RequireAuth.tsx           |     100 |      100 |     100 |     100 |                  
+  authSaga.ts               |     100 |      100 |     100 |     100 |                  
+  authSlice.ts              |     100 |      100 |     100 |     100 |                  
+  fakeAuthProvider.ts       |     100 |      100 |     100 |     100 |                  
+ src/modules/Auth/model     |       0 |        0 |       0 |       0 |                  
+  IAuthState.ts             |       0 |        0 |       0 |       0 |                  
+  IUserProfile.ts           |       0 |        0 |       0 |       0 |                  
+ src/modules/Cell           |     100 |    87.87 |     100 |     100 |                  
+  constatnts.ts             |     100 |      100 |     100 |     100 |                  
+  index.tsx                 |     100 |    87.87 |     100 |     100 | 93,103-110       
+  models.ts                 |       0 |        0 |       0 |       0 |                  
+ src/modules/GameField      |     100 |      100 |     100 |     100 |                  
+  index.tsx                 |     100 |      100 |     100 |     100 |                  
+ src/modules/UserForm       |   92.85 |      100 |   83.33 |     100 |                  
+  index.tsx                 |   92.85 |      100 |   83.33 |     100 |                  
+ src/store                  |     100 |      100 |     100 |     100 |                  
+  index.ts                  |     100 |      100 |     100 |     100 |                  
+  rootReducer.ts            |     100 |      100 |     100 |     100 |                  
+  rootSaga.ts               |     100 |      100 |     100 |     100 |                  
+ src/utils                  |     100 |    90.21 |     100 |     100 |                  
+  Lee.ts                    |     100 |      100 |     100 |     100 |                  
+  addNewCellsToGameField.ts |     100 |      100 |     100 |     100 |                  
+  createArrayBySize.ts      |     100 |      100 |     100 |     100 |                  
+  createGameField.ts        |     100 |        0 |     100 |     100 | 6                
+  delay.ts                  |     100 |        0 |     100 |     100 | 1                
+  filterChainsByInd.ts      |     100 |      100 |     100 |     100 |                  
+  generateCellsByCount.ts   |     100 |      100 |     100 |     100 |                  
+  generateCellsByPercent.ts |     100 |      100 |     100 |     100 |                  
+  getChainByInd.ts          |     100 |      100 |     100 |     100 |                  
+  getChainsByInd.ts         |     100 |      100 |     100 |     100 |                  
+  getHighlightedCells.ts    |     100 |      100 |     100 |     100 |                  
+  getIndByPos.ts            |     100 |      100 |     100 |     100 |                  
+  getNewCells.ts            |     100 |       50 |     100 |     100 | 11               
+  getOutdatedCells.ts       |     100 |      100 |     100 |     100 |                  
+  getOutdatedChains.ts      |     100 |        0 |     100 |     100 | 6                
+  getPosByInd.ts            |     100 |      100 |     100 |     100 |                  
+  index.ts                  |       0 |        0 |       0 |       0 |                  
+  moveToCell.ts             |     100 |      100 |     100 |     100 |                  
+  removeOutdatedChains.ts   |     100 |      100 |     100 |     100 |                  
+  setCell.ts                |     100 |    71.42 |     100 |     100 | 1-2              
+  shuffle.ts                |     100 |      100 |     100 |     100 |                  
+  uuidv4.ts                 |     100 |      100 |     100 |     100 |                  
+----------------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 40 passed, 40 total
+Tests:       147 passed, 147 total
+Snapshots:   16 passed, 16 total
+Time:        8.231 s
+Ran all test suites.
+jest-html-reporter >> Report generated (./temp/testResult.html)
+Done in 9.82s.
+
+```
+### Stryker tests
+```
+----------------------------|---------|----------|-----------|------------|----------|---------|
+File                        | % score | # killed | # timeout | # survived | # no cov | # error |
+----------------------------|---------|----------|-----------|------------|----------|---------|
+All files                   |   99.18 |        0 |       484 |          0 |        4 |     171 |
+ App                        |  100.00 |        0 |        79 |          0 |        0 |      31 |
+  AppBody.tsx               |  100.00 |        0 |         1 |          0 |        0 |       1 |
+  AppBottom.tsx             |  100.00 |        0 |        13 |          0 |        0 |       3 |
+  AppHeader.tsx             |     n/a |        0 |         0 |          0 |        0 |       1 |
+  AppRouter.tsx             |  100.00 |        0 |         2 |          0 |        0 |       2 |
+  appSaga.ts                |  100.00 |        0 |        47 |          0 |        0 |      13 |
+  appSlice.ts               |  100.00 |        0 |        11 |          0 |        0 |       6 |
+  index.tsx                 |  100.00 |        0 |         2 |          0 |        0 |       1 |
+  initialState.ts           |  100.00 |        0 |         3 |          0 |        0 |       4 |
+ components                 |  100.00 |        0 |        20 |          0 |        0 |       7 |
+  Button.tsx                |  100.00 |        0 |         3 |          0 |        0 |       1 |
+  Loading.tsx               |  100.00 |        0 |         6 |          0 |        0 |       4 |
+  Select.tsx                |  100.00 |        0 |        11 |          0 |        0 |       2 |
+ layout                     |  100.00 |        0 |         1 |          0 |        0 |       0 |
+  Panel.ts                  |  100.00 |        0 |         1 |          0 |        0 |       0 |
+ modules                    |  100.00 |        0 |       143 |          0 |        0 |      29 |
+  Auth                      |  100.00 |        0 |        58 |          0 |        0 |      22 |
+   AuthForm.tsx             |  100.00 |        0 |         9 |          0 |        0 |       5 |
+   AuthLayout.tsx           |  100.00 |        0 |        13 |          0 |        0 |       2 |
+   authSaga.ts              |  100.00 |        0 |        11 |          0 |        0 |       2 |
+   authSlice.ts             |  100.00 |        0 |         4 |          0 |        0 |       4 |
+   AuthStatus.tsx           |  100.00 |        0 |         7 |          0 |        0 |       1 |
+   fakeAuthProvider.ts      |  100.00 |        0 |         9 |          0 |        0 |       7 |
+   RequireAuth.tsx          |  100.00 |        0 |         5 |          0 |        0 |       1 |
+  Cell                      |  100.00 |        0 |        55 |          0 |        0 |       2 |
+   index.tsx                |  100.00 |        0 |        55 |          0 |        0 |       2 |
+  GameField                 |  100.00 |        0 |        25 |          0 |        0 |       3 |
+   index.tsx                |  100.00 |        0 |        25 |          0 |        0 |       3 |
+  UserForm                  |  100.00 |        0 |         5 |          0 |        0 |       2 |
+   index.tsx                |  100.00 |        0 |         5 |          0 |        0 |       2 |
+ store                      |  100.00 |        0 |         3 |          0 |        0 |       0 |
+  rootReducer.ts            |  100.00 |        0 |         1 |          0 |        0 |       0 |
+  rootSaga.ts               |  100.00 |        0 |         2 |          0 |        0 |       0 |
+ utils                      |   98.76 |        0 |       238 |          0 |        3 |     103 |
+  addNewCellsToGameField.ts |  100.00 |        0 |         4 |          0 |        0 |       1 |
+  createArrayBySize.ts      |  100.00 |        0 |         2 |          0 |        0 |       2 |
+  createGameField.ts        |     n/a |        0 |         0 |          0 |        0 |       1 |
+  delay.ts                  |  100.00 |        0 |         1 |          0 |        0 |       1 |
+  filterChainsByInd.ts      |  100.00 |        0 |        23 |          0 |        0 |       6 |
+  generateCellsByCount.ts   |  100.00 |        0 |         7 |          0 |        0 |       3 |
+  generateCellsByPercent.ts |  100.00 |        0 |         2 |          0 |        0 |       2 |
+  getChainByInd.ts          |  100.00 |        0 |        31 |          0 |        0 |      11 |
+  getChainsByInd.ts         |  100.00 |        0 |         6 |          0 |        0 |       5 |
+  getHighlightedCells.ts    |  100.00 |        0 |         2 |          0 |        0 |       1 |
+  getIndByPos.ts            |  100.00 |        0 |         2 |          0 |        0 |       1 |
+  getNewCells.ts            |   90.91 |        0 |        10 |          0 |        1 |       4 |
+  getOutdatedCells.ts       |  100.00 |        0 |         1 |          0 |        0 |       3 |
+  getOutdatedChains.ts      |   33.33 |        0 |         1 |          0 |        2 |       1 |
+  getPosByInd.ts            |  100.00 |        0 |         8 |          0 |        0 |       1 |
+  Lee.ts                    |  100.00 |        0 |        99 |          0 |        0 |      38 |
+  moveToCell.ts             |  100.00 |        0 |         3 |          0 |        0 |       6 |
+  removeOutdatedChains.ts   |  100.00 |        0 |        12 |          0 |        0 |       2 |
+  setCell.ts                |  100.00 |        0 |         9 |          0 |        0 |      10 |
+  shuffle.ts                |  100.00 |        0 |         8 |          0 |        0 |       2 |
+  uuidv4.ts                 |  100.00 |        0 |         7 |          0 |        0 |       2 |
+ index.tsx                  |    0.00 |        0 |         0 |          0 |        1 |       0 |
+ Root.tsx                   |     n/a |        0 |         0 |          0 |        0 |       1 |
+----------------------------|---------|----------|-----------|------------|----------|---------|
+
+```
