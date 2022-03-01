@@ -14,6 +14,11 @@ const cells = [
 ];
 
 describe('getOutdatedChains', () => {
+  it('without props', () => {
+    const arr = getOutdatedChains();
+    expect(arr).toEqual([]);
+  });
+
   it('pos = 0, level = "1"', () => {
     const arr = getOutdatedChains(0, '1', cells);
     expect(arr).toEqual([[0, 9, 18, 27]]);

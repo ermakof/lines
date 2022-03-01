@@ -82,7 +82,7 @@ Open [http://localhost:8081](http://localhost:8081) в браузере.
 ----------------------------|---------|----------|---------|---------|-------------------
 File                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 ----------------------------|---------|----------|---------|---------|-------------------
-All files                   |   99.79 |    88.37 |   99.28 |     100 |                  
+All files                   |   99.79 |    91.27 |   99.28 |     100 |                  
  src                        |     100 |      100 |     100 |     100 |                  
   Root.tsx                  |     100 |      100 |     100 |     100 |                  
  src/App                    |     100 |       70 |     100 |     100 |                  
@@ -126,7 +126,7 @@ All files                   |   99.79 |    88.37 |   99.28 |     100 |
   index.ts                  |     100 |      100 |     100 |     100 |                  
   rootReducer.ts            |     100 |      100 |     100 |     100 |                  
   rootSaga.ts               |     100 |      100 |     100 |     100 |                  
- src/utils                  |     100 |    90.21 |     100 |     100 |                  
+ src/utils                  |     100 |    95.65 |     100 |     100 |                  
   Lee.ts                    |     100 |      100 |     100 |     100 |                  
   addNewCellsToGameField.ts |     100 |      100 |     100 |     100 |                  
   createArrayBySize.ts      |     100 |      100 |     100 |     100 |                  
@@ -139,9 +139,9 @@ All files                   |   99.79 |    88.37 |   99.28 |     100 |
   getChainsByInd.ts         |     100 |      100 |     100 |     100 |                  
   getHighlightedCells.ts    |     100 |      100 |     100 |     100 |                  
   getIndByPos.ts            |     100 |      100 |     100 |     100 |                  
-  getNewCells.ts            |     100 |       50 |     100 |     100 | 11               
+  getNewCells.ts            |     100 |      100 |     100 |     100 |                  
   getOutdatedCells.ts       |     100 |      100 |     100 |     100 |                  
-  getOutdatedChains.ts      |     100 |        0 |     100 |     100 | 6                
+  getOutdatedChains.ts      |     100 |      100 |     100 |     100 |                  
   getPosByInd.ts            |     100 |      100 |     100 |     100 |                  
   index.ts                  |       0 |        0 |       0 |       0 |                  
   moveToCell.ts             |     100 |      100 |     100 |     100 |                  
@@ -151,21 +151,13 @@ All files                   |   99.79 |    88.37 |   99.28 |     100 |
   uuidv4.ts                 |     100 |      100 |     100 |     100 |                  
 ----------------------------|---------|----------|---------|---------|-------------------
 
-Test Suites: 40 passed, 40 total
-Tests:       147 passed, 147 total
-Snapshots:   16 passed, 16 total
-Time:        8.231 s
-Ran all test suites.
-jest-html-reporter >> Report generated (./temp/testResult.html)
-Done in 9.82s.
-
 ```
 ### Stryker tests
 ```
 ----------------------------|---------|----------|-----------|------------|----------|---------|
 File                        | % score | # killed | # timeout | # survived | # no cov | # error |
 ----------------------------|---------|----------|-----------|------------|----------|---------|
-All files                   |   99.18 |        0 |       484 |          0 |        4 |     171 |
+All files                   |   99.79 |        0 |       486 |          0 |        1 |     171 |
  App                        |  100.00 |        0 |        79 |          0 |        0 |      31 |
   AppBody.tsx               |  100.00 |        0 |         1 |          0 |        0 |       1 |
   AppBottom.tsx             |  100.00 |        0 |        13 |          0 |        0 |       3 |
@@ -199,7 +191,7 @@ All files                   |   99.18 |        0 |       484 |          0 |     
  store                      |  100.00 |        0 |         3 |          0 |        0 |       0 |
   rootReducer.ts            |  100.00 |        0 |         1 |          0 |        0 |       0 |
   rootSaga.ts               |  100.00 |        0 |         2 |          0 |        0 |       0 |
- utils                      |   98.76 |        0 |       238 |          0 |        3 |     103 |
+ utils                      |  100.00 |        0 |       240 |          0 |        0 |     103 |
   addNewCellsToGameField.ts |  100.00 |        0 |         4 |          0 |        0 |       1 |
   createArrayBySize.ts      |  100.00 |        0 |         2 |          0 |        0 |       2 |
   createGameField.ts        |     n/a |        0 |         0 |          0 |        0 |       1 |
@@ -211,9 +203,9 @@ All files                   |   99.18 |        0 |       484 |          0 |     
   getChainsByInd.ts         |  100.00 |        0 |         6 |          0 |        0 |       5 |
   getHighlightedCells.ts    |  100.00 |        0 |         2 |          0 |        0 |       1 |
   getIndByPos.ts            |  100.00 |        0 |         2 |          0 |        0 |       1 |
-  getNewCells.ts            |   90.91 |        0 |        10 |          0 |        1 |       4 |
+  getNewCells.ts            |  100.00 |        0 |        11 |          0 |        0 |       4 |
   getOutdatedCells.ts       |  100.00 |        0 |         1 |          0 |        0 |       3 |
-  getOutdatedChains.ts      |   33.33 |        0 |         1 |          0 |        2 |       1 |
+  getOutdatedChains.ts      |  100.00 |        0 |         2 |          0 |        0 |       1 |
   getPosByInd.ts            |  100.00 |        0 |         8 |          0 |        0 |       1 |
   Lee.ts                    |  100.00 |        0 |        99 |          0 |        0 |      38 |
   moveToCell.ts             |  100.00 |        0 |         3 |          0 |        0 |       6 |
