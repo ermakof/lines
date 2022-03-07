@@ -76,7 +76,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: ./dist  # The folder the action should deploy.
-          CLEAN: true # Automatically remove deleted files from the deploy branch
+          CLEAN: true # Automatically remove deleted files from deploy branch
 
       - name: Deploy storybook to GHP, branch gh-pages-storybook 🚀
         id: Deploy-storybook
@@ -85,7 +85,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages-storybook # The branch the action should deploy to.
           FOLDER: ./storybook-static  # The folder the action should deploy.
-          CLEAN: true # Automatically remove deleted files from the deploy branch
+          CLEAN: true # Automatically remove deleted files from deploy branch
 
       - name: Deploy test-report to GHP, branch gh-pages-test 🚀
         id: Deploy-test-report
@@ -94,7 +94,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages-test # The branch the action should deploy to.
           FOLDER: ./coverage  # The folder the action should deploy.
-          CLEAN: true # Automatically remove deleted files from the deploy branch
+          CLEAN: true # Automatically remove deleted files from deploy branch
 
       - name: Deploy stryker-report to GHP, branch gh-pages-stryker 🚀
         id: Deploy-test-stryker
@@ -103,4 +103,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages-stryker # The branch the action should deploy to.
           FOLDER: ./reports  # The folder the action should deploy.
-          CLEAN: true # Automatically remove deleted files from the deploy branch
+          CLEAN: true # Automatically remove deleted files from deploy branch
