@@ -19,7 +19,6 @@ export const FieldContainer = styled.section<IFieldContainer>`
   margin: auto;
   height: fit-content;
   width: fit-content;
-  opacity: ${({ active }) => (active ? 1 : 0.3)};
   min-width: 550px;
   min-height: 550px;
 `;
@@ -31,7 +30,6 @@ const MessageNoData = styled.p`
 `;
 
 const GameField: FC = () => {
-  const userIsLogged = useSelector(({ auth }: TRootState) => !!auth.userProfile);
   const {
     gameFieldData,
     selectedCell,
@@ -44,7 +42,7 @@ const GameField: FC = () => {
   }
 
   return (
-    <FieldContainer role="cellsGrid" active={userIsLogged}>
+    <FieldContainer role="cellsGrid">
       {gameFieldData.map((item: ICellInfo, index: number) => {
         const y = Math.floor(index / GAME_FIELD_SIZE);
         const x = index % GAME_FIELD_SIZE;

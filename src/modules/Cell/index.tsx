@@ -37,6 +37,7 @@ interface IContainer {
   isLeft?: boolean;
 }
 const Container = styled.div<IContainer>`
+  position: relative;
   display: block;
   width: ${({ isRight }) => CELL_SIZE - (isRight ? 2 : 1)}px;
   height: ${CELL_SIZE - 1}px;
@@ -66,7 +67,11 @@ const Content = styled.div<IContent>`
   background: #ffff00;
   border-radius: 50%;
   background: ${({ selected, highlighted, filled }) =>
-    highlighted ? highlighted : selected ? getColor(filled) : getColor(filled, 'a0')};
+    highlighted && highlighted.substring(0, 1) === '#'
+      ? highlighted
+      : selected
+      ? getColor(filled)
+      : getColor(filled, 'a0')};
   border-radius: 50%;
   width: 25px;
   height: 25px;
@@ -79,19 +84,33 @@ const Content = styled.div<IContent>`
   ${({ highlighted, filled }) => (!highlighted ? `:hover {background: ${getColor(filled)};}` : '')}
 `;
 
+interface IDestroy {
+  direction: string;
+}
+const Destroy = styled.div<IDestroy>`
+  margin-left: -4px;
+  height: 2px;
+  width: 57px;
+  padding: 0;
+  position: absolute;
+  top: 22px;
+  background: #666666;
+  ${({ direction }) => (direction === 'X' ? 'transform: rotate(-90deg)' : '')}
+`;
+
 export interface CellProps {
-  num: number;
-  filled: number;
-  isSelected: boolean;
+  num?: number;
+  filled?: number;
+  isSelected?: boolean;
   isLeft?: boolean;
   isRight?: boolean;
   highlighted?: string;
 }
 
 const Cell: React.FC<CellProps> = ({
-  num,
+  num = 0,
   filled = 0,
-  isSelected,
+  isSelected = false,
   isLeft = true,
   isRight = true,
   highlighted = '',
@@ -119,14 +138,22 @@ const Cell: React.FC<CellProps> = ({
       isLeft={isLeft}
       onClick={handleSelectContainer}
     >
-      {filled > 0 && (
-        <Content
-          role={`cellContent-${num}`}
-          selected={isSelected}
-          onClick={handleSelectCell}
-          highlighted={highlighted}
-          filled={filled}
-        />
+      {filled > 0 && filled < 4 && (
+        <>
+          <Content
+            role={`cellContent-${num}`}
+            selected={isSelected}
+            onClick={handleSelectCell}
+            highlighted={highlighted}
+            filled={filled}
+          />
+          {highlighted && highlighted.substring(0, 1) !== '#' && (
+            <Destroy
+              role={`cellDestroy-${num}-${highlighted.substring(0, 1)}`}
+              direction={highlighted}
+            />
+          )}
+        </>
       )}
     </Container>
   );

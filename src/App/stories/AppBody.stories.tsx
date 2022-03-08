@@ -7,6 +7,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { store } from '@src/store';
 import AppBody from '@src/App/AppBody';
 import { appSlice } from '@src/App/appSlice';
+import { authSlice } from '@src/modules/Auth/authSlice';
 
 export default {
   component: AppBody,
@@ -15,22 +16,23 @@ export default {
 } as ComponentMeta<typeof AppBody>;
 
 const payload = {
-  gameLevel: '1',
-  gameFieldPercentFilled: 30,
+  gameLevel: '2',
+  gameFieldPercentFilled: 20,
   gameFieldData: [
-    0, 1, 0, 0, 0, 2, 1, 3, 3,
-    1, 0, 0, 0, 0, 0, 0, 0, 1,
-    2, 0, 0, 0, 0, 0, 0, 0, 1,
-    2, 0, 0, 0, 0, 0, 0, 0, 1,
-    0, 0, 0, 0, 0, 0, 0, 0, 3,
-    1, 0, 0, 0, 0, 0, 0, 0, 0,
-    2, 3, 1, 3, 0, 0, 0, 0, 0,
-    1, 0, 0, 0, 0, 0, 0, 0, 0,
-    2, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 1, 3, 0, 0, 0, 3, 0, 0,
+    0, 0, 0, 0, 1, 0, 0, 0, 0,
+    0, 3, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 2, 0, 0, 3, 0,
+    1, 0, 3, 0, 3, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 1, 0, 0,
+    1, 0, 0, 0, 0, 0, 0, 0, 2,
+    0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 1, 0, 0, 2, 0, 1, 0, 0
   ],
-  selectedCell: 1,
+  selectedCell: undefined,
 };
 
+store.dispatch(authSlice.actions.login({login: 'user', password: '123', token: '1-2-3'}));
 store.dispatch(appSlice.actions.updateGame(payload));
 
 const Template: ComponentStory<typeof AppBody> = (args) => (
@@ -39,6 +41,4 @@ const Template: ComponentStory<typeof AppBody> = (args) => (
   </Provider>
 );
 
-export const Static = Template.bind({});
-
-Static.args = {};
+export const GameExample = Template.bind({});

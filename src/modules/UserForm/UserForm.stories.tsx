@@ -1,12 +1,10 @@
 /* eslint-disable */
 import React from 'react';
 import { Provider } from 'react-redux';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { Meta, Story } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { BrowserRouter as Router } from 'react-router-dom';
 
-import UserForm from '@src/modules/UserForm';
+import FormControls from '@src/modules/UserForm/FormControls';
 import { store } from '@src/store';
 import { appSlice } from '@src/App/appSlice';
 
@@ -30,20 +28,14 @@ const payload = {
 store.dispatch(appSlice.actions.updateGame(payload));
 
 export default {
-  component: UserForm,
+  component: FormControls,
   decorators: [withKnobs],
-  title: 'Forms/UserForm',
-} as ComponentMeta<typeof UserForm>;
+  title: 'Forms/FormControls',
+} as Meta;
 
-const Template: ComponentStory<typeof UserForm> = (args) => (
+export const ExampleControls: Story = (args) => (
   <Provider store={store}>
-    <Router>
-      <UserForm {...args} />
-    </Router>
+    <FormControls {...args} />
   </Provider>
 );
-export const Static = Template.bind({});
 
-Static.args = {
-  onSubmit: action('submitted'),
-};

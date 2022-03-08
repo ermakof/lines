@@ -28,6 +28,7 @@ const initialState: IAppState = {
   score: 0,
   selectedCell: undefined,
   isLoading: false,
+  hitParade: undefined,
 };
 
 export default initialState;

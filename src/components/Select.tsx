@@ -20,20 +20,21 @@ const Root = styled.div`
   }
 
   p {
-    margin: auto;
+    margin: auto 0;
   }
 `;
 
 export interface ISelect {
   onSelect?: (level: React.ChangeEvent<HTMLSelectElement>) => void;
   selectedLevel?: string;
+  options?: Array<{ id: string; name: string }>;
 }
-const Select: FC<ISelect> = ({ onSelect, selectedLevel }) => {
+const Select: FC<ISelect> = ({ onSelect, selectedLevel, options = levelList }) => {
   return (
     <Root>
       <p>Уровень</p>
       <select value={selectedLevel} role="select" name="select" onChange={onSelect}>
-        {levelList.map((level) => (
+        {options.map((level) => (
           <option key={level.id} role="option" value={level.id}>
             {level.name}
           </option>

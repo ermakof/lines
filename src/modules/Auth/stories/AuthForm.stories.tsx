@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -11,9 +11,9 @@ export default {
   component: AuthForm,
   decorators: [withKnobs],
   title: 'Forms/AuthForm',
-} as ComponentMeta<typeof AuthForm>;
+} as Meta;
 
-const Template: ComponentStory<typeof AuthForm> = (args) => (
+const Template: Story = (args) => (
   <Provider store={store}>
     <Router>
       <AuthForm {...args} />
@@ -21,6 +21,4 @@ const Template: ComponentStory<typeof AuthForm> = (args) => (
   </Provider>
 );
 
-export const Static = Template.bind({});
-
-Static.args = {};
+export const ExampleForm = Template.bind({});

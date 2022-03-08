@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
-import { ComponentStory } from '@storybook/react';
-import Select, { ISelect } from '../Select';
+import React from 'react';
+import { Meta, Story } from '@storybook/react';
+import Select from '../Select';
 import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs';
 
@@ -8,16 +8,21 @@ export default {
   component: Select,
   decorators: [withKnobs],
   title: 'Components/Select',
-} as ISelect;
+} as Meta;
 
-const Template: ComponentStory<typeof Select> = (args) => <Select {...args} />;
+const Template: Story = (args) => <Select {...args} />;
 
-export const Static = Template.bind({});
+export const SelectLevelExample = Template.bind({});
 
-Static.args = {
+SelectLevelExample.args = {
   onSelect: action('selected'),
-};
-
-export const Dynamic: FC = () => {
-  return <Select />;
+  selectedLevel: '2',
+  options: [
+    { id: '1', name: 'Падаван' },
+    { id: '2', name: 'Джедай' },
+    {
+      id: '3',
+      name: 'Член Совета Силы',
+    },
+  ],
 };

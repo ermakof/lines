@@ -3,51 +3,55 @@
 exports[`UserForm Render <UserForm> 1`] = `
 <DocumentFragment>
   <div
-    class="css-1uv7a9d"
+    class="css-1w0hfqs"
     role="userForm"
   >
-    <button
-      class="css-tv5zn1"
-      role="buttonReset"
-    >
-      Сброс
-    </button>
     <div
-      class="css-7bmjkf"
+      class="css-ov1ktg"
     >
-      <p>
-        Уровень
-      </p>
-      <select
-        name="select"
-        role="select"
+      <button
+        class="css-tv5zn1"
+        role="buttonReset"
       >
-        <option
-          role="option"
-          value="1"
+        Сброс
+      </button>
+      <div
+        class="css-1xvr7bb"
+      >
+        <p>
+          Уровень
+        </p>
+        <select
+          name="select"
+          role="select"
         >
-          Падаван
-        </option>
-        <option
-          role="option"
-          value="2"
-        >
-          Джедай
-        </option>
-        <option
-          role="option"
-          value="3"
-        >
-          Член Совета Силы
-        </option>
-      </select>
+          <option
+            role="option"
+            value="1"
+          >
+            Падаван
+          </option>
+          <option
+            role="option"
+            value="2"
+          >
+            Джедай
+          </option>
+          <option
+            role="option"
+            value="3"
+          >
+            Член Совета Силы
+          </option>
+        </select>
+      </div>
+      <button
+        class="css-tv5zn1"
+        role="buttonLogout"
+      >
+        Выйти
+      </button>
     </div>
-    <button
-      class="css-tv5zn1"
-      role="buttonLogout"
-    >
-      Выйти
-    </button>
   </div>
 </DocumentFragment>
 `;

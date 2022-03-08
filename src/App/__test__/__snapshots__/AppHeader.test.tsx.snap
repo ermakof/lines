@@ -3,63 +3,67 @@
 exports[`AppHeader Render authorised <AppHeader> 1`] = `
 <DocumentFragment>
   <div
-    class="css-1uv7a9d"
+    class="css-1w0hfqs"
     role="topPanel"
   >
     <div
       class="css-ov1ktg"
     >
       <p
-        class="css-z1cqd0"
+        class="css-10vuvr5"
       >
         Игрок: 123
       </p>
       <div
-        class="css-1uv7a9d"
+        class="css-1w0hfqs"
         role="userForm"
       >
-        <button
-          class="css-tv5zn1"
-          role="buttonReset"
-        >
-          Сброс
-        </button>
         <div
-          class="css-7bmjkf"
+          class="css-ov1ktg"
         >
-          <p>
-            Уровень
-          </p>
-          <select
-            name="select"
-            role="select"
+          <button
+            class="css-tv5zn1"
+            role="buttonReset"
           >
-            <option
-              role="option"
-              value="1"
+            Сброс
+          </button>
+          <div
+            class="css-1xvr7bb"
+          >
+            <p>
+              Уровень
+            </p>
+            <select
+              name="select"
+              role="select"
             >
-              Падаван
-            </option>
-            <option
-              role="option"
-              value="2"
-            >
-              Джедай
-            </option>
-            <option
-              role="option"
-              value="3"
-            >
-              Член Совета Силы
-            </option>
-          </select>
+              <option
+                role="option"
+                value="1"
+              >
+                Падаван
+              </option>
+              <option
+                role="option"
+                value="2"
+              >
+                Джедай
+              </option>
+              <option
+                role="option"
+                value="3"
+              >
+                Член Совета Силы
+              </option>
+            </select>
+          </div>
+          <button
+            class="css-tv5zn1"
+            role="buttonLogout"
+          >
+            Выйти
+          </button>
         </div>
-        <button
-          class="css-tv5zn1"
-          role="buttonLogout"
-        >
-          Выйти
-        </button>
       </div>
     </div>
   </div>
@@ -69,19 +73,19 @@ exports[`AppHeader Render authorised <AppHeader> 1`] = `
 exports[`AppHeader Render unauthorised <AppHeader> 1`] = `
 <DocumentFragment>
   <div
-    class="css-1uv7a9d"
+    class="css-1w0hfqs"
     role="topPanel"
   >
     <div
       class="css-ov1ktg"
     >
       <p
-        class="css-z1cqd0"
+        class="css-10vuvr5"
       >
         Lines
       </p>
       <div
-        class="css-qkmzfx"
+        class="css-9e74ss"
         role="authForm"
       >
         <form

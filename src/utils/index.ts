@@ -19,6 +19,7 @@ import { getOutdatedCells } from '@src/utils/getOutdatedCells';
 import { getHighlightedCells } from '@src/utils/getHighlightedCells';
 import { addNewCellsToGameField } from '@src/utils/addNewCellsToGameField';
 import { lee } from '@src/utils/Lee';
+import getChainDirection from '@src/utils/getChainDirection';
 
 export {
   getNewCells,
@@ -42,4 +43,5 @@ export {
   getHighlightedCells,
   addNewCellsToGameField,
   lee,
+  getChainDirection,
 };

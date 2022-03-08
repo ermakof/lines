@@ -65,6 +65,30 @@ describe('Cell', () => {
     expect(cellContent).toHaveStyle('background: #333');
   });
 
+  it('Destroy cell X', () => {
+    const mockDispatch = jest.fn();
+    (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
+    render(
+      <Provider store={store}>
+        <Cell num={2} isSelected={false} highlighted="X" filled={1} />
+      </Provider>
+    );
+    const cell = screen.getByRole(/cellDestroy-2-X/i);
+    expect(cell).toHaveStyle('background: #666');
+  });
+
+  it('Destroy cell Y', () => {
+    const mockDispatch = jest.fn();
+    (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
+    render(
+      <Provider store={store}>
+        <Cell num={2} isSelected={false} highlighted="Y" filled={1} />
+      </Provider>
+    );
+    const cell = screen.getByRole(/cellDestroy-2-Y/i);
+    expect(cell).toHaveStyle('background: #666');
+  });
+
   it('Click on container cell', () => {
     const mockDispatch = jest.fn();
     (useDispatch as jest.Mock).mockReturnValue(mockDispatch);

@@ -1,18 +1,15 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentStory, Meta } from '@storybook/react';
 import Cell from '../index';
-import { withKnobs, number, boolean } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import { store } from '@src/store';
-import { actions } from '@src/App/appSlice';
 
 export default {
   component: Cell,
   decorators: [withKnobs],
   title: 'Modules/Cell',
-} as ComponentMeta<typeof Cell>;
-
-store.dispatch(actions.rehydrate());
+} as Meta;
 
 const Template: ComponentStory<typeof Cell> = (args) => (
   <Provider store={store}>
@@ -20,28 +17,54 @@ const Template: ComponentStory<typeof Cell> = (args) => (
   </Provider>
 );
 
-export const Static = Template.bind({});
+export const EmptyCell = Template.bind({});
 
-Static.args = {
-  num: number('num', 3),
-  isSelected: boolean('isSelected', false),
-  isRight: boolean('isRight', true),
-  isLeft: boolean('isLeft', true),
+export const RedCell = Template.bind({});
+RedCell.args = {
+  filled: 1,
 };
 
-export const Dynamic: FC = () => {
-  const num = number('num', 3);
+export const YellowCell = Template.bind({});
+YellowCell.args = {
+  num: 1,
+  filled: 2,
+};
 
-  return (
-    <Provider store={store}>
-      <Cell
-        num={num}
-        filled={number('filled', 1)}
-        isSelected={boolean('status', true)}
-        isRight={boolean('isRight', true)}
-        isLeft={boolean('isLeft', true)}
-        highlighted=""
-      />
-    </Provider>
-  );
+export const GreenCell = Template.bind({});
+GreenCell.args = {
+  filled: 3,
+};
+
+export const InaccessibleCell = Template.bind({});
+InaccessibleCell.args = {
+  filled: 1,
+  highlighted: '#333333A0',
+};
+
+export const SelectedCell = Template.bind({});
+SelectedCell.args = {
+  filled: 1,
+  isSelected: true,
+};
+
+export const DestroyedCellY = Template.bind({});
+DestroyedCellY.args = {
+  filled: 1,
+  highlighted: 'Y',
+};
+
+export const DestroyedCellX = Template.bind({});
+DestroyedCellX.args = {
+  filled: 1,
+  highlighted: 'X',
+};
+
+export const DynamicCell = Template.bind({});
+DynamicCell.args = {
+  num: 1,
+  filled: 1,
+  isSelected: true,
+  isRight: true,
+  isLeft: true,
+  highlighted: '',
 };

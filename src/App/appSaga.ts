@@ -12,6 +12,7 @@ import { TRootState } from '@src/store';
 import {
   addNewCellsToGameField,
   delay,
+  getChainDirection,
   getHighlightedCells,
   getIndByPos,
   getOutdatedCells,
@@ -24,6 +25,7 @@ import getOutdatedChains from '@src/utils/getOutdatedChains';
 import { ICellsProps } from '@src/App/model/ICellsProps';
 import removeOutdatedChains from '@src/utils/removeOutdatedChains';
 import getNewCells from '@src/utils/getNewCells';
+import { GAME_FIELD_SIZE } from '@src/App/initialState';
 
 const LOCAL_STORAGE_APP_KEY = 'lines:app';
 
@@ -121,7 +123,8 @@ export function* step2(
   chains: Array<Array<number>>,
   time: number
 ): Generator<SelectEffect | PutEffect | CallEffect, void, IAppState> {
-  const highlightedCells = yield call(getOutdatedCells, chains);
+  const direction: 'X' | 'Y' | '' = getChainDirection(chains, GAME_FIELD_SIZE);
+  const highlightedCells = yield call(getOutdatedCells, chains, direction);
   yield put(appActions.updateGame({ highlightedCells }));
   yield call(delay, time);
 }

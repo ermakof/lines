@@ -9,4 +9,5 @@ export interface IAppState {
   score?: number;
   selectedCell?: number;
   userLevel?: string;
+  hitParade?: Record<string, number>;
 }

@@ -1,52 +1,89 @@
 /* eslint-disable */
-import React from 'react';
+import React, { FC } from 'react';
 import { Provider } from 'react-redux';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { withKnobs, number } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react';
+import { withKnobs } from '@storybook/addon-knobs';
+import { combineReducers, configureStore, createSlice } from '@reduxjs/toolkit';
 
 import AppBottom from '@src/App/AppBottom';
-import { store } from '@src/store';
-import { appSlice } from '@src/App/appSlice';
-import { authSlice } from '@src/modules/Auth/authSlice';
+import { TRootState } from '@src/store';
 
 export default {
   component: AppBottom,
   decorators: [withKnobs],
   title: 'Application/AppBottom',
-} as ComponentMeta<typeof AppBottom>;
+} as Meta;
 
-const payload = {
-  gameLevel: '1',
-  gameFieldPercentFilled: 10,
-  score: 15,
-  gameFieldData: [
-    0, 1, 0, 0, 0, 1, 1, 1, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 1,
-    0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0,
-    1, 1, 1, 1, 0, 0, 0, 0, 0,
-    1, 0, 0, 0, 0, 0, 0, 0, 0,
-    1, 0, 0, 0, 0, 0, 0, 0, 0,
-  ],
+const MockedStateInit = {
+  auth: {
+    userProfile: undefined,
+  },
+  app: {
+    gameLevel: '',
+    gameFieldPercentFilled: 0,
+    score: 0,
+    gameFieldData: [],
+  }
 };
 
-store.dispatch(appSlice.actions.updateGame(payload));
-store.dispatch(authSlice.actions.login({
-  login: 'user',
-  password: '123',
-  token: '123-123-123',
-}));
+const MockedStateAuthorized = {
+  auth: {
+    userProfile: {
+      login: 'user',
+      password: '123',
+      token: '123-123-123',
+    }
+  },
+  app: {
+    gameLevel: '2',
+    gameFieldPercentFilled: 20,
+    score: 150,
+    gameFieldData: [
+      0, 1, 3, 0, 0, 0, 3, 0, 0,
+      0, 0, 0, 0, 1, 0, 0, 0, 0,
+      0, 3, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 2, 0, 0, 3, 0,
+      1, 0, 3, 0, 3, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 1, 0, 0,
+      1, 0, 0, 0, 0, 0, 0, 0, 2,
+      0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 1, 0, 0, 2, 0, 1, 0, 0
+    ],
+  }
+};
 
-const Template: ComponentStory<typeof AppBottom> = (args) => (
-  <Provider store={store}>
-    <AppBottom {...args} />;
+interface IMockStore {
+  state: TRootState;
+  children: React.ReactNode;
+}
+const MockStore:FC<IMockStore> = ({ state, children }) => {
+  const auth = createSlice({
+    name: 'auth',
+    initialState: state.auth,
+    reducers: {},
+  }).reducer;
+  const app = createSlice({
+    name: 'app',
+    initialState: state.app,
+    reducers: {},
+  }).reducer;
+  return <Provider
+    store={ configureStore({
+      reducer: combineReducers({auth, app}),
+    }) }
+  >
+    { children }
   </Provider>
-);
-
-export const Static = Template.bind({});
-
-Static.args = {
-  countUsers: number('num', 50),
 };
+
+const Template = () => <AppBottom />;
+
+export const WithAuthorized: Story = Template.bind({});
+WithAuthorized.decorators = [
+  (story) => <MockStore state={MockedStateAuthorized}>{story()}</MockStore>,
+];
+
+export const WithoutAuthorized: Story = Template.bind({});
+WithoutAuthorized.decorators = [
+  (story) => <MockStore state={MockedStateInit}>{story()}</MockStore>,
+];

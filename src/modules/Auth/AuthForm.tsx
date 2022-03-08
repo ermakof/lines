@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { actions } from '@src/modules/Auth/authSlice';
 
 const Root = styled.div`
+  display: flex;
   font-size: 16px;
 
   label {
@@ -23,7 +24,7 @@ const Root = styled.div`
   }
 
   form {
-    margin: 3vh 0;
+    margin: auto 0;
   }
 `;
 

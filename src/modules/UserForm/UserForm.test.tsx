@@ -23,7 +23,7 @@ let mockDispatch: jest.Mock;
 
 describe('UserForm', () => {
   beforeEach(() => {
-    store = mockStore(initialState);
+    store = mockStore();
     mockDispatch = jest.fn();
     (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
     (useSelector as jest.Mock).mockReturnValue(initialState);
