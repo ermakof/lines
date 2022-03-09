@@ -25,15 +25,6 @@ const appGlobal = css`
   }
 `;
 
-interface IUser {
-  body: string;
-  id: number;
-  title: string;
-  userId: number;
-}
-
-export type IUserList = Array<IUser>;
-
 const App: FC = () => (
   <Root role="rootApp">
     <Global styles={appGlobal} />

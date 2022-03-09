@@ -14,7 +14,8 @@ const signIn = (userInfo: IUserInfo | undefined): Promise<IUserProfile> => {
         if (!userInfo) {
           throw 'Нет данных о пользователе!';
         }
-        let userProfile: IUserProfile = { ...userInfo, token: uuidv4() };
+        const loginTime = new Date().getTime();
+        let userProfile: IUserProfile = { ...userInfo, token: uuidv4(), loginTime };
         localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(userProfile));
         resolve(userProfile);
       } catch (err) {

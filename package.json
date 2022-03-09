@@ -1,8 +1,8 @@
 {
   "name": "lines",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Alex Ermakov",
-  "description": "Game of Life - Lines",
+  "description": "Game of Life - Simple Lines",
   "license": "ISC",
   "bugs": {
     "url": "https://https://github.com/ermakof/lines/issues"
@@ -12,6 +12,7 @@
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "formik": "^2.2.9",
+    "moment": "^2.29.1",
     "rambda": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

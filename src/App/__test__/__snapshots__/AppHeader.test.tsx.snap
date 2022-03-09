@@ -3,23 +3,25 @@
 exports[`AppHeader Render authorised <AppHeader> 1`] = `
 <DocumentFragment>
   <div
-    class="css-1w0hfqs"
+    class="css-8jmgub"
     role="topPanel"
   >
     <div
-      class="css-ov1ktg"
+      class="css-123spcd"
     >
       <p
-        class="css-10vuvr5"
+        class="css-1f23mg8"
+        role="gameTitle"
       >
-        Игрок: 123
+        Lines
       </p>
       <div
-        class="css-1w0hfqs"
+        class="css-1xojm1q"
         role="userForm"
       >
         <div
-          class="css-ov1ktg"
+          class="css-123spcd"
+          role="formControls"
         >
           <button
             class="css-tv5zn1"
@@ -57,13 +59,13 @@ exports[`AppHeader Render authorised <AppHeader> 1`] = `
               </option>
             </select>
           </div>
-          <button
-            class="css-tv5zn1"
-            role="buttonLogout"
-          >
-            Выйти
-          </button>
         </div>
+        <button
+          class="css-tv5zn1"
+          role="buttonLogout"
+        >
+          Выйти
+        </button>
       </div>
     </div>
   </div>
@@ -73,14 +75,15 @@ exports[`AppHeader Render authorised <AppHeader> 1`] = `
 exports[`AppHeader Render unauthorised <AppHeader> 1`] = `
 <DocumentFragment>
   <div
-    class="css-1w0hfqs"
+    class="css-8jmgub"
     role="topPanel"
   >
     <div
-      class="css-ov1ktg"
+      class="css-123spcd"
     >
       <p
-        class="css-10vuvr5"
+        class="css-1f23mg8"
+        role="gameTitle"
       >
         Lines
       </p>

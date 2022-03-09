@@ -6,21 +6,19 @@ import Cell from '@src/modules/Cell';
 import { TRootState } from '@src/store';
 import { useSelector } from 'react-redux';
 import { GAME_FIELD_SIZE } from '@src/App/initialState';
+import Section from '@src/layout/Section';
 
 interface IFieldContainer {
   active?: boolean;
 }
 export const FieldContainer = styled.section<IFieldContainer>`
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
   margin: auto;
-  height: fit-content;
-  width: fit-content;
-  min-width: 550px;
-  min-height: 550px;
+  min-width: 525px;
+  z-index: 999;
+`;
+
+const Root = styled(Section)`
+  background: '#282c34';
 `;
 
 const MessageNoData = styled.p`
@@ -42,26 +40,28 @@ const GameField: FC = () => {
   }
 
   return (
-    <FieldContainer role="cellsGrid">
-      {gameFieldData.map((item: ICellInfo, index: number) => {
-        const y = Math.floor(index / GAME_FIELD_SIZE);
-        const x = index % GAME_FIELD_SIZE;
-        const isRight = x === widthMinus1;
-        const isLeft = x === 0;
-        return (
-          <Cell
-            key={`${y}-${x}`}
-            num={index}
-            filled={item}
-            isSelected={selectedCell === index}
-            isLeft={isLeft}
-            isRight={isRight}
-            highlighted={highlightedCells[index]}
-          />
-        );
-      })}
-      <div style={{ clear: 'both' }} />
-    </FieldContainer>
+    <Root>
+      <FieldContainer role="cellsGrid">
+        {gameFieldData.map((item: ICellInfo, index: number) => {
+          const y = Math.floor(index / GAME_FIELD_SIZE);
+          const x = index % GAME_FIELD_SIZE;
+          const isRight = x === widthMinus1;
+          const isLeft = x === 0;
+          return (
+            <Cell
+              key={`${y}-${x}`}
+              num={index}
+              filled={item}
+              isSelected={selectedCell === index}
+              isLeft={isLeft}
+              isRight={isRight}
+              highlighted={highlightedCells[index]}
+            />
+          );
+        })}
+        <div style={{ clear: 'both' }} />
+      </FieldContainer>
+    </Root>
   );
 };
 

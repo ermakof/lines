@@ -1,12 +1,10 @@
 import React from 'react';
-import { Provider, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { render, screen } from '@testing-library/react';
-import configureMockStore from 'redux-mock-store';
 
 import App from '@src/App';
-import initialState from '@src/App/initialState';
-
-const mockStore = configureMockStore();
+import appInitialState from '@src/App/initialState';
+import authInitialState from '@src/modules/Auth/initialState';
 
 jest.mock('react-redux', () => ({
   __esModule: true,
@@ -15,21 +13,44 @@ jest.mock('react-redux', () => ({
   useDispatch: jest.fn(),
 }));
 
-test('render App', () => {
-  const store = mockStore(initialState);
-  const mockDispatch = jest.fn();
-  (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
-  (useSelector as jest.Mock).mockReturnValue(initialState);
-  const { asFragment } = render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
-  expect(asFragment()).toMatchSnapshot();
-  const topPanel = screen.getByRole(/topPanel/gi);
-  expect(topPanel).toBeInTheDocument();
-  const gamePanel = screen.getByRole(/gamePanel/gi);
-  expect(gamePanel).toBeInTheDocument();
-  const bottomPanel = screen.getByRole(/bottomPanel/gi);
-  expect(bottomPanel).toBeInTheDocument();
+const mockSelectors = (selector: any, store: any) => {
+  return selector(store);
+};
+
+describe('App with init state', () => {
+  beforeEach(() => {
+    const mockStore = {
+      app: appInitialState,
+      auth: authInitialState,
+    };
+    (useSelector as jest.Mock).mockImplementation((selector) => mockSelectors(selector, mockStore));
+    (useDispatch as jest.Mock).mockImplementation(jest.fn());
+  });
+
+  afterEach(() => {
+    (useSelector as jest.Mock).mockClear();
+  });
+
+  it('render snapshot', () => {
+    const { asFragment } = render(<App />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('top panel to be in the document', () => {
+    render(<App />);
+    const panel = screen.getByRole(/topPanel/gi);
+    expect(panel).toBeInTheDocument();
+  });
+
+  it('body panel to be in the document', () => {
+    render(<App />);
+    const panel = screen.getByRole(/bodyPanel/gi);
+    expect(panel).toBeInTheDocument();
+  });
+
+  it('bottom panel to be in the document', () => {
+    render(<App />);
+    const panel = screen.getByRole(/bottomPanel/gi);
+    expect(panel).toBeInTheDocument();
+  });
 });

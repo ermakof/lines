@@ -4,8 +4,10 @@ import initialState, {
   GAME_LEVEL_SETTINGS,
   INIT_GAME_FIELD_PERCENT_FILLED,
   GAME_FIELD_SIZE,
+  INIT_GAME_LEVEL,
 } from '@src/App/initialState';
 import { createGameField } from '@src/utils/';
+import { IUserInfo } from '@src/modules/HitParade/models';
 
 const appSlice = createSlice({
   name: 'app',
@@ -29,6 +31,8 @@ const appSlice = createSlice({
     initApp: (state) => {
       state.gameFieldPercentFilled = INIT_GAME_FIELD_PERCENT_FILLED;
       state.gameFieldData = createGameField(GAME_FIELD_SIZE ** 2, 0);
+      state.userLevel = INIT_GAME_LEVEL;
+      state.score = 0;
     },
     resetApp: (state) => {
       const gameFieldPercentFilled = Number(state.userLevel) * 10;
@@ -43,6 +47,19 @@ const appSlice = createSlice({
     },
     waitOff: (state) => {
       state.isLoading = false;
+    },
+    updateHitParadeInfo: (state, { payload }: PayloadAction<IUserInfo>) => {
+      if (!state.hitParade) {
+        state.hitParade = {};
+      }
+      if (payload.ts) {
+        state.hitParade[payload.ts] = payload;
+      }
+    },
+    deleteUserFromHitParade: (state, { payload }: PayloadAction<number>) => {
+      if (state.hitParade && payload) {
+        delete state.hitParade[payload];
+      }
     },
   },
 });

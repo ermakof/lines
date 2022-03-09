@@ -37,7 +37,7 @@ store.dispatch(appSlice.actions.updateGame(payload));
 
 const Template: ComponentStory<typeof AppBody> = (args) => (
   <Provider store={store}>
-    <AppBody {...args} />
+    <div style={{  background: '#282c34' }}><AppBody {...args} /></div>
   </Provider>
 );
 

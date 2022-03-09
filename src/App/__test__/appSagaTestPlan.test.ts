@@ -1,6 +1,7 @@
 /* eslint-disable */
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
+import { combineReducers} from '@reduxjs/toolkit';
 
 import {
   watchStartGameSteps,
@@ -16,7 +17,7 @@ import {
 } from '@src/App/appSaga';
 
 import { actions as appActions, reducer} from '@src/App/appSlice';
-import { combineReducers} from '@reduxjs/toolkit';
+import { reducer as authReducer} from '@src/modules/Auth/authSlice';
 import { addNewCellsToGameField, getNewCells } from '@src/utils';
 import { IAppState } from '@src/App/model/IAppState';
 
@@ -33,6 +34,18 @@ describe('appSaga test plan', () => {
         isLoading: false,
       };
       return expectSaga(watchRehydrate)
+        .withReducer(combineReducers({
+          auth: authReducer,
+        }), {
+          auth: {
+            userProfile: {
+              login: 'user',
+              loginTime: 123,
+              password: 'pwd',
+            },
+          }
+        })
+        .put(appActions.updateHitParadeInfo({login: 'user', ts: 123, score: 0}))
         .put(appActions.waitOn())
         .provide([
           [matchers.call.fn(localStorage.getItem), persistedApp],
@@ -40,6 +53,9 @@ describe('appSaga test plan', () => {
         ])
         .put(appActions.restoreGame(dataApp))
         .put(appActions.waitOff())
+        .hasFinalState({
+          auth: { userProfile: { login: 'user', loginTime: 123, password: 'pwd' } }
+        })
         .run();
     });
 
@@ -129,7 +145,7 @@ describe('appSaga test plan', () => {
               ],
               selectedCell: 80,
               highlightedCells: {80: '#ff0000'},
-            } as IAppState
+            }
           })
           .put(appActions.updateGame({
             gameFieldData: [
@@ -314,6 +330,7 @@ describe('appSaga test plan', () => {
         return expectSaga(step3, [[0, 0], [0, 9], [0, 18], [0, 27]])
           .withReducer(combineReducers({
             app: reducer,
+            auth: authReducer,
           }), {
             app: {
               gameFieldData: [
@@ -329,6 +346,13 @@ describe('appSaga test plan', () => {
               ],
               highlightedCells: {0: '#00ff00', 9: '#00ff00', 18: '#00ff00', 27: '#00ff00'},
               score: 100,
+              hitParade: {
+                111: { login: 'Игрок 1', ts: 111, score: 0 },
+                222: { login: 'Игрок 2', ts: 222, score: 0 }
+              }
+            },
+            auth: {
+              userProfile: { loginTime: 111, login: 'user', password: 'pwd', token: '1-2-3' },
             }
           })
           .hasFinalState({
@@ -346,6 +370,13 @@ describe('appSaga test plan', () => {
               ],
               highlightedCells: undefined,
               score: 104,
+              hitParade: {
+                '111': { login: 'Игрок 1', ts: 111, score: 104 },
+                '222': { login: 'Игрок 2', ts: 222, score: 0 }
+              },
+            },
+            auth: {
+              userProfile: {loginTime: 111, login: 'user', password: 'pwd', token: '1-2-3'},
             }
           })
           .run(500);
@@ -454,6 +485,7 @@ describe('appSaga test plan', () => {
         return expectSaga(watchStartGameSteps, {payload: 0, type: 'app/startGameSteps'})
           .withReducer(combineReducers({
             app: reducer,
+            auth: authReducer,
           }), {
             app: {
               gameFieldData: [
@@ -470,6 +502,9 @@ describe('appSaga test plan', () => {
               selectedCell: 1,
               userLevel: '1',
               score: 100,
+            },
+            auth: {
+              userProfile: {loginTime: 123, login: 'user', password: 'pwd', token: '1-2-3'},
             }
           })
           .hasFinalState({
@@ -489,6 +524,10 @@ describe('appSaga test plan', () => {
               userLevel: '1',
               score: 104,
               highlightedCells: undefined,
+              hitParade: undefined
+            },
+            auth: {
+              userProfile: {loginTime: 123, login: 'user', password: 'pwd', token: '1-2-3'},
             }
           })
           .run(1000);

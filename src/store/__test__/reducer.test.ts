@@ -180,4 +180,32 @@ describe('reducer', () => {
     const newState = appSlice.reducer(state, appSlice.actions.updateGame({ userLevel: '2' }));
     expect(newState.userLevel).toBe('2');
   });
+
+  it('updateHitParadeInfo => update', () => {
+    const state = {
+      gameFieldData: [1, 1, 0, 0, 1, 0, 0, 1, 0],
+      hitParade: {
+        456: { ts: 456, login: 'user2', score: 200 },
+      },
+    };
+    const newState = appSlice.reducer(
+      state,
+      appSlice.actions.updateHitParadeInfo({ ts: 456, login: 'user2', score: 200 })
+    );
+    expect(newState).toEqual(state);
+  });
+
+  it('updateHitParadeInfo => add new', () => {
+    const state = {
+      gameFieldData: [1, 1, 0, 0, 1, 0, 0, 1, 0],
+    };
+    const newState = appSlice.reducer(
+      state,
+      appSlice.actions.updateHitParadeInfo({ ts: 456, login: 'user2', score: 200 })
+    );
+    expect(newState).toEqual({
+      gameFieldData: [1, 1, 0, 0, 1, 0, 0, 1, 0],
+      hitParade: { '456': { ts: 456, login: 'user2', score: 200 } },
+    });
+  });
 });

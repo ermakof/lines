@@ -13,54 +13,58 @@ exports[`GameField No render cells, game field size = 0 1`] = `
 
 exports[`GameField renders 9 cells from data:[9 items] 1`] = `
 <DocumentFragment>
-  <section
-    class="css-15ri7cs"
-    role="cellsGrid"
+  <div
+    class="css-1kwt2ug"
   >
-    <div
-      class="css-1bqu5zx"
-      role="cellContainer-0"
+    <section
+      class="css-1v4wim7"
+      role="cellsGrid"
     >
       <div
-        class="css-zzdbx3"
-        role="cellContent-0"
+        class="css-1bqu5zx"
+        role="cellContainer-0"
+      >
+        <div
+          class="css-zzdbx3"
+          role="cellContent-0"
+        />
+      </div>
+      <div
+        class="css-g263yg"
+        role="cellContainer-1"
       />
-    </div>
-    <div
-      class="css-g263yg"
-      role="cellContainer-1"
-    />
-    <div
-      class="css-g263yg"
-      role="cellContainer-2"
-    />
-    <div
-      class="css-g263yg"
-      role="cellContainer-3"
-    />
-    <div
-      class="css-g263yg"
-      role="cellContainer-4"
-    />
-    <div
-      class="css-g263yg"
-      role="cellContainer-5"
-    />
-    <div
-      class="css-g263yg"
-      role="cellContainer-6"
-    />
-    <div
-      class="css-g263yg"
-      role="cellContainer-7"
-    />
-    <div
-      class="css-v213q6"
-      role="cellContainer-8"
-    />
-    <div
-      style="clear: both;"
-    />
-  </section>
+      <div
+        class="css-g263yg"
+        role="cellContainer-2"
+      />
+      <div
+        class="css-g263yg"
+        role="cellContainer-3"
+      />
+      <div
+        class="css-g263yg"
+        role="cellContainer-4"
+      />
+      <div
+        class="css-g263yg"
+        role="cellContainer-5"
+      />
+      <div
+        class="css-g263yg"
+        role="cellContainer-6"
+      />
+      <div
+        class="css-g263yg"
+        role="cellContainer-7"
+      />
+      <div
+        class="css-v213q6"
+        role="cellContainer-8"
+      />
+      <div
+        style="clear: both;"
+      />
+    </section>
+  </div>
 </DocumentFragment>
 `;

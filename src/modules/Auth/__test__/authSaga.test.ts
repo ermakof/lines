@@ -1,7 +1,8 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery, select } from 'redux-saga/effects';
 import { authSaga, watchLogout, watchRehydrate, watchSetUser } from '@src/modules/Auth/authSaga';
 import { actions } from '@src/modules/Auth/authSlice';
 import { signIn, signOut } from '@src/modules/Auth/fakeAuthProvider';
+import { getApp } from '@src/App/appSaga';
 
 describe('authSlice', () => {
   it('call takeEvery 3 times', () => {
@@ -30,9 +31,10 @@ describe('authSlice', () => {
   });
 
   it('watchLogout', () => {
-    const saga = watchLogout();
+    const saga = watchLogout({ payload: 0, type: 'auth/logout' });
     expect(saga.next().value).toEqual(put({ type: 'app/waitOn' }));
-    expect(saga.next().value).toEqual(call(signOut));
+    expect(saga.next().value).toEqual(select(getApp));
+    expect(saga.next({ hitParade: {} }).value).toEqual(call(signOut));
     expect(saga.next().value).toEqual(put({ type: 'app/initApp' }));
     expect(saga.next().value).toEqual(put({ type: 'app/waitOff' }));
     expect(saga.next().done).toBe(true);

@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Meta, Story } from '@storybook/react';
+import { ComponentStory, Meta } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 
 import FormControls from '@src/modules/UserForm/FormControls';
@@ -33,7 +33,7 @@ export default {
   title: 'Forms/FormControls',
 } as Meta;
 
-export const ExampleControls: Story = (args) => (
+export const ExampleControls: ComponentStory<typeof FormControls> = (args) => (
   <Provider store={store}>
     <FormControls {...args} />
   </Provider>

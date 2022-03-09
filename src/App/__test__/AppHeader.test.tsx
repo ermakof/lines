@@ -36,7 +36,7 @@ describe('AppHeader', () => {
       </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
-    const title = screen.getByText(/Игрок/gi);
+    const title = screen.getByRole(/gameTitle/gi);
     expect(title).toBeInTheDocument();
     const button = screen.getByRole(/^buttonLogout$/gi);
     expect(button).toBeInTheDocument();

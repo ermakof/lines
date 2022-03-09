@@ -4,12 +4,13 @@ import { useSelector } from 'react-redux';
 import styled from '@emotion/styled';
 
 import { TRootState } from '@src/store';
-import UserStatus from '@src/components/UserStatus';
+import GameTitle from '@src/components/GameTitle';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Loading from '@src/components/Loading';
 
 const Root = styled.div`
   display: flex;
+  width: 100%;
 `;
 
 interface IAuthLayout {
@@ -27,7 +28,7 @@ const AuthLayout: FC<IAuthLayout> = ({ login = '' }) => {
 
   return (
     <Root>
-      <UserStatus login={login} />
+      <GameTitle />
       <Outlet />
       {isLoading && <Loading />}
     </Root>

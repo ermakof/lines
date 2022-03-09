@@ -7,6 +7,8 @@ import {
   PutEffect,
   CallEffect,
 } from 'redux-saga/effects';
+import { clone } from 'rambda';
+
 import { actions as appActions, actions } from '@src/App/appSlice';
 import { TRootState } from '@src/store';
 import {
@@ -26,19 +28,28 @@ import { ICellsProps } from '@src/App/model/ICellsProps';
 import removeOutdatedChains from '@src/utils/removeOutdatedChains';
 import getNewCells from '@src/utils/getNewCells';
 import { GAME_FIELD_SIZE } from '@src/App/initialState';
+import { getAuth } from '@src/modules/Auth/authSaga';
+import { IUserInfo as IUser } from '@src/modules/HitParade/models';
 
 const LOCAL_STORAGE_APP_KEY = 'lines:app';
 
 export function* watchRehydrate(): Generator<
   SelectEffect | PutEffect | CallEffect,
   void,
-  IAppState
+  TRootState
 > {
   yield put(appActions.waitOn());
   const persistedApp = yield call([localStorage, localStorage.getItem], LOCAL_STORAGE_APP_KEY);
   if (persistedApp) {
     const dataApp = yield call([JSON, JSON.parse], persistedApp as unknown as string);
     yield put(actions.restoreGame(dataApp));
+    const { userProfile } = yield select(getAuth);
+    const userInfo: IUser = {
+      login: userProfile.login,
+      ts: userProfile.loginTime,
+      score: 0,
+    };
+    yield put(actions.updateHitParadeInfo(userInfo));
   }
   yield put(appActions.waitOff());
 }
@@ -135,23 +146,28 @@ export function* step2(
  **/
 export function* step3(
   chains: Array<Array<number>>
-): Generator<SelectEffect | PutEffect | CallEffect, void, IAppState> {
-  const app = yield select(getApp);
+): Generator<SelectEffect | PutEffect | CallEffect, void, TRootState> {
   const {
     gameFieldData: gameData,
     score: oldScore = 0,
     highlightedCells,
-  } = app as unknown as IAppState;
+    hitParade,
+  } = yield select(getApp);
 
   const gameFieldData = yield call(removeOutdatedChains, gameData, chains);
-  const score =
-    oldScore +
-    (highlightedCells ? Object.keys(highlightedCells as unknown as ICellsProps).length : 0);
+  const score = oldScore + (highlightedCells ? Object.keys(highlightedCells).length : 0);
+  const { userProfile } = yield select(getAuth);
+  let newHitParade;
+  if (hitParade && userProfile) {
+    newHitParade = clone(hitParade);
+    newHitParade[userProfile.loginTime].score = score;
+  }
   yield put(
     appActions.updateGame({
       gameFieldData,
       highlightedCells: undefined,
       score,
+      hitParade: newHitParade,
     })
   );
 }

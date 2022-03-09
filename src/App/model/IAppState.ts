@@ -1,4 +1,5 @@
 import { ICellsProps } from '@src/App/model/ICellsProps';
+import { TUserList } from '@src/modules/HitParade/models';
 
 export interface IAppState {
   isLoading?: boolean;
@@ -9,5 +10,5 @@ export interface IAppState {
   score?: number;
   selectedCell?: number;
   userLevel?: string;
-  hitParade?: Record<string, number>;
+  hitParade?: TUserList;
 }
