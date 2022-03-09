@@ -35,6 +35,9 @@
 ## Демо
 https://ermakof.github.io/lines/
 
+## Storybook
+https://www.chromatic.com/library?appId=6202481eb531db003aa37524
+
 ## Скрипты запуска
 Доступные скрипты проекта
 
@@ -82,51 +85,68 @@ Open [http://localhost:8081](http://localhost:8081) в браузере.
 ----------------------------|---------|----------|---------|---------|-------------------
 File                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 ----------------------------|---------|----------|---------|---------|-------------------
-All files                   |   99.79 |    91.27 |   99.28 |     100 |                  
+All files                   |     100 |    88.08 |     100 |     100 |                  
  src                        |     100 |      100 |     100 |     100 |                  
   Root.tsx                  |     100 |      100 |     100 |     100 |                  
- src/App                    |     100 |       70 |     100 |     100 |                  
-  AppBody.tsx               |     100 |      100 |     100 |     100 |                  
-  AppBottom.tsx             |     100 |    66.66 |     100 |     100 | 20               
+ src/App                    |     100 |    73.52 |     100 |     100 |                  
+  AppBody.tsx               |     100 |       50 |     100 |     100 | 18               
+  AppBottom.tsx             |     100 |    66.66 |     100 |     100 | 18               
   AppHeader.tsx             |     100 |      100 |     100 |     100 |                  
   AppRouter.tsx             |     100 |      100 |     100 |     100 |                  
-  appSaga.ts                |     100 |    70.58 |     100 |     100 | 57-188           
-  appSlice.ts               |     100 |      100 |     100 |     100 |                  
+  appSaga.ts                |     100 |    76.19 |     100 |     100 | 70-158,207       
+  appSlice.ts               |     100 |       75 |     100 |     100 | 55-60            
   index.tsx                 |     100 |      100 |     100 |     100 |                  
   initialState.ts           |     100 |      100 |     100 |     100 |                  
  src/App/model              |       0 |        0 |       0 |       0 |                  
   IAppState.ts              |       0 |        0 |       0 |       0 |                  
   ICellsProps.ts            |       0 |        0 |       0 |       0 |                  
- src/components             |     100 |      100 |     100 |     100 |                  
+ src/components             |     100 |    77.77 |     100 |     100 |                  
   Button.tsx                |     100 |      100 |     100 |     100 |                  
+  GameTitle.tsx             |     100 |      100 |     100 |     100 |                  
   Loading.tsx               |     100 |      100 |     100 |     100 |                  
+  Percentage.tsx            |     100 |    66.66 |     100 |     100 | 11               
+  Score.tsx                 |     100 |        0 |     100 |     100 | 11               
   Select.tsx                |     100 |      100 |     100 |     100 |                  
  src/layout                 |     100 |      100 |     100 |     100 |                  
+  Grid.ts                   |     100 |      100 |     100 |     100 |                  
   Panel.ts                  |     100 |      100 |     100 |     100 |                  
- src/modules/Auth           |     100 |    94.44 |     100 |     100 |                  
+  Section.ts                |     100 |      100 |     100 |     100 |                  
+  Title.ts                  |     100 |      100 |     100 |     100 |                  
+ src/modules/Auth           |     100 |       95 |     100 |     100 |                  
   AuthForm.tsx              |     100 |      100 |     100 |     100 |                  
-  AuthLayout.tsx            |     100 |       80 |     100 |     100 | 31               
-  AuthStatus.tsx            |     100 |      100 |     100 |     100 |                  
+  AuthLayout.tsx            |     100 |       80 |     100 |     100 | 33               
   RequireAuth.tsx           |     100 |      100 |     100 |     100 |                  
   authSaga.ts               |     100 |      100 |     100 |     100 |                  
   authSlice.ts              |     100 |      100 |     100 |     100 |                  
   fakeAuthProvider.ts       |     100 |      100 |     100 |     100 |                  
+  initialState.ts           |     100 |      100 |     100 |     100 |                  
  src/modules/Auth/model     |       0 |        0 |       0 |       0 |                  
   IAuthState.ts             |       0 |        0 |       0 |       0 |                  
   IUserProfile.ts           |       0 |        0 |       0 |       0 |                  
- src/modules/Cell           |     100 |    87.87 |     100 |     100 |                  
+ src/modules/Cell           |     100 |    86.04 |     100 |     100 |                  
   constatnts.ts             |     100 |      100 |     100 |     100 |                  
-  index.tsx                 |     100 |    87.87 |     100 |     100 | 93,103-110       
+  index.tsx                 |     100 |    86.04 |     100 |     100 | 111-113,122-129  
   models.ts                 |       0 |        0 |       0 |       0 |                  
  src/modules/GameField      |     100 |      100 |     100 |     100 |                  
   index.tsx                 |     100 |      100 |     100 |     100 |                  
- src/modules/UserForm       |   92.85 |      100 |   83.33 |     100 |                  
-  index.tsx                 |   92.85 |      100 |   83.33 |     100 |                  
+ src/modules/HitParade      |     100 |    73.68 |     100 |     100 |                  
+  PlayerList.tsx            |     100 |      100 |     100 |     100 |                  
+  PlayerListHeader.tsx      |     100 |      100 |     100 |     100 |                  
+  PlayerListRow.tsx         |     100 |    33.33 |     100 |     100 | 12-17            
+  index.tsx                 |     100 |      100 |     100 |     100 |                  
+  layout.ts                 |     100 |      100 |     100 |     100 |                  
+  models.ts                 |       0 |        0 |       0 |       0 |                  
+  utils.ts                  |     100 |       25 |     100 |     100 | 4                
+ src/modules/UserForm       |     100 |      100 |     100 |     100 |                  
+  FormControls.tsx          |     100 |      100 |     100 |     100 |                  
+  index.tsx                 |     100 |      100 |     100 |     100 |                  
+ src/modules/UserInfo       |     100 |      100 |     100 |     100 |                  
+  index.tsx                 |     100 |      100 |     100 |     100 |                  
  src/store                  |     100 |      100 |     100 |     100 |                  
   index.ts                  |     100 |      100 |     100 |     100 |                  
   rootReducer.ts            |     100 |      100 |     100 |     100 |                  
   rootSaga.ts               |     100 |      100 |     100 |     100 |                  
- src/utils                  |     100 |    95.65 |     100 |     100 |                  
+ src/utils                  |     100 |    95.23 |     100 |     100 |                  
   Lee.ts                    |     100 |      100 |     100 |     100 |                  
   addNewCellsToGameField.ts |     100 |      100 |     100 |     100 |                  
   createArrayBySize.ts      |     100 |      100 |     100 |     100 |                  
@@ -136,6 +156,7 @@ All files                   |   99.79 |    91.27 |   99.28 |     100 |
   generateCellsByCount.ts   |     100 |      100 |     100 |     100 |                  
   generateCellsByPercent.ts |     100 |      100 |     100 |     100 |                  
   getChainByInd.ts          |     100 |      100 |     100 |     100 |                  
+  getChainDirection.ts      |     100 |    91.66 |     100 |     100 | 3                
   getChainsByInd.ts         |     100 |      100 |     100 |     100 |                  
   getHighlightedCells.ts    |     100 |      100 |     100 |     100 |                  
   getIndByPos.ts            |     100 |      100 |     100 |     100 |                  
@@ -150,6 +171,11 @@ All files                   |   99.79 |    91.27 |   99.28 |     100 |
   shuffle.ts                |     100 |      100 |     100 |     100 |                  
   uuidv4.ts                 |     100 |      100 |     100 |     100 |                  
 ----------------------------|---------|----------|---------|---------|-------------------
+Test Suites: 44 passed, 44 total
+Tests:       170 passed, 170 total
+Snapshots:   18 passed, 18 total
+Time:        15.03 s
+Ran all test suites.
 
 ```
 ### Stryker tests

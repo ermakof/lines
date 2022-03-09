@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthStatus Render <AuthStatus> without authorisation 1`] = `
+<DocumentFragment>
+  <p
+    class="css-1f23mg8"
+    role="gameTitle"
+  >
+    Lines
+  </p>
+</DocumentFragment>
+`;

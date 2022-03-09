@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hit parade form render snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="css-1n2h5h0"
+    role="panelHitParade"
+  >
+    <div
+      class="css-11wxzwa"
+      role="rootGrid"
+    >
+      <p
+        class="css-1890bmp"
+      >
+        Хит-парад
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -14,10 +14,10 @@ exports[`GameField No render cells, game field size = 0 1`] = `
 exports[`GameField renders 9 cells from data:[9 items] 1`] = `
 <DocumentFragment>
   <div
-    class="css-1kwt2ug"
+    class="css-1n2h5h0"
   >
     <section
-      class="css-1v4wim7"
+      class="css-rxkl80"
       role="cellsGrid"
     >
       <div

@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlayerList Render snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="css-11wxzwa"
+    role="grid"
+  >
+    <div
+      class="css-8eb8xz"
+      role="header"
+    >
+      <div
+        class="css-1hygdxi"
+        role="col"
+      >
+        Время
+      </div>
+      <div
+        class="css-182swot"
+        role="col"
+      >
+        Имя
+      </div>
+      <div
+        class="css-lbgr5s"
+        role="col"
+      >
+        Счет
+      </div>
+      <div
+        class="css-1kiydj1"
+        role="col"
+      >
+        Место
+      </div>
+    </div>
+    <div
+      class="css-jqijda"
+      role="row"
+    >
+      <div
+        class="css-1hygdxi"
+        role="col"
+      >
+        09.03.2022, 23:58:32
+      </div>
+      <div
+        class="css-182swot"
+        role="col"
+      >
+        Игрок 3
+      </div>
+      <div
+        class="css-lbgr5s"
+        role="col"
+      >
+        300
+      </div>
+      <div
+        class="css-1kiydj1"
+        role="col"
+      >
+        1
+      </div>
+    </div>
+    <div
+      class="css-18mgls5"
+      role="row"
+    >
+      <div
+        class="css-1hygdxi"
+        role="col"
+      >
+        09.03.2022, 22:51:29
+      </div>
+      <div
+        class="css-182swot"
+        role="col"
+      >
+        Игрок 2
+      </div>
+      <div
+        class="css-lbgr5s"
+        role="col"
+      >
+        200
+      </div>
+      <div
+        class="css-1kiydj1"
+        role="col"
+      >
+        2
+      </div>
+    </div>
+    <div
+      class="css-1eso2yd"
+      role="row"
+    >
+      <div
+        class="css-1hygdxi"
+        role="col"
+      >
+        09.03.2022, 21:44:21
+      </div>
+      <div
+        class="css-182swot"
+        role="col"
+      >
+        Игрок 1
+      </div>
+      <div
+        class="css-lbgr5s"
+        role="col"
+      >
+        100
+      </div>
+      <div
+        class="css-1kiydj1"
+        role="col"
+      >
+        3
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

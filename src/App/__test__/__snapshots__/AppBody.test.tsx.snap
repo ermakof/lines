@@ -22,10 +22,10 @@ exports[`AppBody Render <AppBody> with data 1`] = `
       </div>
     </div>
     <div
-      class="css-1kwt2ug"
+      class="css-1n2h5h0"
     >
       <section
-        class="css-1v4wim7"
+        class="css-rxkl80"
         role="cellsGrid"
       >
         <div
@@ -148,10 +148,10 @@ exports[`AppBody Render <AppBody> without data 1`] = `
       </div>
     </div>
     <div
-      class="css-1kwt2ug"
+      class="css-1n2h5h0"
     >
       <section
-        class="css-1v4wim7"
+        class="css-rxkl80"
         role="cellsGrid"
       >
         <div
