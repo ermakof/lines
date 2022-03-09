@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ develop, task-* ]
+    branches: [ main, develop, task-* ]
   pull_request:
     branches: [ main ]
 
@@ -51,9 +51,9 @@ jobs:
         id: Run-tests
         run: npm run test
 
-      - name: Run mutation tests
-        id: Run-mutation-tests
-        run: npm run test:mutate
+#      - name: Run mutation tests
+#        id: Run-mutation-tests
+#        run: npm run test:mutate
 
       - name: Run chromatic test
         id: Chromatic-test
@@ -96,11 +96,11 @@ jobs:
           FOLDER: ./coverage  # The folder the action should deploy.
           CLEAN: true # Automatically remove deleted files from deploy branch
 
-      - name: Deploy stryker-report to GHP, branch gh-pages-stryker 🚀
-        id: Deploy-test-stryker
-        uses: JamesIves/github-pages-deploy-action@v4.2.2
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages-stryker # The branch the action should deploy to.
-          FOLDER: ./reports  # The folder the action should deploy.
-          CLEAN: true # Automatically remove deleted files from deploy branch
+#      - name: Deploy stryker-report to GHP, branch gh-pages-stryker 🚀
+#        id: Deploy-test-stryker
+#        uses: JamesIves/github-pages-deploy-action@v4.2.2
+#        with:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          BRANCH: gh-pages-stryker # The branch the action should deploy to.
+#          FOLDER: ./reports  # The folder the action should deploy.
+#          CLEAN: true # Automatically remove deleted files from deploy branch
