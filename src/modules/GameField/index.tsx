@@ -13,12 +13,12 @@ interface IFieldContainer {
 }
 export const FieldContainer = styled.section<IFieldContainer>`
   margin: auto;
-  min-width: 525px;
+  min-width: 560px;
   z-index: 999;
 `;
 
 const Root = styled(Section)`
-  background: '#282c34';
+  background: #282c34;
 `;
 
 const MessageNoData = styled.p`
