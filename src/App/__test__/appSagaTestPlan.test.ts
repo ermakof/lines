@@ -13,7 +13,8 @@ import {
   step2,
   step3,
   step4,
-  step5
+  step5,
+  step6
 } from '@src/App/appSaga';
 
 import { actions as appActions, reducer} from '@src/App/appSlice';
@@ -330,7 +331,6 @@ describe('appSaga test plan', () => {
         return expectSaga(step3, [[0, 0], [0, 9], [0, 18], [0, 27]])
           .withReducer(combineReducers({
             app: reducer,
-            auth: authReducer,
           }), {
             app: {
               gameFieldData: [
@@ -346,14 +346,7 @@ describe('appSaga test plan', () => {
               ],
               highlightedCells: {0: '#00ff00', 9: '#00ff00', 18: '#00ff00', 27: '#00ff00'},
               score: 100,
-              hitParade: {
-                111: { login: 'Игрок 1', ts: 111, score: 0 },
-                222: { login: 'Игрок 2', ts: 222, score: 0 }
-              }
             },
-            auth: {
-              userProfile: { loginTime: 111, login: 'user', password: 'pwd', token: '1-2-3' },
-            }
           })
           .hasFinalState({
             app: {
@@ -370,14 +363,7 @@ describe('appSaga test plan', () => {
               ],
               highlightedCells: undefined,
               score: 104,
-              hitParade: {
-                '111': { login: 'Игрок 1', ts: 111, score: 104 },
-                '222': { login: 'Игрок 2', ts: 222, score: 0 }
-              },
             },
-            auth: {
-              userProfile: {loginTime: 111, login: 'user', password: 'pwd', token: '1-2-3'},
-            }
           })
           .run(500);
       });
@@ -478,6 +464,56 @@ describe('appSaga test plan', () => {
           })
           .run();
       });
+
+      it('#6 => add new player to hit parade', () => {
+        return expectSaga(step6)
+          .withReducer(combineReducers({
+            app: reducer,
+            auth: authReducer,
+          }), {
+            app: { gameFieldData: [], score: 200 },
+            auth: { userProfile: { login: 'user', loginTime: 123, password: 'pwd' } }
+          })
+          .hasFinalState({
+            app: {
+              gameFieldData: [],
+              score: 200,
+              hitParade:  { 123: { login: 'user', ts: 123, score: 200 } },
+            },
+            auth: { userProfile: { login: 'user', loginTime: 123, password: 'pwd' } }
+          })
+          .run();
+      });
+
+      it('#6 => update current player in hit parade', () => {
+        return expectSaga(step6)
+          .withReducer(combineReducers({
+            app: reducer,
+            auth: authReducer,
+          }), {
+            app: {
+              gameFieldData: [],
+              score: 200,
+              hitParade: {
+                111: { login: 'user', ts: 111, score: 100 },
+                222: { login: 'user', ts: 222, score: 100 }
+              }
+            },
+            auth: { userProfile: { login: 'user', loginTime: 111, password: 'pwd' } }
+          })
+          .hasFinalState({
+            app: {
+              gameFieldData: [],
+              score: 200,
+              hitParade: {
+                111: { login: 'user', ts: 111, score: 200 },
+                222: { login: 'user', ts: 222, score: 100 }
+              }
+            },
+            auth: { userProfile: { login: 'user', loginTime: 111, password: 'pwd' } }
+          })
+          .run();
+      });
     });
 
     describe('start steps with:', () => {
@@ -524,7 +560,7 @@ describe('appSaga test plan', () => {
               userLevel: '1',
               score: 104,
               highlightedCells: undefined,
-              hitParade: undefined
+              hitParade: { '123': { login: 'user', ts: 123, score: 104 } }
             },
             auth: {
               userProfile: {loginTime: 123, login: 'user', password: 'pwd', token: '1-2-3'},

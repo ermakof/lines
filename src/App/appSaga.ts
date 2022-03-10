@@ -147,27 +147,15 @@ export function* step2(
 export function* step3(
   chains: Array<Array<number>>
 ): Generator<SelectEffect | PutEffect | CallEffect, void, TRootState> {
-  const {
-    gameFieldData: gameData,
-    score: oldScore = 0,
-    highlightedCells,
-    hitParade,
-  } = yield select(getApp);
+  const { gameFieldData: gameData, score: oldScore = 0, highlightedCells } = yield select(getApp);
 
   const gameFieldData = yield call(removeOutdatedChains, gameData, chains);
   const score = oldScore + (highlightedCells ? Object.keys(highlightedCells).length : 0);
-  const { userProfile } = yield select(getAuth);
-  let newHitParade;
-  if (hitParade && userProfile) {
-    newHitParade = clone(hitParade);
-    newHitParade[userProfile.loginTime].score = score;
-  }
   yield put(
     appActions.updateGame({
       gameFieldData,
       highlightedCells: undefined,
       score,
-      hitParade: newHitParade,
     })
   );
 }
@@ -200,6 +188,30 @@ export function* step5(): Generator<SelectEffect | PutEffect | CallEffect, void,
   yield put(appActions.updateGame({ highlightedCells: undefined }));
 }
 
+/**
+ * Step 6
+ * update hit parade
+ **/
+export function* step6(): Generator<SelectEffect | PutEffect | CallEffect, void, TRootState> {
+  const { userProfile } = yield select(getAuth);
+  const { hitParade, score } = yield select(getApp);
+  if (userProfile && userProfile.loginTime) {
+    const newHitParade = hitParade ? clone(hitParade) : {};
+    const ts = userProfile.loginTime;
+    let userInfo = newHitParade[ts];
+    if (!userInfo) {
+      userInfo = {
+        login: userProfile.login,
+        ts,
+        score,
+      };
+    } else {
+      userInfo.score = score;
+    }
+    yield put(actions.updateHitParadeInfo(userInfo));
+  }
+}
+
 export function* watchStartGameSteps({
   payload,
 }: PayloadAction<number>): Generator<SelectEffect | PutEffect | CallEffect, void, IAppState> {
@@ -223,6 +235,7 @@ export function* watchStartGameSteps({
     if (Array.isArray(outdatedChains) && outdatedChains.length) {
       yield* step2(outdatedChains, 100);
       yield* step3(outdatedChains);
+      yield* step6();
     } else {
       yield* step4(250);
       yield* step5();
