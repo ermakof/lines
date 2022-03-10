@@ -59,10 +59,9 @@ exports[`PlayerList Render snapshot 1`] = `
       </div>
       <div
         class="css-1kiydj1"
+        data-testid="colWinnerPlace"
         role="col"
-      >
-        1
-      </div>
+      />
     </div>
     <div
       class="css-18mgls5"
@@ -88,10 +87,9 @@ exports[`PlayerList Render snapshot 1`] = `
       </div>
       <div
         class="css-1kiydj1"
+        data-testid="colWinnerPlace"
         role="col"
-      >
-        2
-      </div>
+      />
     </div>
     <div
       class="css-1eso2yd"
@@ -117,10 +115,9 @@ exports[`PlayerList Render snapshot 1`] = `
       </div>
       <div
         class="css-1kiydj1"
+        data-testid="colWinnerPlace"
         role="col"
-      >
-        3
-      </div>
+      />
     </div>
   </div>
 </DocumentFragment>

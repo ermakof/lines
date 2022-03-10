@@ -7,7 +7,12 @@ module.exports = {
   testRunner: 'jest',
   coverageAnalysis: 'perTest',
   tsconfigFile: 'tsconfig.json',
-  mutate: ['src/**/*.ts?(x)', '!src/**/*@(.test|.spec|Spec|stories).ts?(x)', '!src/store/index.ts'],
+  mutate: [
+    'src/modules/HitParade/PlayerListRow.ts?(x)',
+    '!src/**/*@(.test|.spec|Spec|stories).ts?(x)',
+    '!src/store/index.ts',
+    '!src/index.tsx',
+  ],
   buildCommand: 'npm run build',
   tempDirName: 'stryker-tmp',
   checkers: ['typescript'],
