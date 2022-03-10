@@ -8,7 +8,7 @@ module.exports = {
   coverageAnalysis: 'perTest',
   tsconfigFile: 'tsconfig.json',
   mutate: [
-    'src/modules/HitParade/PlayerListRow.ts?(x)',
+    'src/**/*.ts?(x)',
     '!src/**/*@(.test|.spec|Spec|stories).ts?(x)',
     '!src/store/index.ts',
     '!src/index.tsx',
