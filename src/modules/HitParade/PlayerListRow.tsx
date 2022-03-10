@@ -10,8 +10,7 @@ export interface IPlayerListRow {
   highlighted?: boolean;
 }
 const PlayerListRow: FC<IPlayerListRow> = ({ user, winner, highlighted = false }) => {
-  const time = moment(user.ts).format('DD.MM.YYYY, HH:mm:ss');
-  // const time = moment(user.ts).tz('Europe/Moscow').format('DD.MM.YYYY, HH:mm:ss');
+  const time = moment(user.ts).tz('Europe/Moscow').format('DD.MM.YYYY, HH:mm:ss');
   return (
     <Row role="row" winner={winner} highlighted={highlighted}>
       <ColTime role="col">{time}</ColTime>
